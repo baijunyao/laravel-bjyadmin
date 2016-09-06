@@ -151,6 +151,11 @@ return [
         Way\Generators\GeneratorsServiceProvider::class,
         Xethron\MigrationsGenerator\MigrationsGeneratorServiceProvider::class,
 
+        /**
+         * iseed Providers...
+         */
+        Orangehill\Iseed\IseedServiceProvider::class,
+
     ],
 
     /*
