@@ -17,3 +17,5 @@ Route::get('/', function () {
 
 Route::get('/admin' ,'Admin\IndexController@index');
 
+Route::get('/admin/nav/index' ,'Admin\NavController@index');
+

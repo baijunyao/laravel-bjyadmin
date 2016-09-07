@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+use App\Model\AdminNav;
+
 class NavController extends Controller
 {
     /**
@@ -16,7 +18,8 @@ class NavController extends Controller
      */
     public function index()
     {
-        //
+        $nav=new AdminNav();
+        $nav->getTreeData('tree','order_number');
     }
 
     /**
