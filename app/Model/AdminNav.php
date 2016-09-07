@@ -9,6 +9,6 @@ class AdminNav extends Model
     public function getTreeData($type='tree',$order)
     {
         $data=$this->get()->toArray();
-        dd($data);
+        p($data);
     }
 }
