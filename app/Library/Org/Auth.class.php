@@ -8,8 +8,8 @@
 // +----------------------------------------------------------------------
 // | Author: luofei614 <weibo.com/luofei614>
 // +----------------------------------------------------------------------
-namespace Think;
-
+namespace app\Library\Org;
+use DB;
 /**
  * 权限认证类
  * 功能特性：
@@ -77,21 +77,8 @@ class Auth
         'AUTH_GROUP'        => 'auth_group', // 用户组数据表名
         'AUTH_GROUP_ACCESS' => 'auth_group_access', // 用户-用户组关系表
         'AUTH_RULE'         => 'auth_rule', // 权限规则表
-        'AUTH_USER'         => 'member', // 用户信息表
+        'AUTH_USER'         => 'users', // 用户信息表
     );
-
-    public function __construct()
-    {
-        $prefix                             = C('DB_PREFIX');
-        $this->_config['AUTH_GROUP']        = $prefix . $this->_config['AUTH_GROUP'];
-        $this->_config['AUTH_RULE']         = $prefix . $this->_config['AUTH_RULE'];
-        $this->_config['AUTH_USER']         = $prefix . $this->_config['AUTH_USER'];
-        $this->_config['AUTH_GROUP_ACCESS'] = $prefix . $this->_config['AUTH_GROUP_ACCESS'];
-        if (C('AUTH_CONFIG')) {
-            //可设置配置项 AUTH_CONFIG, 此配置项为数组。
-            $this->_config = array_merge($this->_config, C('AUTH_CONFIG'));
-        }
-    }
 
     /**
      * 检查权限
@@ -157,12 +144,15 @@ class Auth
         if (isset($groups[$uid])) {
             return $groups[$uid];
         }
-
-        $user_groups = M()
-            ->table($this->_config['AUTH_GROUP_ACCESS'] . ' a')
-            ->where("a.uid='$uid' and g.status='1'")
-            ->join($this->_config['AUTH_GROUP'] . " g on a.group_id=g.id")
-            ->field('uid,group_id,title,rules')->select();
+        $a=$this->_config['AUTH_GROUP_ACCESS'];
+        $g=$this->_config['AUTH_GROUP'];
+        $user_groups=DB::table($a)
+            ->join($g, $a.'.group_id', '=', $g.'.id')
+            ->where($a.'.uid',$uid)
+            ->where($g.'.status',1)
+            ->select('uid','group_id','title','rules')
+            ->get();
+        $user_groups=dbObjectToArray($user_groups);
         $groups[$uid] = $user_groups ?: array();
         return $groups[$uid];
     }
@@ -194,15 +184,14 @@ class Auth
             $_authList[$uid . $t] = array();
             return array();
         }
-
-        $map = array(
-            'id'     => array('in', $ids),
-            'type'   => $type,
-            'status' => 1,
-        );
         //读取用户组所有权限规则
-        $rules = M()->table($this->_config['AUTH_RULE'])->where($map)->field('condition,name')->select();
-
+        $rules=DB::table($this->_config['AUTH_RULE'])
+            ->select('condition','name')
+            ->whereIn('id',$ids)
+            ->where('type',$type)
+            ->where('status',1)
+            ->get();
+        $rules=dbObjectToArray($rules);
         //循环规则，判断结果。
         $authList = array(); //
         foreach ($rules as $rule) {
@@ -236,7 +225,11 @@ class Auth
     {
         static $userinfo = array();
         if (!isset($userinfo[$uid])) {
-            $userinfo[$uid] = M()->where(array('uid' => $uid))->table($this->_config['AUTH_USER'])->find();
+            $data=DB::table($this->_config['AUTH_USER'])
+                ->where('uid',$uid)
+                ->get();
+            $data=dbObjectToArray($data);
+            $userinfo[$uid]=current($data);
         }
         return $userinfo[$uid];
     }

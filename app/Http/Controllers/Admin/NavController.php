@@ -19,7 +19,7 @@ class NavController extends Controller
     public function index()
     {
         $nav=new AdminNav();
-        $nav->getTreeData('level','order_number');
+        $nav->getTreeData('level','order_number,id');
     }
 
     /**
@@ -27,9 +27,9 @@ class NavController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        session(['user'=>['id'=>88]]);
     }
 
     /**
@@ -40,7 +40,8 @@ class NavController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data=$request->session()->all();
+        p($data);
     }
 
     /**

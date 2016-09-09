@@ -18,4 +18,6 @@ Route::get('/', function () {
 Route::get('/admin' ,'Admin\IndexController@index');
 
 Route::get('/admin/nav/index' ,'Admin\NavController@index');
+Route::get('/admin/nav/create' ,'Admin\NavController@create');
+Route::get('/admin/nav/store' ,'Admin\NavController@store');
 

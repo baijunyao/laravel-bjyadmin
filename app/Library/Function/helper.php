@@ -22,3 +22,15 @@ function p($data){
     $str.='</pre>';
     echo $str;
 }
+
+/**
+ * 将包含对象的数组转换为数组
+ * @param $array 包含对象的二维数组
+ * @return mixed 全部转换为数组
+ */
+function dbObjectToArray($array){
+    array_walk($array,function(&$v){
+        $v=get_object_vars($v);
+    });
+    return $array;
+}
