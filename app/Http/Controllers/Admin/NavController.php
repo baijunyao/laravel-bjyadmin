@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use App\Model\AdminNav;
+use Illuminate\Support\Facades\View;
 
 class NavController extends Controller
 {
@@ -16,11 +17,13 @@ class NavController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(AdminNav $adminNav)
     {
-        echo 1;die;
-        $nav=new AdminNav();
-        $nav->getTreeData('level','order_number,id');
+        $data=$adminNav->getTreeData('tree','order_number,id');
+        $assign=[
+            'data'=>$data
+        ];
+        return View('admin.nav.index',$assign);
     }
 
     /**
@@ -87,6 +90,6 @@ class NavController extends Controller
      */
     public function destroy($id)
     {
-        //
+        p($_GET);die;
     }
 }
