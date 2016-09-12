@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="{{asset('/statics/aceadmin/css/bootstrap.min.css')}}" rel="stylesheet" />
     <link rel="stylesheet" href="{{asset('/statics/aceadmin/css/font-awesome.min.css')}}" />
-    <link rel="stylesheet" href="{{asset('/statics/statics/font-awesome-4.4.0/css/font-awesome.min.css')}}" />
+    <link rel="stylesheet" href="{{asset('/statics/font-awesome-4.4.0/css/font-awesome.min.css')}}" />
     <!--[if IE 7]>
     <link rel="stylesheet" href="{{asset('/statics/aceadmin/css/font-awesome-ie7.min.css')}}" />
     <![endif]-->
@@ -122,35 +122,34 @@
                 </div>
             </div><!-- #sidebar-shortcuts -->
             <ul class="nav nav-list">
-                <foreach name="data" item="v">
-                    <empty name="v['_data']">
+                @foreach($nav_data as $k=>$v)
+                    @if(empty($v['_data']))
                         <li class="b-nav-li">
-                            <a href="{:U($v['mca'])}" target="right_content">
-                                <i class="fa fa-{$v['ico']} icon-test"></i>
-                                <span class="menu-text"> {$v['name']} </span>
+                            <a href="{{url($v['mca'])}}" target="right_content">
+                                <i class="fa fa-{{$v['ico']}} icon-test"></i>
+                                <span class="menu-text"> {{$v['name']}} </span>
                             </a>
                         </li>
-                        <else />
+                    @else
                         <li class="b-has-child">
                             <a href="#" class="dropdown-toggle b-nav-parent">
-                                <i class="fa fa-{$v['ico']} icon-test"></i>
-                                <span class="menu-text"> {$v['name']} </span>
-
+                                <i class="fa fa-{{$v['ico']}} icon-test"></i>
+                                <span class="menu-text"> {{$v['name']}} </span>
                                 <b class="arrow icon-angle-down"></b>
                             </a>
                             <ul class="submenu">
-                                <foreach name="v['_data']" item="n">
+                                @foreach($v['_data'] as $m=>$n)
                                     <li class="b-nav-li">
-                                        <a href="{:U($n['mca'])}" target="right_content">
+                                        <a href="{{url($n['mca'])}}" target="right_content">
                                             <i class="icon-double-angle-right"></i>
-                                            {$n['name']}
+                                            {{$n['name']}}
                                         </a>
                                     </li>
-                                </foreach>
+                                @endforeach
                             </ul>
                         </li>
-                    </empty>
-                </foreach>
+                    @endif
+                @endforeach
             </ul>
             <div class="sidebar-collapse" id="sidebar-collapse">
                 <i class="icon-double-angle-left" data-icon1="icon-double-angle-left" data-icon2="icon-double-angle-right"></i>

@@ -1,11 +1,9 @@
 <?php
-
 namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
-
-use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Model\AdminNav;
 
 class IndexController extends Controller
 {
@@ -14,9 +12,17 @@ class IndexController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(AdminNav $adminNav)
     {
-        return View('admin.index.index');
+        session(['user'=>['id'=>88]]);
+        //获取菜单
+        $nav_data=$adminNav->getTreeData('level','order_number,id');
+        $assign=[
+            'nav_data'=>$nav_data
+        ];
+        return View('admin.index.index',$assign);
+
+
     }
 
     /**

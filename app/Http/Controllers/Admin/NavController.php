@@ -18,6 +18,7 @@ class NavController extends Controller
      */
     public function index()
     {
+        echo 1;die;
         $nav=new AdminNav();
         $nav->getTreeData('level','order_number,id');
     }
