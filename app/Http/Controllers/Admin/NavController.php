@@ -3,17 +3,15 @@
 namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
-
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use App\Model\AdminNav;
-use Illuminate\Support\Facades\View;
 
 class NavController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * 菜单管理页面
      *
      * @return \Illuminate\Http\Response
      */
@@ -27,63 +25,31 @@ class NavController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create(Request $request)
-    {
-        session(['user'=>['id'=>88]]);
-    }
-
-    /**
-     * Store a newly created resource in storage.
+     * 添加菜单
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        $data=$request->session()->all();
+        $data=$request->all();
         p($data);
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
+     * 修改菜单
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id2)
     {
-        //
+        echo $id2;
     }
 
     /**
-     * Remove the specified resource from storage.
+     * 删除菜单
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -92,4 +58,15 @@ class NavController extends Controller
     {
         p($_GET);die;
     }
+
+    /**
+     * 排序
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function order(){
+
+
+    }
+
 }

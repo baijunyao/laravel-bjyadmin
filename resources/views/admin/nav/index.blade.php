@@ -14,7 +14,7 @@
             <a href="javascript:;" onclick="add()">添加菜单</a>
         </li>
     </ul>
-    <form action="{:U('Admin/Nav/order')}" method="post">
+    <form action="{{url('Admin/Nav/order')}}" method="post">
         <div id="myTabContent" class="tab-content">
             <div class="tab-pane fade in active" id="home">
                 <table class="table table-striped table-bordered table-hover table-condensed">
@@ -155,9 +155,6 @@
         function add(){
             $("input[name='name'],input[name='mca']").val('');
             $("input[name='pid']").val(0);
-            $("input[name='name']").val('');
-            $("input[name='mca']").val('');
-            $("input[name='ico']").val('');
             $('#bjy-add').modal('show');
         }
 
