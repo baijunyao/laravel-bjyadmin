@@ -15,11 +15,34 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/admin' ,'Admin\IndexController@index');
+//将控制器方法名统一改成小写  临时使用
+Route::get('/strtolower' ,function () {
+    $data=DB::table('admin_navs')->get();
+    $data=dbObjectToArray($data);
+    array_walk($data ,function (&$v) {
+       $v['mca']=strtolower($v['mca']);
+    });
+    foreach ($data as $k => $v){
+        $edit_data=[
+            'mca'=>strtolower($v['mca'])
+        ];
+        DB::table('admin_navs')->where('id',$v['id'])->update($edit_data);
+    }
+});
 
-Route::get('/admin/nav/index' ,'Admin\NavController@index');
-Route::get('/admin/nav/store' ,'Admin\NavController@store');
-Route::get('/admin/nav/update/{id}' ,'Admin\NavController@update');
-Route::get('/admin/nav/destroy' ,'Admin\NavController@destroy');
-Route::get('/admin/nav/order' ,'Admin\NavController@order');
+//管理后台的路由
+Route::group(['prefix'=>'admin','namespace'=>'Admin'] ,function () {
+    //后台首页
+    Route::get('/' ,'IndexController@index');
+
+    //菜单管理
+    Route::get('/nav/index' ,'NavController@index');
+    Route::post('/nav/store' ,'NavController@store');
+    Route::post('/nav/update/{id}' ,'NavController@update');
+    Route::get('/nav/destroy' ,'NavController@destroy');
+    Route::get('/nav/order' ,'NavController@order');
+
+});
+
+
 
