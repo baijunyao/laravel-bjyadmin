@@ -12,15 +12,15 @@
     @yield('css')
 </head>
 <body>
-@if (count($errors) > 0)
-    <div class="alert alert-danger">
+
+@if(Session::has('alert-message'))
+    <div class="alert {{session('alert-class')}}">
         <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
+            <li>{{ session('alert-message') }}</li>
         </ul>
     </div>
 @endif
+
 <!-- 导航栏开始 -->
 <div class="bjy-admin-nav">
     <a href="{:U('Admin/Index/index')}"><i class="fa fa-home"></i> 首页</a>
