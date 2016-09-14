@@ -4,15 +4,70 @@ namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
 use DB;
+use Validator;
+use Session;
 
 use app\Library\Org\Data;
 use app\Library\Org\Auth;
-use app\Library\Org\Test;
 
 class AdminNav extends Model
 {
+    /**
+     * 可以被批量赋值的属性.
+     *
+     * @var array
+     */
+    protected $fillable = ['pid','name','mca','ico','order_number'];
 
 
+    /**
+     * 自动验证
+     *
+     * @param $data 需要验证的数据
+     * @return bool 验证是否通过
+     */
+    public function validate($data){
+        $rules=[
+            'name'=>'required',
+            'mca'=>'required'
+
+        ];
+        $attributes=[
+            'name'=>'菜单名',
+            'mca'=>'链接'
+        ];
+        $validator=Validator::make($data,$rules,[],$attributes);
+        if ($validator->fails()) {
+            $error=$validator->messages()->first();
+            Session::flash('alert-message',$error);
+            Session::flash('alert-class','alert-danger');
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     * 添加数据
+     *
+     * @param $data 需要添加的数据
+     * @return bool 是否成功
+     */
+    public function addData($data){
+        //验证是否通过
+        if (!$this->validate($data)) {
+            return false;
+        }
+        //添加数据
+        $result=$this
+            ->create($data)
+            ->save();
+        if ($result) {
+            Session::flash('alert-message','添加成功');
+            Session::flash('alert-class','alert-success');
+        }else{
+            return false;
+        }
+    }
 
     /**
      * 获取全部菜单

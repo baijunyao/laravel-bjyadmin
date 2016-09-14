@@ -5,6 +5,7 @@
 @section('nav','菜单管理')
 
 @section('body')
+
     <!-- 导航栏结束 -->
     <ul id="myTab" class="nav nav-tabs">
         <li class="active">
@@ -62,8 +63,9 @@
                     </h4>
                 </div>
                 <div class="modal-body">
-                    <form id="bjy-form" class="form-inline" action="{{url('Admin/Nav/store')}}" method="post">
+                    <form id="bjy-form" class="form-inline" action="{{url('admin/nav/store')}}" method="post">
                         <input type="hidden" name="pid" value="0">
+                        <input type="hidden" name="_token" value="{{csrf_token()}}">
                         <table class="table table-striped table-bordered table-hover table-condensed">
                             <tr>
                                 <th width="12%">菜单名：</th>
@@ -111,8 +113,9 @@
                     </h4>
                 </div>
                 <div class="modal-body">
-                    <form id="bjy-form" class="form-inline" action="{{url('Admin/Nav/edit')}}" method="post">
+                    <form id="bjy-form" class="form-inline" action="{{url('admin/nav/edit')}}" method="post">
                         <input type="hidden" name="id">
+                        <input type="hidden" name="_token" value="{{csrf_token()}}">
                         <table class="table table-striped table-bordered table-hover table-condensed">
                             <tr>
                                 <th width="12%">菜单名：</th>

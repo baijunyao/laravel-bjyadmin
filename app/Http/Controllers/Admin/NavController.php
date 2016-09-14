@@ -10,6 +10,7 @@ use App\Model\AdminNav;
 
 class NavController extends Controller
 {
+
     /**
      * 菜单管理页面
      *
@@ -30,10 +31,11 @@ class NavController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request ,AdminNav $adminNav)
     {
         $data=$request->all();
-        p($data);
+        $adminNav->addData($data);
+        return redirect('admin/nav/index');
     }
 
     /**
@@ -43,9 +45,9 @@ class NavController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id2)
+    public function update(Request $request, $id)
     {
-        echo $id2;
+        echo $id;
     }
 
     /**
