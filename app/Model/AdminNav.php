@@ -17,7 +17,7 @@ class AdminNav extends Model
      *
      * @var array
      */
-    protected $fillable = ['pid','name','mca','ico','order_number'];
+    protected $fillable = ['id','pid','name','mca','ico','order_number'];
 
 
     /**
@@ -60,10 +60,11 @@ class AdminNav extends Model
         //添加数据
         $result=$this
             ->create($data)
-            ->save();
+            ->id;
         if ($result) {
             Session::flash('alert-message','添加成功');
             Session::flash('alert-class','alert-success');
+            return $result;
         }else{
             return false;
         }
