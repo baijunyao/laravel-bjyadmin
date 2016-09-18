@@ -11,6 +11,7 @@
 |
 */
 
+//前台首页
 Route::get('/', function () {
     return view('welcome');
 });
@@ -30,17 +31,30 @@ Route::get('/strtolower' ,function () {
     }
 });
 
-//管理后台的路由
-Route::group(['prefix'=>'admin','namespace'=>'Admin'] ,function () {
-    //后台首页
-    Route::get('/' ,'IndexController@index');
+//后台首页
+Route::get('/admin','Admin\IndexController@index');
 
+//后台路由
+Route::group(['prefix'=>'admin','namespace'=>'Admin'], function () {
     //菜单管理
-    Route::get('/nav/index' ,'NavController@index');
-    Route::post('/nav/store' ,'NavController@store');
-    Route::post('/nav/update' ,'NavController@update');
-    Route::get('/nav/destroy/{id}' ,'NavController@destroy')->where('id', '[0-9]+');;
-    Route::post('/nav/order' ,'NavController@order');
+    Route::group(['prefix'=>'nav'] ,function () {
+        //菜单管理
+        Route::get('/index' ,'NavController@index');
+        Route::post('/store' ,'NavController@store');
+        Route::post('/update' ,'NavController@update');
+        Route::get('/destroy/{id}' ,'NavController@destroy')->where('id', '[0-9]+');;
+        Route::post('/order' ,'NavController@order');
+    });
+
+    //权限管理
+    Route::group(['prefix'=>'rule'] ,function () {
+        //菜单管理
+        Route::get('/index' ,'NavController@index');
+        Route::post('/store' ,'NavController@store');
+        Route::post('/update' ,'NavController@update');
+        Route::get('/destroy/{id}' ,'NavController@destroy')->where('id', '[0-9]+');;
+        Route::post('/order' ,'NavController@order');
+    });
 
 });
 
