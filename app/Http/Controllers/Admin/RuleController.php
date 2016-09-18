@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+
+
 class RuleController extends Controller
 {
     /**
@@ -16,6 +18,7 @@ class RuleController extends Controller
      */
     public function index()
     {
+
         return View('admin.rule.index');
     }
 
