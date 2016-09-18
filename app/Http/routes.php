@@ -39,7 +39,7 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin'] ,function () {
     Route::get('/nav/index' ,'NavController@index');
     Route::post('/nav/store' ,'NavController@store');
     Route::post('/nav/update' ,'NavController@update');
-    Route::get('/nav/destroy' ,'NavController@destroy');
+    Route::get('/nav/destroy/{id}' ,'NavController@destroy')->where('id', '[0-9]+');;
     Route::get('/nav/order' ,'NavController@order');
 
 });

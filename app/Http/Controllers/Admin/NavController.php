@@ -58,9 +58,10 @@ class NavController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(AdminNav $adminNav, $id)
     {
-        p($_GET);die;
+        $adminNav->deleteData($id);
+        return redirect('admin/nav/index');
     }
 
     /**

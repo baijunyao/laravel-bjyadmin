@@ -35,7 +35,7 @@
                             <td>
                                 <a href="javascript:;" navId="{{$v['id']}}" navName="{{$v['name']}}"  onclick="add_child(this)">添加子菜单</a> |
                                 <a href="javascript:;" navId="{{$v['id']}}" navName="{{$v['name']}}" navMca="{{$v['mca']}}" navIco="{{$v['ico']}}" onclick="edit(this)">修改</a> |
-                                <a href="javascript:if(confirm('确定删除？'))location='{{url('Admin/Nav/destroy',['id'=>$v['id']])}}'">删除</a>
+                                <a href="javascript:if(confirm('确定删除？'))location='{{url('admin/nav/destroy',['id'=>$v['id']])}}'">删除</a>
                             </td>
                         </tr>
                     @endforeach
