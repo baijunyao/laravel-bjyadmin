@@ -15,7 +15,8 @@
             <a href="javascript:;" onclick="add()">添加菜单</a>
         </li>
     </ul>
-    <form action="{{url('Admin/Nav/order')}}" method="post">
+    <form action="{{url('admin/nav/order')}}" method="post">
+        <input type="hidden" name="_token" value="{{csrf_token()}}">
         <div id="myTabContent" class="tab-content">
             <div class="tab-pane fade in active" id="home">
                 <table class="table table-striped table-bordered table-hover table-condensed">

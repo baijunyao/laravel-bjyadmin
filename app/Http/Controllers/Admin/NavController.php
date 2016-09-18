@@ -69,9 +69,11 @@ class NavController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function order(){
-
-
+    public function order(Request $request, AdminNav $adminNav){
+        $data=$request->all();
+        unset($data['_token']);
+        $adminNav->orderData($data);
+        return redirect('admin/nav/index');
     }
 
 }
