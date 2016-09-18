@@ -45,9 +45,11 @@ class NavController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request ,AdminNav $adminNav)
     {
-        echo $id;
+        $data=$request->all();
+        $adminNav->editData($data);
+        return redirect('admin/nav/index');
     }
 
     /**

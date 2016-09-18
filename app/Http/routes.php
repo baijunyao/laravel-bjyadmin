@@ -38,7 +38,7 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin'] ,function () {
     //菜单管理
     Route::get('/nav/index' ,'NavController@index');
     Route::post('/nav/store' ,'NavController@store');
-    Route::post('/nav/update/{id}' ,'NavController@update');
+    Route::post('/nav/update' ,'NavController@update');
     Route::get('/nav/destroy' ,'NavController@destroy');
     Route::get('/nav/order' ,'NavController@order');
 

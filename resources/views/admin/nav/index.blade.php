@@ -113,7 +113,7 @@
                     </h4>
                 </div>
                 <div class="modal-body">
-                    <form id="bjy-form" class="form-inline" action="{{url('admin/nav/edit')}}" method="post">
+                    <form id="bjy-form" class="form-inline" action="{{url('admin/nav/update')}}" method="post">
                         <input type="hidden" name="id">
                         <input type="hidden" name="_token" value="{{csrf_token()}}">
                         <table class="table table-striped table-bordered table-hover table-condensed">
