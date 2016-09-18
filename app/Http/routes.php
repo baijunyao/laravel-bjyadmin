@@ -49,11 +49,11 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin'], function () {
     //权限管理
     Route::group(['prefix'=>'rule'] ,function () {
         //菜单管理
-        Route::get('/index' ,'NavController@index');
-        Route::post('/store' ,'NavController@store');
-        Route::post('/update' ,'NavController@update');
-        Route::get('/destroy/{id}' ,'NavController@destroy')->where('id', '[0-9]+');;
-        Route::post('/order' ,'NavController@order');
+        Route::get('/index' ,'RuleController@index');
+        Route::post('/store' ,'RuleController@store');
+        Route::post('/update' ,'RuleController@update');
+        Route::get('/destroy/{id}' ,'RuleController@destroy')->where('id', '[0-9]+');;
+        Route::post('/order' ,'RuleController@order');
     });
 
 });
