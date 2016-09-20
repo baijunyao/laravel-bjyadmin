@@ -12,6 +12,7 @@ use app\Library\Org\Auth;
 
 class AdminNav extends Model
 {
+
     /**
      * 可以被批量赋值的属性.
      *
@@ -176,10 +177,10 @@ class AdminNav extends Model
         if (empty($order)) {
             $data=$this->get()->toArray();
         }else{
-            $prefix=config('database.connections.mysql.prefix');
-            $sql="SELECT * FROM {$prefix}admin_navs ORDER BY order_number IS NULL,{$order}";
-            $data=DB::select($sql);
-            $data=dbObjectToArray($data);
+            $data=$this
+                ->orderBy(DB::raw('order_number IS NULL,'.$order))
+                ->get()
+                ->toArray();
         }
         // 获取树形或者结构数据
         if($type=='tree'){

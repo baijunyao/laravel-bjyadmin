@@ -3,21 +3,17 @@
 namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
-
+use Illuminate\Database\Eloquent\SoftDeletes;
 use DB;
 use Validator;
 use Session;
 
 use app\Library\Org\Data;
 
-use Illuminate\Database\Eloquent\SoftDeletes;
-
 class AuthRule extends Model
 {
-
     //开启如删除
     use SoftDeletes;
-
 
     /**
      * 可以被批量赋值的属性.
