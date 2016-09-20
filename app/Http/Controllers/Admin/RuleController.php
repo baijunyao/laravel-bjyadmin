@@ -29,6 +29,7 @@ class RuleController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Model\AuthRule       $AuthRule 权限模型
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request, AuthRule $AuthRule)
@@ -43,12 +44,14 @@ class RuleController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Model\AuthRule       $AuthRule 权限模型
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, AuthRule $AuthRule)
     {
-        //
+        $data=$request->all();
+        $AuthRule->editData($data);
+        return redirect('admin/rule/index');
     }
 
     /**

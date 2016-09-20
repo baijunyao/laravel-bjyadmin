@@ -94,7 +94,7 @@
                     </h4>
                 </div>
                 <div class="modal-body">
-                    <form id="bjy-form" class="form-inline" action="{{ url('admin/rule/edit') }}" method="post">
+                    <form id="bjy-form" class="form-inline" action="{{ url('admin/rule/update') }}" method="post">
                         {{ csrf_field() }}
                         <input type="hidden" name="id">
                         <table class="table table-striped table-bordered table-hover table-condensed">

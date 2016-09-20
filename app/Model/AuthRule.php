@@ -84,8 +84,7 @@ class AuthRule extends Model
         }
         $edit_data=[
             'name'=>$data['name'],
-            'mca'=>$data['mca'],
-            'ico'=>$data['ico']
+            'title'=>$data['title']
         ];
         //修改数据
         $result=$this

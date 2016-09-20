@@ -29,6 +29,7 @@ class NavController extends Controller
      * 添加菜单
      *
      * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Model\AdminNav        $adminNav 后台菜单模型
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request ,AdminNav $adminNav)
@@ -42,7 +43,7 @@ class NavController extends Controller
      * 修改菜单
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Model\AdminNav        $adminNav 后台菜单模型
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request ,AdminNav $adminNav)
