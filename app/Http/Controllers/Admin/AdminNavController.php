@@ -22,7 +22,7 @@ class AdminNavController extends Controller
         $assign=[
             'data'=>$data
         ];
-        return View('admin.nav.index',$assign);
+        return View('admin.admin_nav.index',$assign);
     }
 
     /**

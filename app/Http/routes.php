@@ -32,12 +32,12 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin'], function () {
     });
 
     //权限管理
-    Route::group(['prefix'=>'rule'] ,function () {
+    Route::group(['prefix'=>'auth_rule'] ,function () {
         //权限
-        Route::get('/index' ,'RuleController@index');
-        Route::post('/store' ,'RuleController@store');
-        Route::post('/update' ,'RuleController@update');
-        Route::get('/destroy/{id}' ,'RuleController@destroy')->where('id', '[0-9]+');
+        Route::get('/index' ,'AuthRuleController@index');
+        Route::post('/store' ,'AuthRuleController@store');
+        Route::post('/update' ,'AuthRuleController@update');
+        Route::get('/destroy/{id}' ,'AuthRuleController@destroy')->where('id', '[0-9]+');
 
         //用户组
         Route::get('/group' ,'RuleController@group');

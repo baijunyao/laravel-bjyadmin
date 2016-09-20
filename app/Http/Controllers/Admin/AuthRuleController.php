@@ -9,7 +9,7 @@ use App\Http\Controllers\Controller;
 
 use App\Model\AuthRule;
 
-class RuleController extends Controller
+class AuthRuleController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -23,7 +23,7 @@ class RuleController extends Controller
         $assign=[
             'data'=>$data
         ];
-        return View('admin.rule.index', $assign);
+        return View('admin.auth_rule.index', $assign);
     }
 
     /**
@@ -37,7 +37,7 @@ class RuleController extends Controller
     {
         $data=$request->all();
         $authRule->addData($data);
-        return redirect('admin/rule/index');
+        return redirect('admin/auth_rule/index');
     }
 
 
@@ -52,7 +52,7 @@ class RuleController extends Controller
     {
         $data=$request->all();
         $authRule->editData($data);
-        return redirect('admin/rule/index');
+        return redirect('admin/auth_rule/index');
     }
 
     /**
@@ -65,7 +65,7 @@ class RuleController extends Controller
     public function destroy(AuthRule $authRule, $id)
     {
         $authRule->deleteData($id);
-        return redirect('admin/rule/index');
+        return redirect('admin/auth_rule/index');
     }
 
 
