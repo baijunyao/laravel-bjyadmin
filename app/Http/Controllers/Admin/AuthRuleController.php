@@ -67,17 +67,6 @@ class AuthRuleController extends Controller
         $authRule->deleteData($id);
         return redirect('admin/auth_rule/index');
     }
-
-
-
-
-
-
-
-
-
-
-
-
+    
 
 }

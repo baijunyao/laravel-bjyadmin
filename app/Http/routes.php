@@ -22,8 +22,7 @@ Route::get('/admin','Admin\IndexController@index');
 //后台路由
 Route::group(['prefix'=>'admin','namespace'=>'Admin'], function () {
     //菜单管理
-    Route::group(['prefix'=>'admin_nav'] ,function () {
-        //菜单管理
+    Route::group(['prefix'=>'admin_nav'], function () {
         Route::get('/index' ,'AdminNavController@index');
         Route::post('/store' ,'AdminNavController@store');
         Route::post('/update' ,'AdminNavController@update');
@@ -39,12 +38,6 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin'], function () {
         Route::post('/update' ,'AuthRuleController@update');
         Route::get('/destroy/{id}' ,'AuthRuleController@destroy')->where('id', '[0-9]+');
 
-        //用户组
-        Route::get('/group' ,'RuleController@group');
-        Route::post('/store_group' ,'RuleController@store_group');
-        Route::post('/update_group' ,'RuleController@update_group');
-        Route::get('/destroy_group/{id}' ,'RuleController@destroy_group')->where('id', '[0-9]+');
-
         //权限-用户组
         Route::get('/rule_group' ,'RuleController@rule_group');
 
@@ -58,9 +51,16 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin'], function () {
         Route::post('/add_admin' ,'RuleController@add_admin');
         Route::post('/edit_admin' ,'RuleController@edit_admin');
 
-
-
     });
+
+    //用户组管理
+    Route::group(['prefix'=>'auth_group'], function (){
+        Route::get('/index' ,'RuleController@index');
+        Route::post('/store' ,'RuleController@store');
+        Route::post('/update' ,'RuleController@update');
+        Route::get('/destroy/{id}' ,'RuleController@destroy')->where('id', '[0-9]+');
+    });
+
 
 });
 
