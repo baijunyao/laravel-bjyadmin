@@ -15,7 +15,7 @@
             <a href="javascript:;" onclick="add()">添加菜单</a>
         </li>
     </ul>
-    <form action="{{url('admin/nav/order')}}" method="post">
+    <form action="{{url('admin/admin_nav/order')}}" method="post">
         <input type="hidden" name="_token" value="{{csrf_token()}}">
         <div id="myTabContent" class="tab-content">
             <div class="tab-pane fade in active" id="home">
@@ -36,7 +36,7 @@
                             <td>
                                 <a href="javascript:;" navId="{{$v['id']}}" navName="{{$v['name']}}"  onclick="add_child(this)">添加子菜单</a> |
                                 <a href="javascript:;" navId="{{$v['id']}}" navName="{{$v['name']}}" navMca="{{$v['mca']}}" navIco="{{$v['ico']}}" onclick="edit(this)">修改</a> |
-                                <a href="javascript:if(confirm('确定删除？'))location='{{url('admin/nav/destroy',['id'=>$v['id']])}}'">删除</a>
+                                <a href="javascript:if(confirm('确定删除？'))location='{{url('admin/admin_nav/destroy',['id'=>$v['id']])}}'">删除</a>
                             </td>
                         </tr>
                     @endforeach
@@ -64,7 +64,7 @@
                     </h4>
                 </div>
                 <div class="modal-body">
-                    <form id="bjy-form" class="form-inline" action="{{url('admin/nav/store')}}" method="post">
+                    <form id="bjy-form" class="form-inline" action="{{url('admin/admin_nav/store')}}" method="post">
                         <input type="hidden" name="pid" value="0">
                         {{ csrf_field() }}
                         <table class="table table-striped table-bordered table-hover table-condensed">
@@ -114,7 +114,7 @@
                     </h4>
                 </div>
                 <div class="modal-body">
-                    <form id="bjy-form" class="form-inline" action="{{url('admin/nav/update')}}" method="post">
+                    <form id="bjy-form" class="form-inline" action="{{url('admin/admin_nav/update')}}" method="post">
                         <input type="hidden" name="id">
                         {{ csrf_field() }}
                         <table class="table table-striped table-bordered table-hover table-condensed">

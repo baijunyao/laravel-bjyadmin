@@ -8,7 +8,7 @@ use App\Http\Controllers\Controller;
 
 use App\Model\AdminNav;
 
-class NavController extends Controller
+class AdminNavController extends Controller
 {
 
     /**
@@ -36,7 +36,7 @@ class NavController extends Controller
     {
         $data=$request->all();
         $adminNav->addData($data);
-        return redirect('admin/nav/index');
+        return redirect('admin/admin_nav/index');
     }
 
     /**
@@ -50,7 +50,7 @@ class NavController extends Controller
     {
         $data=$request->all();
         $adminNav->editData($data);
-        return redirect('admin/nav/index');
+        return redirect('admin/admin_nav/index');
     }
 
     /**
@@ -62,7 +62,7 @@ class NavController extends Controller
     public function destroy(AdminNav $adminNav, $id)
     {
         $adminNav->deleteData($id);
-        return redirect('admin/nav/index');
+        return redirect('admin/admin_nav/index');
     }
 
     /**
@@ -74,7 +74,7 @@ class NavController extends Controller
         $data=$request->all();
         unset($data['_token']);
         $adminNav->orderData($data);
-        return redirect('admin/nav/index');
+        return redirect('admin/admin_nav/index');
     }
 
 }

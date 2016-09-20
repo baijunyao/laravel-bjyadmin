@@ -14,6 +14,7 @@ class RuleController extends Controller
     /**
      * Display a listing of the resource.
      *
+     * @param  \App\Model\AuthRule       $authRule 权限模型
      * @return \Illuminate\Http\Response
      */
     public function index(AuthRule $authRule)
@@ -29,13 +30,13 @@ class RuleController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Model\AuthRule       $AuthRule 权限模型
+     * @param  \App\Model\AuthRule       $authRule 权限模型
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, AuthRule $AuthRule)
+    public function store(Request $request, AuthRule $authRule)
     {
         $data=$request->all();
-        $AuthRule->addData($data);
+        $authRule->addData($data);
         return redirect('admin/rule/index');
     }
 
@@ -44,20 +45,21 @@ class RuleController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Model\AuthRule       $AuthRule 权限模型
+     * @param  \App\Model\AuthRule       $authRule 权限模型
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, AuthRule $AuthRule)
+    public function update(Request $request, AuthRule $authRule)
     {
         $data=$request->all();
-        $AuthRule->editData($data);
+        $authRule->editData($data);
         return redirect('admin/rule/index');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Model\AuthRule       $authRule 权限模型
+     * @param  int                       $id       权限id
      * @return \Illuminate\Http\Response
      */
     public function destroy(AuthRule $authRule, $id)
@@ -65,4 +67,17 @@ class RuleController extends Controller
         $authRule->deleteData($id);
         return redirect('admin/rule/index');
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
