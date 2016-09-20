@@ -110,6 +110,15 @@ class AdminNav extends Model
      */
     public function deleteData($id)
     {
+        //查找子权限的数量
+        $pids=$this
+            ->where('pid', $id)
+            ->count();
+        if ($pids !== 0) {
+            Session::flash('alert-message','必须先删除子权限');
+            Session::flash('alert-class','alert-danger');
+            return false;
+        }
         //删除数据
         $result=$this
             ->where('id',$id)
