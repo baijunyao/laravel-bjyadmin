@@ -60,8 +60,9 @@ class RuleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(AuthRule $authRule, $id)
     {
-        //
+        $authRule->deleteData($id);
+        return redirect('admin/rule/index');
     }
 }
