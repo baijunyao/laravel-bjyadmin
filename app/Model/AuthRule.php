@@ -10,8 +10,15 @@ use Session;
 
 use app\Library\Org\Data;
 
+use Illuminate\Database\Eloquent\SoftDeletes;
+
 class AuthRule extends Model
 {
+
+    //开启如删除
+    use SoftDeletes;
+
+
     /**
      * 可以被批量赋值的属性.
      *
@@ -111,6 +118,7 @@ class AuthRule extends Model
         $pids=$this
             ->where('pid', $id)
             ->count();
+        //如果有子权限；必须先删除子权限
         if ($pids !== 0) {
             Session::flash('alert-message','必须先删除子权限');
             Session::flash('alert-class','alert-danger');
