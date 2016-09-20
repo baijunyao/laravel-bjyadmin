@@ -31,9 +31,11 @@ class RuleController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, AuthRule $AuthRule)
     {
-        //
+        $data=$request->all();
+        $AuthRule->addData($data);
+        return redirect('admin/rule/index');
     }
 
 

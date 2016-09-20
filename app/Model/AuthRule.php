@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 use DB;
 use Validator;
+use Session;
 
 use app\Library\Org\Data;
 
@@ -28,11 +29,11 @@ class AuthRule extends Model
     {
         $rules=[
             'name'=>'required',
-            'mca'=>'required'
+            'title'=>'required'
         ];
         $attributes=[
-            'name'=>'菜单名',
-            'mca'=>'链接'
+            'name'=>'权限内容',
+            'title'=>'权限名'
         ];
         $validator=Validator::make($data,$rules,[],$attributes);
         if ($validator->fails()) {
