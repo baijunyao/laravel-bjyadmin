@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-
+use App\Model\AuthRule;
 
 class RuleController extends Controller
 {
@@ -16,10 +16,13 @@ class RuleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(AuthRule $authRule)
     {
-
-        return View('admin.rule.index');
+        $data=$authRule->getTreeData('tree','id');
+        $assign=[
+            'data'=>$data
+        ];
+        return View('admin.rule.index', $assign);
     }
 
     /**

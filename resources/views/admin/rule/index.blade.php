@@ -23,17 +23,17 @@
                     <th>权限</th>
                     <th>操作</th>
                 </tr>
-                <foreach name="data" item="v">
+                @foreach($data as $v)
                     <tr>
-                        <td>{$v['_name']}</td>
-                        <td>{$v['name']}</td>
+                        <td>{{ $v['_name'] }}</td>
+                        <td>{{ $v['name'] }}</td>
                         <td>
-                            <a href="javascript:;" ruleId="{$v['id']}" onclick="add_child(this)">添加子权限</a> |
-                            <a href="javascript:;" ruleId="{$v['id']}" ruleName="{$v['name']}" ruleTitle="{$v['title']}" onclick="edit(this)">修改</a> |
-                            <a href="javascript:if(confirm('确定删除？'))location='{:U('Admin/Rule/delete',array('id'=>$v['id']))}'">删除</a>
+                            <a href="javascript:;" ruleId="{{ $v['id'] }}" onclick="add_child(this)">添加子权限</a> |
+                            <a href="javascript:;" ruleId="{{ $v['id'] }}" ruleName="{{ $v['name'] }}" ruleTitle="{{ $v['title'] }}" onclick="edit(this)">修改</a> |
+                            <a href="javascript:if(confirm('确定删除？'))location='{{ url('admin/rule/delete',['id'=>$v['id']]) }}'">删除</a>
                         </td>
                     </tr>
-                </foreach>
+                @endforeach
             </table>
         </div>
     </div>
@@ -51,7 +51,7 @@
                     </h4>
                 </div>
                 <div class="modal-body">
-                    <form id="bjy-form" class="form-inline" action="{:U('Admin/Rule/add')}" method="post">
+                    <form id="bjy-form" class="form-inline" action="{{ url('admin/rule/add') }}" method="post">
                         <input type="hidden" name="pid" value="0">
                         <table class="table table-striped table-bordered table-hover table-condensed">
                             <tr>
@@ -63,7 +63,7 @@
                             <tr>
                                 <th>权限：</th>
                                 <td>
-                                    <input class="form-control" type="text" name="name"> 输入模块/控制器/方法即可 例如 Admin/Rule/index
+                                    <input class="form-control" type="text" name="name"> 输入模块/控制器/方法即可 例如 admin/rule/index
                                 </td>
                             </tr>
                             <tr>
@@ -93,7 +93,7 @@
                     </h4>
                 </div>
                 <div class="modal-body">
-                    <form id="bjy-form" class="form-inline" action="{:U('Admin/Rule/edit')}" method="post">
+                    <form id="bjy-form" class="form-inline" action="{{ url('admin/rule/edit') }}" method="post">
                         <input type="hidden" name="id">
                         <table class="table table-striped table-bordered table-hover table-condensed">
                             <tr>
@@ -105,7 +105,7 @@
                             <tr>
                                 <th>权限：</th>
                                 <td>
-                                    <input class="form-control" type="text" name="name"> 输入模块/控制器/方法即可 例如 Admin/Rule/index
+                                    <input class="form-control" type="text" name="name"> 输入模块/控制器/方法即可 例如 admin/rule/index
                                 </td>
                             </tr>
                             <tr>

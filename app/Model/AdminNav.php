@@ -158,8 +158,9 @@ class AdminNav extends Model
 
     /**
      * 获取全部菜单
-     * @param  string $type tree获取树形结构 level获取层级结构
-     * @return array       	结构数据
+     * @param  string $type  tree获取树形结构 level获取层级结构
+     * @param  string $order 排序字段
+     * @return array       	 结构数据
      */
     public function getTreeData($type='tree',$order='')
     {
