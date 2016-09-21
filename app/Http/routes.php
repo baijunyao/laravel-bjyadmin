@@ -47,13 +47,13 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin'], function () {
         Route::post('/update' ,'AuthGroupController@update');
         Route::get('/destroy/{id}' ,'AuthGroupController@destroy')->where('id', '[0-9]+');
         //权限-用户组
-        Route::get('/rule_group_show' ,'AuthGroupController@rule_group_show');
+        Route::get('/rule_group_show/{id}' ,'AuthGroupController@rule_group_show')->where('id', '[0-9]+');
         Route::get('/rule_group_update' ,'AuthGroupController@rule_group_update');
     });
 
     //用户-用户组
     Route::group(['prefix'=>'auth_group_access'], function (){
-        Route::post('/check_user_show' ,'AuthGroupAccessController@check_user_show');
+        Route::post('/check_user_show/{id}' ,'AuthGroupAccessController@check_user_show')->where('id', '[0-9]+');
         Route::post('/check_user_store' ,'AuthGroupAccessController@check_user_store');
     });
 

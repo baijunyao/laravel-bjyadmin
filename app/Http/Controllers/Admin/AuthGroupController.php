@@ -8,18 +8,20 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use App\Model\AuthGroup;
+use App\Model\AuthRule;
+use Illuminate\Support\Facades\Auth;
 
 class AuthGroupController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * 用户组列表
      *
      * @param  \App\Model\AuthGroup       $authGroup 用户组模型
      * @return \Illuminate\Http\Response
      */
     public function index(AuthGroup $authGroup)
     {
-        $data=$authGroup::get()->toArray();
+        $data=$authGroup::all()->toArray();
         $assign=[
             'data'=>$data
         ];
@@ -27,10 +29,10 @@ class AuthGroupController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * 添加用户组
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Model\AuthGroup       $authGroup 用户组模型
+     * @param  \App\Model\AuthGroup      $authGroup 用户组模型
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request, AuthGroup $authGroup)
@@ -42,10 +44,10 @@ class AuthGroupController extends Controller
 
 
     /**
-     * Update the specified resource in storage.
+     * 修改用户组
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Model\AuthGroup       $authGroup 用户组模型
+     * @param  \App\Model\AuthGroup      $authGroup 用户组模型
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, AuthGroup $authGroup)
@@ -56,10 +58,10 @@ class AuthGroupController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * 删除用户组
      *
      * @param  \App\Model\AuthGroup       $authGroup 用户组模型
-     * @param  int                       $id       权限id
+     * @param  int                        $id        用户组id
      * @return \Illuminate\Http\Response
      */
     public function destroy(AuthGroup $authGroup, $id)
@@ -68,5 +70,26 @@ class AuthGroupController extends Controller
         return redirect('admin/auth_group/index');
     }
 
+    /**
+     * Display a listing of the resource.
+     *
+     * @param  \App\Model\AuthGroup       $authGroup 用户组模型
+     * @param  \App\Model\AuthRule        $authRule  权限模型
+     * @param  int                        $id        用户组id
+     * @return \Illuminate\Http\Response
+     */
+    public function rule_group_show(AuthGroup $authGroup, AuthRule $authRule, $id)
+    {
+        //获取用户组数据
+        $group_data=$authGroup::find($id)->toArray();
+        $group_data['rules']=explode(',', $group_data['rules']);
+        //获取全部权限
+        $rule_data=$authRule->getTreeData('level', 'id');
+        $assign=[
+            'group_data'=>$group_data,
+            'rule_data'=>$rule_data
+        ];
+        return View('admin.auth_group.rule_group_show', $assign);
+    }
 
 }

@@ -77,7 +77,7 @@ class AuthRule extends Base
             return false;
         }
     }
-    
+
     /**
      * 获取全部菜单
      * @param  string $type tree获取树形结构 level获取层级结构
@@ -102,7 +102,7 @@ class AuthRule extends Base
         if($type=='tree'){
             $data=Data::tree($data,'title','id','pid');
         }elseif($type="level"){
-            Data::channelLevel($data,0,'&nbsp;','id');
+            $data=Data::channelLevel($data,0,'&nbsp;','id');
         }
         return $data;
     }
