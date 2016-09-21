@@ -44,35 +44,6 @@ class AuthGroup extends Base
     }
 
     /**
-     * 修改数据
-     *
-     * @param $data 需要添加的数据
-     * @return bool 是否成功
-     */
-    public function editData($data)
-    {
-        //验证是否通过
-        if (!$this->validate($data)) {
-            return false;
-        }
-        $edit_data=[
-            'name'=>$data['name'],
-            'title'=>$data['title']
-        ];
-        //修改数据
-        $result=$this
-            ->where('id',$data['id'])
-            ->update($edit_data);
-        if ($result) {
-            Session::flash('alert-message','修改成功');
-            Session::flash('alert-class','alert-success');
-            return $result;
-        }else{
-            return false;
-        }
-    }
-
-    /**
      * 添加数据
      *
      * @param  $id  需要添加的数据

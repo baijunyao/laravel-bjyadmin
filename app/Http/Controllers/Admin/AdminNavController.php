@@ -72,7 +72,6 @@ class AdminNavController extends Controller
      */
     public function order(Request $request, AdminNav $adminNav){
         $data=$request->all();
-        unset($data['_token']);
         $adminNav->orderData($data);
         return redirect('admin/admin_nav/index');
     }
