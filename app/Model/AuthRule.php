@@ -2,7 +2,6 @@
 
 namespace App\Model;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use DB;
 use Validator;
@@ -10,7 +9,7 @@ use Session;
 
 use app\Library\Org\Data;
 
-class AuthRule extends Model
+class AuthRule extends Base
 {
     //开启如删除
     use SoftDeletes;
@@ -46,31 +45,6 @@ class AuthRule extends Model
             return false;
         }
         return true;
-    }
-
-    /**
-     * 添加数据
-     *
-     * @param $data 需要添加的数据
-     * @return bool 是否成功
-     */
-    public function addData($data)
-    {
-        //验证是否通过
-        if (!$this->validate($data)) {
-            return false;
-        }
-        //添加数据
-        $result=$this
-            ->create($data)
-            ->id;
-        if ($result) {
-            Session::flash('alert-message','添加成功');
-            Session::flash('alert-class','alert-success');
-            return $result;
-        }else{
-            return false;
-        }
     }
 
     /**
