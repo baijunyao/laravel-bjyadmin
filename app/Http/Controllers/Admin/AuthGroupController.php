@@ -19,11 +19,11 @@ class AuthGroupController extends Controller
      */
     public function index(AuthGroup $authGroup)
     {
-        $data=$authGroup->getTreeData('tree','id');
+        $data=$authGroup::get()->toArray();
         $assign=[
             'data'=>$data
         ];
-        return View('admin.auth_rule.index', $assign);
+        return View('admin.auth_group.index', $assign);
     }
 
     /**
@@ -37,7 +37,7 @@ class AuthGroupController extends Controller
     {
         $data=$request->all();
         $authGroup->addData($data);
-        return redirect('admin/auth_rule/index');
+        return redirect('admin/auth_group/index');
     }
 
 
@@ -52,7 +52,7 @@ class AuthGroupController extends Controller
     {
         $data=$request->all();
         $authGroup->editData($data);
-        return redirect('admin/auth_rule/index');
+        return redirect('admin/auth_group/index');
     }
 
     /**
@@ -65,7 +65,7 @@ class AuthGroupController extends Controller
     public function destroy(AuthGroup $authGroup, $id)
     {
         $authGroup->deleteData($id);
-        return redirect('admin/auth_rule/index');
+        return redirect('admin/auth_group/index');
     }
 
 

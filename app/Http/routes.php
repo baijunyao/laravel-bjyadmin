@@ -37,32 +37,35 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin'], function () {
         Route::post('/store' ,'AuthRuleController@store');
         Route::post('/update' ,'AuthRuleController@update');
         Route::get('/destroy/{id}' ,'AuthRuleController@destroy')->where('id', '[0-9]+');
-
-        //权限-用户组
-        Route::get('/rule_group' ,'RuleController@rule_group');
-
-        //用户-用户组
-        Route::post('/check_user' ,'RuleController@check_user');
-        Route::post('/add_user_to_group' ,'RuleController@add_user_to_group');
-        Route::post('/delete_user_from_group' ,'RuleController@delete_user_from_group');
-
-        //管理员
-        Route::post('/admin_user_list' ,'RuleController@admin_user_list');
-        Route::post('/add_admin' ,'RuleController@add_admin');
-        Route::post('/edit_admin' ,'RuleController@edit_admin');
-
     });
 
     //用户组管理
     Route::group(['prefix'=>'auth_group'], function (){
-        Route::get('/index' ,'RuleController@index');
-        Route::post('/store' ,'RuleController@store');
-        Route::post('/update' ,'RuleController@update');
-        Route::get('/destroy/{id}' ,'RuleController@destroy')->where('id', '[0-9]+');
+        //用户组
+        Route::get('/index' ,'AuthGroupController@index');
+        Route::post('/store' ,'AuthGroupController@store');
+        Route::post('/update' ,'AuthGroupController@update');
+        Route::get('/destroy/{id}' ,'AuthGroupController@destroy')->where('id', '[0-9]+');
+        //权限-用户组
+        Route::get('/rule_group_show' ,'AuthGroupController@rule_group_show');
+        Route::get('/rule_group_update' ,'AuthGroupController@rule_group_update');
     });
 
+    //用户-用户组
+    Route::group(['prefix'=>'auth_group_access'], function (){
+        Route::post('/check_user_show' ,'AuthGroupAccessController@check_user_show');
+        Route::post('/check_user_store' ,'AuthGroupAccessController@check_user_store');
+    });
 
 });
 
 
 
+//用户-用户组
+Route::post('/add_user_to_group' ,'RuleController@add_user_to_group');
+Route::post('/delete_user_from_group' ,'RuleController@delete_user_from_group');
+
+//管理员
+Route::post('/admin_user_list' ,'RuleController@admin_user_list');
+Route::post('/add_admin' ,'RuleController@add_admin');
+Route::post('/edit_admin' ,'RuleController@edit_admin');
