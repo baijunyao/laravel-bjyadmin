@@ -71,7 +71,7 @@ class AuthGroupController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
+     * 分配权限页面
      *
      * @param  \App\Model\AuthGroup       $authGroup 用户组模型
      * @param  \App\Model\AuthRule        $authRule  权限模型
@@ -91,5 +91,21 @@ class AuthGroupController extends Controller
         ];
         return View('admin.auth_group.rule_group_show', $assign);
     }
+
+    /**
+     * 保存分配的权限
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Model\AuthGroup      $authGroup 用户组模型
+     * @return \Illuminate\Http\Response
+     */
+    public function rule_group_update(Request $request, AuthGroup $authGroup)
+    {
+        $data=$request->all();
+        $data['rules']=implode(',', $data['rules']);
+        $authGroup->editData($data);
+        return redirect()->back();
+    }
+
 
 }

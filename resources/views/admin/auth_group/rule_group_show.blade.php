@@ -7,9 +7,10 @@
 @section('body')
 
     <h1 class="text-center">为<span style="color:red">{{ $group_data['title'] }}</span>分配权限</h1>
-    <form action="" method="post">
+    <form action="{{ url('admin/auth_group/rule_group_update') }}" method="post">
         {{ csrf_field() }}
         <input type="hidden" name="id" value="{{ $group_data['id'] }}">
+        <input type="hidden" name="title" value="{{ $group_data['title'] }}">
         <table class="table table-striped table-bordered table-hover table-condensed
 	">
             @foreach($rule_data as $v)
@@ -18,7 +19,7 @@
                         <th width="10%">
                             <label>
                                 {{ $v['title'] }}
-                                <input type="checkbox" name="rule_ids[]" value="{{ $v['id'] }}" @if(in_array($v['id'],$group_data['rules']))	checked="checked" @endif onclick="checkAll(this)" >
+                                <input type="checkbox" name="rules[]" value="{{ $v['id'] }}" @if(in_array($v['id'],$group_data['rules']))	checked="checked" @endif onclick="checkAll(this)" >
                             </label>
                         </th>
                         <td></td>
@@ -27,7 +28,7 @@
                     <tr class="b-group">
                         <th width="10%">
                             <label>
-                                {{ $v['title'] }} <input type="checkbox" name="rule_ids[]" value="{$v['id']}" @if(in_array($v['id'],$group_data['rules']))	checked="checked" @endif onclick="checkAll(this)">
+                                {{ $v['title'] }} <input type="checkbox" name="rules[]" value="{{ $v['id'] }}" @if(in_array($v['id'],$group_data['rules']))	checked="checked" @endif onclick="checkAll(this)">
                             </label>
                         </th>
                         <td class="b-child">
@@ -36,14 +37,14 @@
                                     <tr class="b-group">
                                         <th width="10%">
                                             <label>
-                                                {{ $n['title'] }} <input type="checkbox" name="rule_ids[]" value="{$n['id']}" @if(in_array($n['id'],$group_data['rules'])) checked="checked" @endif onclick="checkAll(this)">
+                                                {{ $n['title'] }} <input type="checkbox" name="rules[]" value="{{ $n['id'] }}" @if(in_array($n['id'],$group_data['rules'])) checked="checked" @endif onclick="checkAll(this)">
                                             </label>
                                         </th>
                                         <td>
                                             @if(!empty($n['_data']))
                                                 @foreach($n['_data'] as $c)
                                                     <label>
-                                                        &emsp;{{ $c['title'] }} <input type="checkbox" name="rule_ids[]" value="{$c['id']}" @if(in_array($c['id'],$group_data['rules']))	checked="checked" @endif >
+                                                        &emsp;{{ $c['title'] }} <input type="checkbox" name="rules[]" value="{{ $c['id'] }}" @if(in_array($c['id'],$group_data['rules']))	checked="checked" @endif >
                                                     </label>
                                                 @endforeach
                                             @endif
