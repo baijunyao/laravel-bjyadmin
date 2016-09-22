@@ -15,7 +15,7 @@ class AuthGroupAccessController extends Controller
 {
 
     /**
-     * 添加用户到用户组的页面 用户组列表 > 添加用户到用户组
+     * 添加用户到用户组的页面 搜索学生
      *
      * @param  int  $group_id
      * @param  \App\Model\AuthGroup $authGroup
@@ -52,6 +52,12 @@ class AuthGroupAccessController extends Controller
         return View('admin/auth_group_access/search_user', $assign);
     }
 
+    /**
+     * @param \App\Model\AuthGroupAccess $authGroupAccess
+     * @param $uid
+     * @param $group_id
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function add_user_to_group(AuthGroupAccess $authGroupAccess, $uid, $group_id)
     {
         $data=[
@@ -59,6 +65,22 @@ class AuthGroupAccessController extends Controller
             'group_id'=>$group_id
         ];
         $authGroupAccess->addData($data);
+        return redirect()->back();
+    }
+
+    /**
+     * @param \App\Model\AuthGroupAccess $authGroupAccess
+     * @param $uid
+     * @param $group_id
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function delete_user_from_group(AuthGroupAccess $authGroupAccess, $uid, $group_id)
+    {
+        $data=[
+            'uid'=>$uid,
+            'group_id'=>$group_id
+        ];
+        $authGroupAccess->deleteData($data);
         return redirect()->back();
     }
 

@@ -58,21 +58,24 @@ class AuthGroupAccess extends Base
         if (!$this->validate($data)) {
             return false;
         }
-        //判断是否已经存在
+        //判断是否已经存在 包括软删除的
         $count=$this
+            ->withTrashed()
             ->where($data)
             ->count();
         if ($count !==0) {
-            Session::flash('alert-message','已经是要添加的管理员了');
-            Session::flash('alert-class','alert-danger');
-            return false;
+            //恢复软删除
+            $this->where($data)->restore();
+            Session::flash('alert-message','设置成功');
+            Session::flash('alert-class','alert-success');
+            return true;
         }
         //添加数据
         $result=$this
             ->create($data)
             ->id;
         if ($result) {
-            Session::flash('alert-message','添加成功');
+            Session::flash('alert-message','设置成功');
             Session::flash('alert-class','alert-success');
             return $result;
         }else{
@@ -84,17 +87,21 @@ class AuthGroupAccess extends Base
     /**
      * 添加数据
      *
-     * @param  $id  需要添加的数据
+     * @param  $data  需要添加的数据
      * @return bool 是否成功
      */
-    public function deleteData($id)
+    public function deleteData($data)
     {
-        //删除数据
+        //验证是否通过
+        if (!$this->validate($data)) {
+            return false;
+        }
+        //恢复软删除
         $result=$this
-            ->where('id',$id)
+            ->where($data)
             ->delete();
         if ($result) {
-            Session::flash('alert-message','删除成功');
+            Session::flash('alert-message','设置成功');
             Session::flash('alert-class','alert-success');
             return $result;
         }else{

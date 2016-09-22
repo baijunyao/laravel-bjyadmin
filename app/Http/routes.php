@@ -55,7 +55,7 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin'], function () {
     Route::group(['prefix'=>'auth_group_access'], function (){
         Route::get('/search_user/{group_id}' ,'AuthGroupAccessController@search_user')->where('group_id', '[0-9]+');
         Route::get('/add_user_to_group/{uid}/{group_id}' ,'AuthGroupAccessController@add_user_to_group')->where(['uid'=>'[0-9]+', 'group_id'=>'[0-9]']);
-        Route::get('/delete_user_from_group' ,'AuthGroupAccessController@check_user_store');
+        Route::get('/delete_user_from_group/{uid}/{group_id}' ,'AuthGroupAccessController@delete_user_from_group')->where(['uid'=>'[0-9]+', 'group_id'=>'[0-9]']);
         Route::get('/admin_user_list' ,'AuthGroupAccessController@check_user_store');
         Route::get('/add_admin' ,'AuthGroupAccessController@check_user_store');
         Route::get('/edit_admin' ,'AuthGroupAccessController@check_user_store');
