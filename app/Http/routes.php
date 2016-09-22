@@ -53,8 +53,12 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin'], function () {
 
     //用户-用户组
     Route::group(['prefix'=>'auth_group_access'], function (){
-        Route::post('/check_user_show/{id}' ,'AuthGroupAccessController@check_user_show')->where('id', '[0-9]+');
-        Route::post('/check_user_store' ,'AuthGroupAccessController@check_user_store');
+        Route::get('/index/{id}' ,'AuthGroupAccessController@index')->where('id', '[0-9]+');
+        Route::get('/search_user/{group_id}' ,'AuthGroupAccessController@search_user');
+        Route::get('/delete_user_from_group' ,'AuthGroupAccessController@check_user_store');
+        Route::get('/admin_user_list' ,'AuthGroupAccessController@check_user_store');
+        Route::get('/add_admin' ,'AuthGroupAccessController@check_user_store');
+        Route::get('/edit_admin' ,'AuthGroupAccessController@check_user_store');
     });
 
 });

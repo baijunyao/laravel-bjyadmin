@@ -9,7 +9,6 @@ use App\Http\Controllers\Controller;
 
 use App\Model\AuthGroup;
 use App\Model\AuthRule;
-use Illuminate\Support\Facades\Auth;
 
 class AuthGroupController extends Controller
 {

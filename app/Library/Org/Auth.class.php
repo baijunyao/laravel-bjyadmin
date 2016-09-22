@@ -16,18 +16,18 @@ class Auth
     protected $_config = array(
         'AUTH_ON'           => true, // 认证开关
         'AUTH_TYPE'         => 1, // 认证方式，1为实时认证；2为登录认证。
-        'AUTH_GROUP'        => 'auth_group', // 用户组数据表名
-        'AUTH_GROUP_ACCESS' => 'auth_group_access', // 用户-用户组关系表
+        'AUTH_GROUP'        => 'auth_groups', // 用户组数据表名
+        'AUTH_GROUP_ACCESS' => 'auth_group_accesses', // 用户-用户组关系表
         'AUTH_RULE'         => 'auth_rules', // 权限规则表
         'AUTH_USER'         => 'users', // 用户信息表
     );
 
     /**
      * 检查权限
-     * @param name string|array  需要验证的规则列表,支持逗号分隔的权限规则或索引数组
-     * @param uid  int           认证用户的id
-     * @param string mode        执行check的模式
-     * @param relation string    如果为 'or' 表示满足任一条规则即通过验证;如果为 'and'则表示需满足所有规则才能通过验证
+     * @param $name string|array  需要验证的规则列表,支持逗号分隔的权限规则或索引数组
+     * @param $uid  int           认证用户的id
+     * @param $mode string        执行check的模式
+     * @param $relation string    如果为 'or' 表示满足任一条规则即通过验证;如果为 'and'则表示需满足所有规则才能通过验证
      * @return boolean           通过验证返回true;失败返回false
      */
     public function check($name, $uid, $type = 1, $mode = 'url', $relation = 'or')
@@ -75,8 +75,8 @@ class Auth
 
     /**
      * 根据用户id获取用户组,返回值为数组
-     * @param  uid int     用户id
-     * @return array       用户所属的用户组 array(
+     * @param  $uid int     用户id
+     * @return array        用户所属的用户组 array(
      *     array('uid'=>'用户id','group_id'=>'用户组id','title'=>'用户组名称','rules'=>'用户组拥有的规则id,多个,号隔开'),
      *     ...)
      */
@@ -101,8 +101,9 @@ class Auth
 
     /**
      * 获得权限列表
-     * @param integer $uid  用户id
-     * @param integer $type
+     * @param $uid   integer   用户id
+     * @param $type  integer
+     * @return array 
      */
     protected function getAuthList($uid, $type)
     {

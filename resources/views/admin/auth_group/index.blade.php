@@ -28,7 +28,7 @@
                             <a href="javascript:;" ruleId="{{ $v['id'] }}" ruleTitle="{{ $v['title'] }}" onclick="edit(this)">修改</a> |
                             <a href="javascript:if(confirm('确定删除？'))location='{{ url('admin/auth_group/destroy', ['id'=>$v['id']]) }}'">删除</a> |
                             <a href="{{ url('admin/auth_group/rule_group_show',['id'=>$v['id']]) }}">分配权限</a> |
-                            <a href="{{ url('admin/auth_group_access/check_user_show', ['group_id'=>$v['id']]) }}">添加成员</a>
+                            <a href="{{ url('admin/auth_group_access/search_user', ['group_id'=>$v['id']]) }}">添加成员</a>
                         </td>
                     </tr>
                 @endforeach
