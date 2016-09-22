@@ -91,7 +91,6 @@ class Base extends Model
                 ->where('id',$k)
                 ->update($edit_data);
         }
-
         if ($result) {
             Session::flash('alert-message','修改成功');
             Session::flash('alert-class','alert-success');

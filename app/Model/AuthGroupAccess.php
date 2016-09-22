@@ -16,7 +16,7 @@ class AuthGroupAccess extends Base
      *
      * @var array
      */
-    protected $fillable = ['id','title','status','rules'];
+    protected $fillable = ['uid','group_id'];
 
     /**
      * 自动验证
@@ -27,10 +27,12 @@ class AuthGroupAccess extends Base
     public function validate($data)
     {
         $rules=[
-            'title'=>'required'
+            'uid'=>'required',
+            'group_id'=>'required'
         ];
         $attributes=[
-            'title'=>'用户组名'
+            'uid'=>'用户id',
+            'group_id'=>'用户组id'
         ];
         $validator=Validator::make($data,$rules,[],$attributes);
         if ($validator->fails()) {
@@ -41,6 +43,43 @@ class AuthGroupAccess extends Base
         }
         return true;
     }
+
+    /**
+     * @param 需要添加的数据 $data
+     * @return bool
+     */
+    public function addData($data)
+    {
+        //如果存在_token字段；则删除
+        if (isset($data['_token'])) {
+            unset($data['_token']);
+        }
+        //验证是否通过
+        if (!$this->validate($data)) {
+            return false;
+        }
+        //判断是否已经存在
+        $count=$this
+            ->where($data)
+            ->count();
+        if ($count !==0) {
+            Session::flash('alert-message','已经是要添加的管理员了');
+            Session::flash('alert-class','alert-danger');
+            return false;
+        }
+        //添加数据
+        $result=$this
+            ->create($data)
+            ->id;
+        if ($result) {
+            Session::flash('alert-message','添加成功');
+            Session::flash('alert-class','alert-success');
+            return $result;
+        }else{
+            return false;
+        }
+    }
+
 
     /**
      * 添加数据

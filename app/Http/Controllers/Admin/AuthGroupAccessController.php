@@ -15,9 +15,11 @@ class AuthGroupAccessController extends Controller
 {
 
     /**
-     * Display the specified resource.
+     * 添加用户到用户组的页面 用户组列表 > 添加用户到用户组
      *
      * @param  int  $group_id
+     * @param  \App\Model\AuthGroup $authGroup
+     * @param  \App\Model\AuthGroupAccess $authGroupAccess
      * @param  \App\Model\User $user
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -48,6 +50,16 @@ class AuthGroupAccessController extends Controller
             'user_data'=>$user_data
         ];
         return View('admin/auth_group_access/search_user', $assign);
+    }
+
+    public function add_user_to_group(AuthGroupAccess $authGroupAccess, $uid, $group_id)
+    {
+        $data=[
+            'uid'=>$uid,
+            'group_id'=>$group_id
+        ];
+        $authGroupAccess->addData($data);
+        return redirect()->back();
     }
 
     /**

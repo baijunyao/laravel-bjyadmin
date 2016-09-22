@@ -32,7 +32,7 @@
                     @if(in_array($v['id'],$group_uid))
                         已经是{{ $group_title }}
                     @else
-                        <a href="{:U('Admin/Rule/add_user_to_group',array('uid'=>$v['id'],'group_id'=>$_GET['group_id'],'username'=>$_GET['username']))}">设为{{ $group_title }}</a>
+                        <a href="{{ url('admin/auth_group_access/add_user_to_group',['uid'=>$v['id'],'group_id'=>$group_id]) }}">设为{{ $group_title }}</a>
                     @endif
                 </td>
             </tr>
