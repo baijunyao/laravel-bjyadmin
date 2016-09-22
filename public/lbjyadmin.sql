@@ -10,13 +10,13 @@ Target Server Type    : MYSQL
 Target Server Version : 50547
 File Encoding         : 65001
 
-Date: 2016-09-18 18:23:56
+Date: 2016-09-22 14:02:47
 */
 
 SET FOREIGN_KEY_CHECKS=0;
 
 -- ----------------------------
--- Table structure for `la_admin_navs`
+-- Table structure for la_admin_navs
 -- ----------------------------
 DROP TABLE IF EXISTS `la_admin_navs`;
 CREATE TABLE `la_admin_navs` (
@@ -30,62 +30,71 @@ CREATE TABLE `la_admin_navs` (
   `updated_at` datetime DEFAULT NULL,
   `deleted_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=66 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=71 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of la_admin_navs
 -- ----------------------------
-INSERT INTO `la_admin_navs` VALUES ('1', '0', '系统设置', 'admin/shownav/config', 'cog', '1', null, '2016-09-18 06:46:02', null);
-INSERT INTO `la_admin_navs` VALUES ('2', '1', '菜单管理', 'admin/nav/index', null, null, null, '2016-09-18 06:46:02', null);
-INSERT INTO `la_admin_navs` VALUES ('7', '4', '权限管理', 'admin/rule/index', '', '1', null, '2016-09-18 06:46:02', null);
-INSERT INTO `la_admin_navs` VALUES ('4', '0', '权限控制', 'admin/shownav/rule', 'expeditedssl', '2', null, '2016-09-18 06:46:02', null);
-INSERT INTO `la_admin_navs` VALUES ('8', '4', '用户组管理', 'admin/rule/group', '', '2', null, '2016-09-18 06:46:02', null);
-INSERT INTO `la_admin_navs` VALUES ('9', '4', '管理员列表', 'admin/rule/admin_user_list', '', '3', null, '2016-09-18 06:46:02', null);
-INSERT INTO `la_admin_navs` VALUES ('16', '0', '会员管理', 'admin/shownav/', 'users', '4', null, '2016-09-18 06:46:02', null);
-INSERT INTO `la_admin_navs` VALUES ('17', '16', '会员列表', 'admin/user/index', '', null, null, '2016-09-18 06:46:02', null);
-INSERT INTO `la_admin_navs` VALUES ('36', '0', '文章管理', 'admin/shownav/posts', 'th', '6', null, '2016-09-18 06:46:02', null);
-INSERT INTO `la_admin_navs` VALUES ('37', '36', '文章列表', 'admin/posts/index', '', null, null, '2016-09-18 06:46:02', null);
+INSERT INTO `la_admin_navs` VALUES ('1', '0', '系统设置', 'admin/shownav/config', 'cog', '1', null, '2016-09-21 06:16:22', null);
+INSERT INTO `la_admin_navs` VALUES ('2', '1', '菜单管理', 'admin/admin_nav/index', null, null, null, '2016-09-21 06:16:22', null);
+INSERT INTO `la_admin_navs` VALUES ('7', '4', '权限管理', 'admin/auth_rule/index', '', '1', null, '2016-09-21 06:16:22', null);
+INSERT INTO `la_admin_navs` VALUES ('4', '0', '权限控制', 'admin/shownav/rule', 'expeditedssl', '2', null, '2016-09-21 06:16:22', null);
+INSERT INTO `la_admin_navs` VALUES ('8', '4', '用户组管理', 'admin/auth_group/index', '', '2', null, '2016-09-21 06:16:22', null);
+INSERT INTO `la_admin_navs` VALUES ('9', '4', '管理员列表', 'admin/rule/admin_user_list', '', '3', null, '2016-09-21 06:16:22', null);
+INSERT INTO `la_admin_navs` VALUES ('16', '0', '会员管理', 'admin/shownav/', 'users', '4', null, '2016-09-21 06:16:22', null);
+INSERT INTO `la_admin_navs` VALUES ('17', '16', '会员列表', 'admin/user/index', '', null, null, '2016-09-21 06:16:22', null);
+INSERT INTO `la_admin_navs` VALUES ('36', '0', '文章管理', 'admin/shownav/posts', 'th', '6', null, '2016-09-21 06:16:22', null);
+INSERT INTO `la_admin_navs` VALUES ('37', '36', '文章列表', 'admin/posts/index', '', null, null, '2016-09-21 06:16:22', null);
+INSERT INTO `la_admin_navs` VALUES ('70', '0', '222555', '2333', '3', '10', '2016-09-21 03:45:10', '2016-09-21 06:16:22', null);
 
 -- ----------------------------
--- Table structure for `la_auth_group`
+-- Table structure for la_auth_groups
 -- ----------------------------
-DROP TABLE IF EXISTS `la_auth_group`;
-CREATE TABLE `la_auth_group` (
+DROP TABLE IF EXISTS `la_auth_groups`;
+CREATE TABLE `la_auth_groups` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `title` char(100) NOT NULL DEFAULT '',
   `status` tinyint(1) NOT NULL DEFAULT '1',
   `rules` text NOT NULL COMMENT '规则id',
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  `deleted_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COMMENT='用户组表';
+) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COMMENT='用户组表';
 
 -- ----------------------------
--- Records of la_auth_group
+-- Records of la_auth_groups
 -- ----------------------------
-INSERT INTO `la_auth_group` VALUES ('1', '超级管理员', '1', '6,96,20,1,2,3,4,5,64,21,7,8,9,10,11,12,13,14,15,16,123,124,125,19,104,105,106,107,108,118,109,110,111,112,117');
-INSERT INTO `la_auth_group` VALUES ('2', '产品管理员', '1', '6,96,1,2,3,4,56,57,60,61,63,71,72,65,67,74,75,66,68,69,70,73,77,78,82,83,88,89,90,99,91,92,97,98,104,105,106,107,108,118,109,110,111,112,117,113,114');
-INSERT INTO `la_auth_group` VALUES ('4', '文章编辑', '1', '6,96,57,60,61,63,71,72,65,67,74,75,66,68,69,73,79,80,78,82,83,88,89,90,99,100,97,98,104,105,106,107,108,118,109,110,111,112,117,113,114');
+INSERT INTO `la_auth_groups` VALUES ('1', '超级管理员', '1', '6,96,20,1,2,3,4,5,64,21,7,8,9,10,11,12,13,14,15,16,123,124,125,19,104,105,106,107,108,118,109,110,111,112,117', null, null, null);
+INSERT INTO `la_auth_groups` VALUES ('2', '产品管理员', '1', '6,96,1,2,3,4,56,57,60,61,63,71,72,65,67,74,75,66,68,69,70,73,77,78,82,83,88,89,90,99,91,92,97,98,104,105,106,107,108,118,109,110,111,112,117,113,114', null, null, null);
+INSERT INTO `la_auth_groups` VALUES ('4', '文章编辑', '1', '6,96,57,60,61,63,71,72,65,67,74,75,66,68,69,73,79,80,78,82,83,88,89,90,99,100,97,98,104,105,106,107,108,118,109,110,111,112,117,113,114', null, null, null);
+INSERT INTO `la_auth_groups` VALUES ('6', '42', '1', '', '2016-09-21 03:45:29', '2016-09-21 06:27:57', '2016-09-21 06:27:57');
+INSERT INTO `la_auth_groups` VALUES ('7', '222', '1', '6,96,20,1,2,3,4,5,64,21,7,8,9,10,11,12,13,14,15,16,123,124,125,19,104,105,106,107,108,118,109,110,111,112,117,136', '2016-09-21 06:28:09', '2016-09-21 07:24:03', null);
 
 -- ----------------------------
--- Table structure for `la_auth_group_access`
+-- Table structure for la_auth_group_accesses
 -- ----------------------------
-DROP TABLE IF EXISTS `la_auth_group_access`;
-CREATE TABLE `la_auth_group_access` (
+DROP TABLE IF EXISTS `la_auth_group_accesses`;
+CREATE TABLE `la_auth_group_accesses` (
   `uid` int(11) unsigned NOT NULL COMMENT '用户id',
   `group_id` int(11) unsigned NOT NULL COMMENT '用户组id',
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  `deleted_at` datetime DEFAULT NULL,
   UNIQUE KEY `uid_group_id` (`uid`,`group_id`),
   KEY `uid` (`uid`),
   KEY `group_id` (`group_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='用户组明细表';
 
 -- ----------------------------
--- Records of la_auth_group_access
+-- Records of la_auth_group_accesses
 -- ----------------------------
-INSERT INTO `la_auth_group_access` VALUES ('88', '1');
-INSERT INTO `la_auth_group_access` VALUES ('89', '2');
-INSERT INTO `la_auth_group_access` VALUES ('89', '4');
+INSERT INTO `la_auth_group_accesses` VALUES ('88', '1', null, null, null);
+INSERT INTO `la_auth_group_accesses` VALUES ('89', '2', null, null, null);
+INSERT INTO `la_auth_group_accesses` VALUES ('89', '4', null, null, null);
 
 -- ----------------------------
--- Table structure for `la_auth_rules`
+-- Table structure for la_auth_rules
 -- ----------------------------
 DROP TABLE IF EXISTS `la_auth_rules`;
 CREATE TABLE `la_auth_rules` (
@@ -101,22 +110,22 @@ CREATE TABLE `la_auth_rules` (
   `deleted_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `name` (`name`)
-) ENGINE=MyISAM AUTO_INCREMENT=126 DEFAULT CHARSET=utf8 COMMENT='规则表';
+) ENGINE=MyISAM AUTO_INCREMENT=137 DEFAULT CHARSET=utf8 COMMENT='规则表';
 
 -- ----------------------------
 -- Records of la_auth_rules
 -- ----------------------------
 INSERT INTO `la_auth_rules` VALUES ('1', '20', 'Admin/ShowNav/nav', '菜单管理', '1', '1', '', null, null, null);
-INSERT INTO `la_auth_rules` VALUES ('2', '1', 'Admin/Nav/index', '菜单列表', '1', '1', '', null, null, null);
-INSERT INTO `la_auth_rules` VALUES ('3', '1', 'Admin/Nav/add', '添加菜单', '1', '1', '', null, null, null);
-INSERT INTO `la_auth_rules` VALUES ('4', '1', 'Admin/Nav/edit', '修改菜单', '1', '1', '', null, null, null);
-INSERT INTO `la_auth_rules` VALUES ('5', '1', 'Admin/Nav/delete', '删除菜单', '1', '1', '', null, null, null);
+INSERT INTO `la_auth_rules` VALUES ('2', '1', 'Admin/admin_Nav/index', '菜单列表', '1', '1', '', null, null, null);
+INSERT INTO `la_auth_rules` VALUES ('3', '1', 'Admin/admin_Nav/add', '添加菜单', '1', '1', '', null, null, null);
+INSERT INTO `la_auth_rules` VALUES ('4', '1', 'Admin/admin_Nav/edit', '修改菜单', '1', '1', '', null, null, null);
+INSERT INTO `la_auth_rules` VALUES ('5', '1', 'Admin/admin_Nav/delete', '删除菜单', '1', '1', '', null, null, null);
 INSERT INTO `la_auth_rules` VALUES ('21', '0', 'Admin/ShowNav/rule', '权限控制', '1', '1', '', null, null, null);
-INSERT INTO `la_auth_rules` VALUES ('7', '21', 'Admin/Rule/index', '权限管理', '1', '1', '', null, null, null);
+INSERT INTO `la_auth_rules` VALUES ('7', '21', 'Admin/auth_Rule/index', '权限管理', '1', '1', '', null, null, null);
 INSERT INTO `la_auth_rules` VALUES ('8', '7', 'Admin/Rule/add', '添加权限', '1', '1', '', null, null, null);
 INSERT INTO `la_auth_rules` VALUES ('9', '7', 'Admin/Rule/edit', '修改权限', '1', '1', '', null, null, null);
 INSERT INTO `la_auth_rules` VALUES ('10', '7', 'Admin/Rule/delete', '删除权限', '1', '1', '', null, null, null);
-INSERT INTO `la_auth_rules` VALUES ('11', '21', 'Admin/Rule/group', '用户组管理', '1', '1', '', null, null, null);
+INSERT INTO `la_auth_rules` VALUES ('11', '21', 'admin/auth_group/index', '用户组管理', '1', '1', '', null, null, null);
 INSERT INTO `la_auth_rules` VALUES ('12', '11', 'Admin/Rule/add_group', '添加用户组', '1', '1', '', null, null, null);
 INSERT INTO `la_auth_rules` VALUES ('13', '11', 'Admin/Rule/edit_group', '修改用户组', '1', '1', '', null, null, null);
 INSERT INTO `la_auth_rules` VALUES ('14', '11', 'Admin/Rule/delete_group', '删除用户组', '1', '1', '', null, null, null);
@@ -143,7 +152,7 @@ INSERT INTO `la_auth_rules` VALUES ('124', '11', 'Admin/Rule/add_admin', '添加
 INSERT INTO `la_auth_rules` VALUES ('125', '11', 'Admin/Rule/edit_admin', '修改管理员', '1', '1', '', null, null, null);
 
 -- ----------------------------
--- Table structure for `la_users`
+-- Table structure for la_users
 -- ----------------------------
 DROP TABLE IF EXISTS `la_users`;
 CREATE TABLE `la_users` (
