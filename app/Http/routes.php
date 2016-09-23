@@ -53,18 +53,17 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin'], function () {
 
     //用户-用户组
     Route::group(['prefix'=>'auth_group_access'], function (){
+        //管理员列表
+        Route::get('/index' ,'AuthGroupAccessController@index');
+        Route::get('/create' ,'AuthGroupAccessController@create');
+        Route::post('/store' ,'AuthGroupAccessController@store');
+        Route::get('/edit/{uid}' ,'AuthGroupAccessController@edit');
+        Route::post('/update' ,'AuthGroupAccessController@update');
+
+        //添加用户到用户组
         Route::get('/search_user/{group_id}' ,'AuthGroupAccessController@search_user')->where('group_id', '[0-9]+');
         Route::get('/add_user_to_group/{uid}/{group_id}' ,'AuthGroupAccessController@add_user_to_group')->where(['uid'=>'[0-9]+', 'group_id'=>'[0-9]']);
         Route::get('/delete_user_from_group/{uid}/{group_id}' ,'AuthGroupAccessController@delete_user_from_group')->where(['uid'=>'[0-9]+', 'group_id'=>'[0-9]']);
-        Route::get('/admin_user_list' ,'AuthGroupAccessController@check_user_store');
-        Route::get('/add_admin' ,'AuthGroupAccessController@check_user_store');
-        Route::get('/edit_admin' ,'AuthGroupAccessController@check_user_store');
+
     });
-
 });
-
-
-//管理员
-Route::post('/admin_user_list' ,'RuleController@admin_user_list');
-Route::post('/add_admin' ,'RuleController@add_admin');
-Route::post('/edit_admin' ,'RuleController@edit_admin');

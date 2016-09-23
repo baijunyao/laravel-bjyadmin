@@ -15,6 +15,65 @@ class AuthGroupAccessController extends Controller
 {
 
     /**
+     * 管理员列表
+     *
+     * @param  \App\Model\AuthGroupAccess $authGroupAccess
+     * @return \Illuminate\Http\Response
+     */
+    public function index(AuthGroupAccess $authGroupAccess)
+    {
+        $data=$authGroupAccess->getAdminUserList();
+        $assign=[
+            'data'=>$data
+        ];
+        return View('admin/auth_group_access/index',$assign);
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function store($id)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $uid
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($uid)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        //
+    }
+
+    /**
      * 添加用户到用户组的页面 搜索学生
      *
      * @param  int  $group_id
@@ -84,37 +143,4 @@ class AuthGroupAccessController extends Controller
         return redirect()->back();
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
 }
