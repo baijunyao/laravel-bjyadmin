@@ -51,6 +51,8 @@ class AuthGroupAccessController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Model\User $user
+     * @param  \App\Model\AuthGroupAccess $authGroupAccess
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request, User $user, AuthGroupAccess $authGroupAccess)
@@ -81,12 +83,28 @@ class AuthGroupAccessController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
+     * @param  \App\Model\User $user
+     * @param  \App\Model\AuthGroupAccess $authGroupAccess
+     * @param  \App\Model\AuthGroup $authGroup
      * @param  int  $uid
      * @return \Illuminate\Http\Response
      */
     public function edit($uid)
     {
-        //
+        // 获取用户数据
+        $user_data=User::find($uid)->toArray();
+        // 获取已加入用户组
+        $group_access_data=AuthGroupAccess::where('uid', $uid)
+            ->lists('group_id')
+            ->toArray();
+        // 全部用户组
+        $group_data=AuthGroup::all()->toArray();
+        $assign=[
+            'user_data'=>$user_data,
+            'group_data'=>$group_data,
+            'group_access_data'=>$group_access_data,
+        ];
+        return View('admin/auth_group_access/edit', $assign);
     }
 
     /**
