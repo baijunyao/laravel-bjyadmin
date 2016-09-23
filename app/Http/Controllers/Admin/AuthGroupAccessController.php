@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+use Crypt;
+use Hash;
+
 use App\Model\AuthGroupAccess;
 use App\Model\AuthGroup;
 use App\Model\User;
@@ -32,22 +35,47 @@ class AuthGroupAccessController extends Controller
     /**
      * Show the form for creating a new resource.
      *
+     * @param  \App\Model\AuthGroup $authGroup
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(AuthGroup $authGroup)
     {
-        //
+        $data=$authGroup::all()->toArray();
+        $assign=[
+            'data'=>$data
+        ];
+        return View('admin/auth_group_access/create', $assign);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store($id)
+    public function store(Request $request, User $user, AuthGroupAccess $authGroupAccess)
     {
-        //
+        $data=$request->except('_token');
+        $user_data=[
+            'username'=>$data['username'],
+            'phone'=>$data['phone'],
+            'email'=>$data['email'],
+            'password'=>bcrypt($data['password']),
+            'status'=>$data['status']
+        ];
+        $uid=$user->addData($user_data);
+        if($uid){
+            if (!empty($data['group_ids'])) {
+                foreach ($data['group_ids'] as $k => $v) {
+                    $group=array(
+                        'uid'=>$uid,
+                        'group_id'=>$v
+                    );
+                    $authGroupAccess->addData($group);
+                }
+            }
+        }
+        return redirect()->back();
     }
 
     /**
