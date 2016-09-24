@@ -36,7 +36,7 @@ class AuthGroupController extends Controller
      */
     public function store(Request $request, AuthGroup $authGroup)
     {
-        $data=$request->all();
+        $data=$request->except('_token');
         $authGroup->addData($data);
         return redirect('admin/auth_group/index');
     }
@@ -51,7 +51,7 @@ class AuthGroupController extends Controller
      */
     public function update(Request $request, AuthGroup $authGroup)
     {
-        $data=$request->all();
+        $data=$request->except('_token');
         $authGroup->editData($data);
         return redirect('admin/auth_group/index');
     }
@@ -100,7 +100,7 @@ class AuthGroupController extends Controller
      */
     public function rule_group_update(Request $request, AuthGroup $authGroup)
     {
-        $data=$request->all();
+        $data=$request->except('_token');
         $data['rules']=implode(',', $data['rules']);
         $authGroup->editData($data);
         return redirect()->back();

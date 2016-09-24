@@ -35,7 +35,7 @@ class AdminNavController extends Controller
      */
     public function store(Request $request ,AdminNav $adminNav)
     {
-        $data=$request->all();
+        $data=$request->except('_token');
         $adminNav->addData($data);
         return redirect('admin/admin_nav/index');
     }
@@ -82,7 +82,7 @@ class AdminNavController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function order(Request $request, AdminNav $adminNav){
-        $data=$request->all();
+        $data=$request->except('_token');
         $adminNav->orderData($data);
         return redirect('admin/admin_nav/index');
     }

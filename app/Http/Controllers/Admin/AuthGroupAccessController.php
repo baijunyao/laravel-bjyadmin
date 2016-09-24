@@ -84,9 +84,6 @@ class AuthGroupAccessController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Model\User $user
-     * @param  \App\Model\AuthGroupAccess $authGroupAccess
-     * @param  \App\Model\AuthGroup $authGroup
      * @param  int  $uid
      * @return \Illuminate\Http\Response
      */

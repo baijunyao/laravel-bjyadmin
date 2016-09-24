@@ -35,7 +35,7 @@ class AuthRuleController extends Controller
      */
     public function store(Request $request, AuthRule $authRule)
     {
-        $data=$request->all();
+        $data=$request->except('_token');
         $authRule->addData($data);
         return redirect('admin/auth_rule/index');
     }
@@ -50,7 +50,7 @@ class AuthRuleController extends Controller
      */
     public function update(Request $request, AuthRule $authRule)
     {
-        $data=$request->all();
+        $data=$request->except('_token');
         $authRule->editData($data);
         return redirect('admin/auth_rule/index');
     }
