@@ -12,8 +12,8 @@ class Base extends Model
     /**
      * 添加数据
      *
-     * @param $data 需要添加的数据
-     * @return bool 是否成功
+     * @param  array $data 需要添加的数据
+     * @return bool        是否成功
      */
     public function addData($data)
     {
@@ -37,22 +37,19 @@ class Base extends Model
     /**
      * 修改数据
      *
-     * @param $data 需要修改的数据
-     * @return bool 是否成功
+     * @param  array $map  where条件
+     * @param  array $data 需要修改的数据
+     * @return bool        是否成功
      */
-    public function editData($data)
+    public function editData($map, $data)
     {
         //验证是否通过
         if (!$this->validate($data)) {
             return false;
         }
-        //如果存在_token字段；则删除
-        if (isset($data['_token'])) {
-            unset($data['_token']);
-        }
         //修改数据
         $result=$this
-            ->where('id',$data['id'])
+            ->where($map)
             ->update($data);
         if ($result) {
             Session::flash('alert-message','修改成功');
@@ -65,8 +62,8 @@ class Base extends Model
 
     /**
      * 排序
-     * @param  $data 需要排序的数据
-     * @return bool  是否成功
+     * @param  array $data 需要排序的数据
+     * @return bool        是否成功
      */
     public function orderData($data)
     {

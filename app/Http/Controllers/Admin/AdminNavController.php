@@ -23,7 +23,7 @@ class AdminNavController extends Controller
         $assign=[
             'data'=>$data
         ];
-        return View('admin/admin_nav/index',$assign);
+        return view('admin/admin_nav/index',$assign);
     }
 
     /**
@@ -49,26 +49,36 @@ class AdminNavController extends Controller
      */
     public function update(Request $request ,AdminNav $adminNav)
     {
-        $data=$request->all();
-        $adminNav->editData($data);
+        //获取post数据
+        $data=$request->except('_token');
+        $map=[
+            'id'=>$data['id']
+        ];
+        $adminNav->editData($map, $data);
         return redirect('admin/admin_nav/index');
     }
 
     /**
      * 删除菜单
      *
+     * @param  \App\Model\AdminNav        $adminNav 后台菜单模型
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function destroy(AdminNav $adminNav, $id)
     {
-        $adminNav->deleteData($id);
+        $map=[
+            'id'=>$id
+        ];
+        $adminNav->deleteData($map);
         return redirect('admin/admin_nav/index');
     }
 
     /**
      * 排序
      *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Model\AdminNav        $adminNav 后台菜单模型
      * @return \Illuminate\Http\Response
      */
     public function order(Request $request, AdminNav $adminNav){

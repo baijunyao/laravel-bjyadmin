@@ -22,12 +22,11 @@ class AdminNav extends Base
      */
     protected $fillable = ['id','pid','name','mca','ico','order_number'];
 
-
     /**
      * 自动验证
      *
-     * @param $data 需要验证的数据
-     * @return bool 验证是否通过
+     * @param  array $data 需要验证的数据
+     * @return bool        验证是否通过
      */
     public function validate($data)
     {
@@ -53,14 +52,20 @@ class AdminNav extends Base
     /**
      * 添加数据
      *
-     * @param  $id  需要添加的数据
-     * @return bool 是否成功
+     * @param  array $map  需要添加的数据
+     * @return bool        是否成功
      */
-    public function deleteData($id)
+    public function deleteData($map)
     {
+        //暂时的应用场景是必须传id处理
+        if (empty($map['id'])) {
+            Session::flash('alert-message','此接口设计的必须传id');
+            Session::flash('alert-class','alert-danger');
+            return false;
+        }
         //查找子权限的数量
         $pids=$this
-            ->where('pid', $id)
+            ->where('pid', $map['id'])
             ->count();
         if ($pids !== 0) {
             Session::flash('alert-message','必须先删除子权限');
@@ -69,7 +74,7 @@ class AdminNav extends Base
         }
         //删除数据
         $result=$this
-            ->where('id',$id)
+            ->where($map)
             ->delete();
         if ($result) {
             Session::flash('alert-message','删除成功');
