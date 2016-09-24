@@ -146,7 +146,7 @@ class AuthGroupAccessController extends Controller
     }
 
     /**
-     * 添加用户到用户组的页面 搜索学生
+     * 添加用户到用户组的页面 搜索用户
      *
      * @param  int  $group_id
      * @param  \App\Model\AuthGroup $authGroup

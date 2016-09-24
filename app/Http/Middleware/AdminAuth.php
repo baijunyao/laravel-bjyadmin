@@ -19,12 +19,13 @@ class AdminAuth
     {
         //判断是否有权限
         $path=$request->path();
+        session(['user'=>['id'=>89]]);
         $uid=session('user.id');
         $auth=new Auth();
         $result=$auth->check($path,$uid);
-        var_dump($result);die;
+        //如果没有权限访问；则重定向到首页
         if(!$result){
-            $this->error('您没有权限访问');
+            return redirect('/');
         }
         return $next($request);
     }
