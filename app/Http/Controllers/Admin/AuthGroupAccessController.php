@@ -30,7 +30,7 @@ class AuthGroupAccessController extends Controller
         $assign=[
             'data'=>$data
         ];
-        return View('admin/auth_group_access/index',$assign);
+        return view('admin/auth_group_access/index',$assign);
     }
 
     /**
@@ -45,7 +45,7 @@ class AuthGroupAccessController extends Controller
         $assign=[
             'data'=>$data
         ];
-        return View('admin/auth_group_access/create', $assign);
+        return view('admin/auth_group_access/create', $assign);
     }
 
     /**
@@ -102,7 +102,7 @@ class AuthGroupAccessController extends Controller
             'group_data'=>$group_data,
             'group_access_data'=>$group_access_data,
         ];
-        return View('admin/auth_group_access/edit', $assign);
+        return view('admin/auth_group_access/edit', $assign);
     }
 
     /**
@@ -174,7 +174,7 @@ class AuthGroupAccessController extends Controller
             'username'=>$username,
             'user_data'=>$user_data
         ];
-        return View('admin/auth_group_access/search_user', $assign);
+        return view('admin/auth_group_access/search_user', $assign);
     }
 
     /**
