@@ -19,7 +19,6 @@ class AdminAuth
     {
         //判断是否有权限
         $path=$request->path();
-        session(['user'=>['id'=>89]]);
         $uid=session('user.id');
         $auth=new Auth();
         $result=$auth->check($path,$uid);
