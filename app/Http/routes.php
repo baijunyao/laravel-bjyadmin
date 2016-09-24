@@ -20,7 +20,7 @@ Route::get('/', function () {
 Route::get('/admin','Admin\IndexController@index');
 
 //后台路由
-Route::group(['prefix'=>'admin','namespace'=>'Admin'], function () {
+Route::group(['prefix'=>'admin', 'namespace'=>'Admin', 'middleware'=>'adminAuth'], function () {
     //菜单管理
     Route::group(['prefix'=>'admin_nav'], function () {
         Route::get('/index' ,'AdminNavController@index');
