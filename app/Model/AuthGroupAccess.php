@@ -83,22 +83,17 @@ class AuthGroupAccess extends Base
         }
     }
 
-
     /**
-     * 添加数据
+     * 删除数据
      *
-     * @param  $data  需要添加的数据
-     * @return bool 是否成功
+     * @param  $uid   需要删除的用户id
+     * @return bool   是否成功
      */
-    public function deleteData($data)
+    public function deleteData($uid)
     {
-        //验证是否通过
-        if (!$this->validate($data)) {
-            return false;
-        }
-        //恢复软删除
+        //软删除
         $result=$this
-            ->where($data)
+            ->where('uid', $uid)
             ->delete();
         if ($result) {
             Session::flash('alert-message','设置成功');
@@ -109,15 +104,14 @@ class AuthGroupAccess extends Base
         }
     }
 
+    /**
+     * 获取后台管理员列表数据
+     *
+     * @return mixed
+     */
     public function getAdminUserList()
     {
-        //$data=$this
-        //    ->field('u.id,u.username,u.email,aga.group_id,ag.title')
-        //    ->alias('aga')
-        //    ->join('__USERS__ u ON aga.uid=u.id','RIGHT')
-        //    ->join('__AUTH_GROUP__ ag ON aga.group_id=ag.id','LEFT')
-        //    ->select();
-
+        //获取数据
         $data=$this
             ->select('u.id','u.username','u.email','auth_group_accesses.group_id','ag.title')
             ->rightJoin('users as u','auth_group_accesses.uid','=','u.id')

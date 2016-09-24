@@ -48,9 +48,9 @@ class AuthRule extends Base
     }
 
     /**
-     * 添加数据
+     * 删除数据
      *
-     * @param  $id  需要添加的数据
+     * @param  $id  需要删除的id
      * @return bool 是否成功
      */
     public function deleteData($id)

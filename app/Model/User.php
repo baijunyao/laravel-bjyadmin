@@ -6,8 +6,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use DB;
 use Validator;
 use Session;
+use Illuminate\Database\Eloquent\Model;
 
-class User extends Base
+class User extends Model
 {
     //开启如删除
     use SoftDeletes;
@@ -77,11 +78,19 @@ class User extends Base
         return true;
     }
 
+    /**
+     * @param 需要添加的数据 $data
+     * @return bool
+     */
     public function addData($data)
     {
         //验证是否通过
         if (!$this->validate($data)) {
             return false;
+        }
+        //如果传password 则加密
+        if (!empty($data['password'])) {
+            $data['password']=bcrypt($data['password']);
         }
         //添加数据
         $result=$this
@@ -96,5 +105,35 @@ class User extends Base
         }
     }
 
+    /**
+     * 修改数据
+     *
+     * @param $map  where条件
+     * @param $data 需要修改的数据
+     * @return bool 是否成功
+     */
+    public function editData($map, $data)
+    {
+        //如果存在_token字段；则删除
+        if (isset($data['_token'])) {
+            unset($data['_token']);
+        }
+        //如果传password 则加密
+        var_dump(!empty($data['password']));
+        if (!empty($data['password'])) {
+            $data['password']=bcrypt($data['password']);
+        }
+        //修改数据
+        $result=$this
+            ->where($map)
+            ->update($data);
+        if ($result) {
+            Session::flash('alert-message','修改成功');
+            Session::flash('alert-class','alert-success');
+            return $result;
+        }else{
+            return false;
+        }
+    }
 
 }

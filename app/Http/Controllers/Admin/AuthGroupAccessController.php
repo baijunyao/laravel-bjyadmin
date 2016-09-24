@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 
 use Crypt;
 use Hash;
+use DB;
 
 use App\Model\AuthGroupAccess;
 use App\Model\AuthGroup;
@@ -62,7 +63,7 @@ class AuthGroupAccessController extends Controller
             'username'=>$data['username'],
             'phone'=>$data['phone'],
             'email'=>$data['email'],
-            'password'=>bcrypt($data['password']),
+            'password'=>$data['password'],
             'status'=>$data['status']
         ];
         $uid=$user->addData($user_data);
@@ -111,12 +112,34 @@ class AuthGroupAccessController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, AuthGroupAccess $authGroupAccess, User $user)
     {
-        //
+        $data=$request->except('_token');
+        // 组合where数组条件
+        $uid=$data['id'];
+        $map=array(
+            'id'=>$uid
+        );
+        //先删除已有的权限
+        $authGroupAccess->deleteData($uid);
+        //再添加权限
+        foreach ($data['group_ids'] as $k => $v) {
+            $group=array(
+                'uid'=>$uid,
+                'group_id'=>$v
+            );
+            $authGroupAccess->addData($group);
+        }
+        //如果密码为空；则删除字段
+        if (empty($data['password'])) {
+            unset($data['password']);
+        }
+        //删除id和group_id
+        unset($data['id'], $data['group_ids']);
+        $user->editData($map,$data);
+        return redirect()->back();
     }
 
     /**

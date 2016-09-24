@@ -21,7 +21,7 @@
         </li>
     </ul>
 
-    <form class="form-inline" method="post">
+    <form class="form-inline" action="{{ url('admin/auth_group_access/update') }}" method="post">
         <input type="hidden" name="id" value="{{ $user_data['id'] }}">
         <table class="table table-striped table-bordered table-hover table-condensed">
             {{ csrf_field() }}
