@@ -116,11 +116,14 @@ class AuthGroupAccessController extends Controller
         $data=$request->except('_token');
         // 组合where数组条件
         $uid=$data['id'];
-        $map=array(
-            'id'=>$uid
-        );
+        $delete_map=[
+            'uid'=>$uid
+        ];
         //先删除已有的权限
-        $authGroupAccess->deleteData($uid);
+        $result=$authGroupAccess->deleteData($delete_map);
+        if ($result) {
+            return redirect()->back();
+        }
         //再添加权限
         foreach ($data['group_ids'] as $k => $v) {
             $group=array(
@@ -135,7 +138,10 @@ class AuthGroupAccessController extends Controller
         }
         //删除id和group_id
         unset($data['id'], $data['group_ids']);
-        $user->editData($map,$data);
+        $user_map=array(
+            'id'=>$uid
+        );
+        $user->editData($user_map,$data);
         return redirect()->back();
     }
 
