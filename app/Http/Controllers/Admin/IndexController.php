@@ -20,7 +20,7 @@ class IndexController extends Controller
         $assign=[
             'nav_data'=>$nav_data
         ];
-        return View('admin.index.index',$assign);
+        return View('admin/index/index',$assign);
 
 
     }

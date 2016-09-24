@@ -24,7 +24,7 @@ class AuthGroupController extends Controller
         $assign=[
             'data'=>$data
         ];
-        return View('admin.auth_group.index', $assign);
+        return View('admin/auth_group/index', $assign);
     }
 
     /**
@@ -88,7 +88,7 @@ class AuthGroupController extends Controller
             'group_data'=>$group_data,
             'rule_data'=>$rule_data
         ];
-        return View('admin.auth_group.rule_group_show', $assign);
+        return View('admin/auth_group/rule_group_show', $assign);
     }
 
     /**

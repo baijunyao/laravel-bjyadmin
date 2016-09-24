@@ -14,6 +14,7 @@ class AdminNavController extends Controller
     /**
      * 菜单管理页面
      *
+     * @param  \App\Model\AdminNav        $adminNav 后台菜单模型
      * @return \Illuminate\Http\Response
      */
     public function index(AdminNav $adminNav)
@@ -22,7 +23,7 @@ class AdminNavController extends Controller
         $assign=[
             'data'=>$data
         ];
-        return View('admin.admin_nav.index',$assign);
+        return View('admin/admin_nav/index',$assign);
     }
 
     /**

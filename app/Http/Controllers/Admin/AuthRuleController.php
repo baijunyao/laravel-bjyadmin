@@ -23,7 +23,7 @@ class AuthRuleController extends Controller
         $assign=[
             'data'=>$data
         ];
-        return View('admin.auth_rule.index', $assign);
+        return View('admin/auth_rule/index', $assign);
     }
 
     /**
