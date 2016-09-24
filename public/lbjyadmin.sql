@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50547
 File Encoding         : 65001
 
-Date: 2016-09-22 14:02:47
+Date: 2016-09-24 15:58:47
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -30,7 +30,7 @@ CREATE TABLE `la_admin_navs` (
   `updated_at` datetime DEFAULT NULL,
   `deleted_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=71 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=75 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of la_admin_navs
@@ -40,12 +40,11 @@ INSERT INTO `la_admin_navs` VALUES ('2', '1', '菜单管理', 'admin/admin_nav/i
 INSERT INTO `la_admin_navs` VALUES ('7', '4', '权限管理', 'admin/auth_rule/index', '', '1', null, '2016-09-21 06:16:22', null);
 INSERT INTO `la_admin_navs` VALUES ('4', '0', '权限控制', 'admin/shownav/rule', 'expeditedssl', '2', null, '2016-09-21 06:16:22', null);
 INSERT INTO `la_admin_navs` VALUES ('8', '4', '用户组管理', 'admin/auth_group/index', '', '2', null, '2016-09-21 06:16:22', null);
-INSERT INTO `la_admin_navs` VALUES ('9', '4', '管理员列表', 'admin/rule/admin_user_list', '', '3', null, '2016-09-21 06:16:22', null);
+INSERT INTO `la_admin_navs` VALUES ('9', '4', '管理员列表', 'admin/auth_group_access/index', '', '3', null, '2016-09-21 06:16:22', null);
 INSERT INTO `la_admin_navs` VALUES ('16', '0', '会员管理', 'admin/shownav/', 'users', '4', null, '2016-09-21 06:16:22', null);
 INSERT INTO `la_admin_navs` VALUES ('17', '16', '会员列表', 'admin/user/index', '', null, null, '2016-09-21 06:16:22', null);
 INSERT INTO `la_admin_navs` VALUES ('36', '0', '文章管理', 'admin/shownav/posts', 'th', '6', null, '2016-09-21 06:16:22', null);
 INSERT INTO `la_admin_navs` VALUES ('37', '36', '文章列表', 'admin/posts/index', '', null, null, '2016-09-21 06:16:22', null);
-INSERT INTO `la_admin_navs` VALUES ('70', '0', '222555', '2333', '3', '10', '2016-09-21 03:45:10', '2016-09-21 06:16:22', null);
 
 -- ----------------------------
 -- Table structure for la_auth_groups
@@ -60,7 +59,7 @@ CREATE TABLE `la_auth_groups` (
   `updated_at` datetime DEFAULT NULL,
   `deleted_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COMMENT='用户组表';
+) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COMMENT='用户组表';
 
 -- ----------------------------
 -- Records of la_auth_groups
@@ -68,8 +67,6 @@ CREATE TABLE `la_auth_groups` (
 INSERT INTO `la_auth_groups` VALUES ('1', '超级管理员', '1', '6,96,20,1,2,3,4,5,64,21,7,8,9,10,11,12,13,14,15,16,123,124,125,19,104,105,106,107,108,118,109,110,111,112,117', null, null, null);
 INSERT INTO `la_auth_groups` VALUES ('2', '产品管理员', '1', '6,96,1,2,3,4,56,57,60,61,63,71,72,65,67,74,75,66,68,69,70,73,77,78,82,83,88,89,90,99,91,92,97,98,104,105,106,107,108,118,109,110,111,112,117,113,114', null, null, null);
 INSERT INTO `la_auth_groups` VALUES ('4', '文章编辑', '1', '6,96,57,60,61,63,71,72,65,67,74,75,66,68,69,73,79,80,78,82,83,88,89,90,99,100,97,98,104,105,106,107,108,118,109,110,111,112,117,113,114', null, null, null);
-INSERT INTO `la_auth_groups` VALUES ('6', '42', '1', '', '2016-09-21 03:45:29', '2016-09-21 06:27:57', '2016-09-21 06:27:57');
-INSERT INTO `la_auth_groups` VALUES ('7', '222', '1', '6,96,20,1,2,3,4,5,64,21,7,8,9,10,11,12,13,14,15,16,123,124,125,19,104,105,106,107,108,118,109,110,111,112,117,136', '2016-09-21 06:28:09', '2016-09-21 07:24:03', null);
 
 -- ----------------------------
 -- Table structure for la_auth_group_accesses
@@ -91,7 +88,7 @@ CREATE TABLE `la_auth_group_accesses` (
 -- ----------------------------
 INSERT INTO `la_auth_group_accesses` VALUES ('88', '1', null, null, null);
 INSERT INTO `la_auth_group_accesses` VALUES ('89', '2', null, null, null);
-INSERT INTO `la_auth_group_accesses` VALUES ('89', '4', null, null, null);
+INSERT INTO `la_auth_group_accesses` VALUES ('89', '4', null, '2016-09-22 08:50:18', null);
 
 -- ----------------------------
 -- Table structure for la_auth_rules
@@ -110,7 +107,7 @@ CREATE TABLE `la_auth_rules` (
   `deleted_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `name` (`name`)
-) ENGINE=MyISAM AUTO_INCREMENT=137 DEFAULT CHARSET=utf8 COMMENT='规则表';
+) ENGINE=MyISAM AUTO_INCREMENT=141 DEFAULT CHARSET=utf8 COMMENT='规则表';
 
 -- ----------------------------
 -- Records of la_auth_rules
@@ -131,7 +128,7 @@ INSERT INTO `la_auth_rules` VALUES ('13', '11', 'Admin/Rule/edit_group', '修改
 INSERT INTO `la_auth_rules` VALUES ('14', '11', 'Admin/Rule/delete_group', '删除用户组', '1', '1', '', null, null, null);
 INSERT INTO `la_auth_rules` VALUES ('15', '11', 'Admin/Rule/rule_group', '分配权限', '1', '1', '', null, null, null);
 INSERT INTO `la_auth_rules` VALUES ('16', '11', 'Admin/Rule/check_user', '添加成员', '1', '1', '', null, null, null);
-INSERT INTO `la_auth_rules` VALUES ('19', '21', 'Admin/Rule/admin_user_list', '管理员列表', '1', '1', '', null, null, null);
+INSERT INTO `la_auth_rules` VALUES ('19', '21', 'admin/auth_group_access/index', '管理员列表', '1', '1', '', null, null, null);
 INSERT INTO `la_auth_rules` VALUES ('20', '0', 'Admin/ShowNav/config', '系统设置', '1', '1', '', null, null, null);
 INSERT INTO `la_auth_rules` VALUES ('6', '0', 'Admin/Index/index', '后台首页', '1', '1', '', null, null, null);
 INSERT INTO `la_auth_rules` VALUES ('64', '1', 'Admin/Nav/order', '菜单排序', '1', '1', '', null, null, null);
@@ -164,15 +161,17 @@ CREATE TABLE `la_users` (
   `email_code` varchar(60) DEFAULT NULL COMMENT '激活码',
   `phone` bigint(11) unsigned DEFAULT NULL COMMENT '手机号',
   `status` tinyint(1) NOT NULL DEFAULT '2' COMMENT '用户状态 0：禁用； 1：正常 ；2：未验证',
-  `register_time` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '注册时间',
   `last_login_ip` varchar(16) NOT NULL DEFAULT '' COMMENT '最后登录ip',
   `last_login_time` int(10) unsigned NOT NULL COMMENT '最后登录时间',
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  `deleted_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `user_login_key` (`username`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=90 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=93 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of la_users
 -- ----------------------------
-INSERT INTO `la_users` VALUES ('88', 'admin', 'e10adc3949ba59abbe56e057f20f883e', '/Upload/avatar/user1.jpg', '', '', null, '1', '1449199996', '', '0');
-INSERT INTO `la_users` VALUES ('89', 'admin2', 'e10adc3949ba59abbe56e057f20f883e', '/Upload/avatar/user2.jpg', '', '', null, '1', '1449199996', '', '0');
+INSERT INTO `la_users` VALUES ('88', 'admin', 'e10adc3949ba59abbe56e057f20f883e', '/Upload/avatar/user1.jpg', '', '', '0', '1', '', '0', null, null, null);
+INSERT INTO `la_users` VALUES ('89', 'admin2', 'e10adc3949ba59abbe56e057f20f883e', '/Upload/avatar/user2.jpg', '', '', '0', '1', '', '0', null, null, null);

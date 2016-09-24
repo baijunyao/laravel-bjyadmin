@@ -12,11 +12,16 @@ class IndexController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(AdminNav $adminNav)
     {
         //模拟登陆
         session(['user'=>['id'=>88]]);
-        return view('admin/index/index');
+        //获取菜单
+        $nav_data=$adminNav->getTreeData('level','order_number,id');
+        $assign=[
+            'nav_data'=>$nav_data
+        ];
+        return view('admin/index/index', $assign);
     }
 
     /**
