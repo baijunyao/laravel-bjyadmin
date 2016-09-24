@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50547
 File Encoding         : 65001
 
-Date: 2016-09-24 15:58:47
+Date: 2016-09-24 16:39:12
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -112,41 +112,41 @@ CREATE TABLE `la_auth_rules` (
 -- ----------------------------
 -- Records of la_auth_rules
 -- ----------------------------
-INSERT INTO `la_auth_rules` VALUES ('1', '20', 'Admin/ShowNav/nav', '菜单管理', '1', '1', '', null, null, null);
-INSERT INTO `la_auth_rules` VALUES ('2', '1', 'Admin/admin_Nav/index', '菜单列表', '1', '1', '', null, null, null);
-INSERT INTO `la_auth_rules` VALUES ('3', '1', 'Admin/admin_Nav/add', '添加菜单', '1', '1', '', null, null, null);
-INSERT INTO `la_auth_rules` VALUES ('4', '1', 'Admin/admin_Nav/edit', '修改菜单', '1', '1', '', null, null, null);
-INSERT INTO `la_auth_rules` VALUES ('5', '1', 'Admin/admin_Nav/delete', '删除菜单', '1', '1', '', null, null, null);
-INSERT INTO `la_auth_rules` VALUES ('21', '0', 'Admin/ShowNav/rule', '权限控制', '1', '1', '', null, null, null);
-INSERT INTO `la_auth_rules` VALUES ('7', '21', 'Admin/auth_Rule/index', '权限管理', '1', '1', '', null, null, null);
-INSERT INTO `la_auth_rules` VALUES ('8', '7', 'Admin/Rule/add', '添加权限', '1', '1', '', null, null, null);
-INSERT INTO `la_auth_rules` VALUES ('9', '7', 'Admin/Rule/edit', '修改权限', '1', '1', '', null, null, null);
-INSERT INTO `la_auth_rules` VALUES ('10', '7', 'Admin/Rule/delete', '删除权限', '1', '1', '', null, null, null);
+INSERT INTO `la_auth_rules` VALUES ('1', '20', 'admin/shownav/nav', '菜单管理', '1', '1', '', null, null, null);
+INSERT INTO `la_auth_rules` VALUES ('2', '1', 'admin/admin_nav/index', '菜单列表', '1', '1', '', null, null, null);
+INSERT INTO `la_auth_rules` VALUES ('3', '1', 'admin/admin_nav/add', '添加菜单', '1', '1', '', null, null, null);
+INSERT INTO `la_auth_rules` VALUES ('4', '1', 'admin/admin_nav/edit', '修改菜单', '1', '1', '', null, null, null);
+INSERT INTO `la_auth_rules` VALUES ('5', '1', 'admin/admin_nav/delete', '删除菜单', '1', '1', '', null, null, null);
+INSERT INTO `la_auth_rules` VALUES ('21', '0', 'admin/shownav/rule', '权限控制', '1', '1', '', null, null, null);
+INSERT INTO `la_auth_rules` VALUES ('7', '21', 'admin/auth_rule/index', '权限管理', '1', '1', '', null, null, null);
+INSERT INTO `la_auth_rules` VALUES ('8', '7', 'admin/rule/add', '添加权限', '1', '1', '', null, null, null);
+INSERT INTO `la_auth_rules` VALUES ('9', '7', 'admin/rule/edit', '修改权限', '1', '1', '', null, null, null);
+INSERT INTO `la_auth_rules` VALUES ('10', '7', 'admin/rule/delete', '删除权限', '1', '1', '', null, null, null);
 INSERT INTO `la_auth_rules` VALUES ('11', '21', 'admin/auth_group/index', '用户组管理', '1', '1', '', null, null, null);
-INSERT INTO `la_auth_rules` VALUES ('12', '11', 'Admin/Rule/add_group', '添加用户组', '1', '1', '', null, null, null);
-INSERT INTO `la_auth_rules` VALUES ('13', '11', 'Admin/Rule/edit_group', '修改用户组', '1', '1', '', null, null, null);
-INSERT INTO `la_auth_rules` VALUES ('14', '11', 'Admin/Rule/delete_group', '删除用户组', '1', '1', '', null, null, null);
-INSERT INTO `la_auth_rules` VALUES ('15', '11', 'Admin/Rule/rule_group', '分配权限', '1', '1', '', null, null, null);
-INSERT INTO `la_auth_rules` VALUES ('16', '11', 'Admin/Rule/check_user', '添加成员', '1', '1', '', null, null, null);
+INSERT INTO `la_auth_rules` VALUES ('12', '11', 'admin/rule/add_group', '添加用户组', '1', '1', '', null, null, null);
+INSERT INTO `la_auth_rules` VALUES ('13', '11', 'admin/rule/edit_group', '修改用户组', '1', '1', '', null, null, null);
+INSERT INTO `la_auth_rules` VALUES ('14', '11', 'admin/rule/delete_group', '删除用户组', '1', '1', '', null, null, null);
+INSERT INTO `la_auth_rules` VALUES ('15', '11', 'admin/rule/rule_group', '分配权限', '1', '1', '', null, null, null);
+INSERT INTO `la_auth_rules` VALUES ('16', '11', 'admin/rule/check_user', '添加成员', '1', '1', '', null, null, null);
 INSERT INTO `la_auth_rules` VALUES ('19', '21', 'admin/auth_group_access/index', '管理员列表', '1', '1', '', null, null, null);
-INSERT INTO `la_auth_rules` VALUES ('20', '0', 'Admin/ShowNav/config', '系统设置', '1', '1', '', null, null, null);
-INSERT INTO `la_auth_rules` VALUES ('6', '0', 'Admin/Index/index', '后台首页', '1', '1', '', null, null, null);
-INSERT INTO `la_auth_rules` VALUES ('64', '1', 'Admin/Nav/order', '菜单排序', '1', '1', '', null, null, null);
-INSERT INTO `la_auth_rules` VALUES ('96', '6', 'Admin/Index/welcome', '欢迎界面', '1', '1', '', null, null, null);
-INSERT INTO `la_auth_rules` VALUES ('104', '0', 'Admin/ShowNav/posts', '文章管理', '1', '1', '', null, null, null);
-INSERT INTO `la_auth_rules` VALUES ('105', '104', 'Admin/Posts/index', '文章列表', '1', '1', '', null, null, null);
-INSERT INTO `la_auth_rules` VALUES ('106', '105', 'Admin/Posts/add_posts', '添加文章', '1', '1', '', null, null, null);
-INSERT INTO `la_auth_rules` VALUES ('107', '105', 'Admin/Posts/edit_posts', '修改文章', '1', '1', '', null, null, null);
-INSERT INTO `la_auth_rules` VALUES ('108', '105', 'Admin/Posts/delete_posts', '删除文章', '1', '1', '', null, null, null);
-INSERT INTO `la_auth_rules` VALUES ('109', '104', 'Admin/Posts/category_list', '分类列表', '1', '1', '', null, null, null);
-INSERT INTO `la_auth_rules` VALUES ('110', '109', 'Admin/Posts/add_category', '添加分类', '1', '1', '', null, null, null);
-INSERT INTO `la_auth_rules` VALUES ('111', '109', 'Admin/Posts/edit_category', '修改分类', '1', '1', '', null, null, null);
-INSERT INTO `la_auth_rules` VALUES ('112', '109', 'Admin/Posts/delete_category', '删除分类', '1', '1', '', null, null, null);
-INSERT INTO `la_auth_rules` VALUES ('117', '109', 'Admin/Posts/order_category', '分类排序', '1', '1', '', null, null, null);
-INSERT INTO `la_auth_rules` VALUES ('118', '105', 'Admin/Posts/order_posts', '文章排序', '1', '1', '', null, null, null);
-INSERT INTO `la_auth_rules` VALUES ('123', '11', 'Admin/Rule/add_user_to_group', '设置为管理员', '1', '1', '', null, null, null);
-INSERT INTO `la_auth_rules` VALUES ('124', '11', 'Admin/Rule/add_admin', '添加管理员', '1', '1', '', null, null, null);
-INSERT INTO `la_auth_rules` VALUES ('125', '11', 'Admin/Rule/edit_admin', '修改管理员', '1', '1', '', null, null, null);
+INSERT INTO `la_auth_rules` VALUES ('20', '0', 'admin/shownav/config', '系统设置', '1', '1', '', null, null, null);
+INSERT INTO `la_auth_rules` VALUES ('6', '0', 'admin/index/index', '后台首页', '1', '1', '', null, null, null);
+INSERT INTO `la_auth_rules` VALUES ('64', '1', 'admin/nav/order', '菜单排序', '1', '1', '', null, null, null);
+INSERT INTO `la_auth_rules` VALUES ('96', '6', 'admin/index/welcome', '欢迎界面', '1', '1', '', null, null, null);
+INSERT INTO `la_auth_rules` VALUES ('104', '0', 'admin/shownav/posts', '文章管理', '1', '1', '', null, null, null);
+INSERT INTO `la_auth_rules` VALUES ('105', '104', 'admin/posts/index', '文章列表', '1', '1', '', null, null, null);
+INSERT INTO `la_auth_rules` VALUES ('106', '105', 'admin/posts/add_posts', '添加文章', '1', '1', '', null, null, null);
+INSERT INTO `la_auth_rules` VALUES ('107', '105', 'admin/posts/edit_posts', '修改文章', '1', '1', '', null, null, null);
+INSERT INTO `la_auth_rules` VALUES ('108', '105', 'admin/posts/delete_posts', '删除文章', '1', '1', '', null, null, null);
+INSERT INTO `la_auth_rules` VALUES ('109', '104', 'admin/posts/category_list', '分类列表', '1', '1', '', null, null, null);
+INSERT INTO `la_auth_rules` VALUES ('110', '109', 'admin/posts/add_category', '添加分类', '1', '1', '', null, null, null);
+INSERT INTO `la_auth_rules` VALUES ('111', '109', 'admin/posts/edit_category', '修改分类', '1', '1', '', null, null, null);
+INSERT INTO `la_auth_rules` VALUES ('112', '109', 'admin/posts/delete_category', '删除分类', '1', '1', '', null, null, null);
+INSERT INTO `la_auth_rules` VALUES ('117', '109', 'admin/posts/order_category', '分类排序', '1', '1', '', null, null, null);
+INSERT INTO `la_auth_rules` VALUES ('118', '105', 'admin/posts/order_posts', '文章排序', '1', '1', '', null, null, null);
+INSERT INTO `la_auth_rules` VALUES ('123', '11', 'admin/rule/add_user_to_group', '设置为管理员', '1', '1', '', null, null, null);
+INSERT INTO `la_auth_rules` VALUES ('124', '11', 'admin/rule/add_admin', '添加管理员', '1', '1', '', null, null, null);
+INSERT INTO `la_auth_rules` VALUES ('125', '11', 'admin/rule/edit_admin', '修改管理员', '1', '1', '', null, null, null);
 
 -- ----------------------------
 -- Table structure for la_users
