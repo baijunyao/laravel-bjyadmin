@@ -68,7 +68,10 @@ class AuthGroupController extends Controller
      */
     public function destroy(AuthGroup $authGroup, $id)
     {
-        $authGroup->deleteData($id);
+        $map=[
+            'id'=>$id
+        ];
+        $authGroup->deleteData($map);
         return redirect('admin/auth_group/index');
     }
 

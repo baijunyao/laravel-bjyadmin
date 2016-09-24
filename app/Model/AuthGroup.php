@@ -43,26 +43,6 @@ class AuthGroup extends Base
         return true;
     }
 
-    /**
-     * 删除数据
-     *
-     * @param  $id  需要删除的id
-     * @return bool 是否成功
-     */
-    public function deleteData($id)
-    {
-        //删除数据
-        $result=$this
-            ->where('id',$id)
-            ->delete();
-        if ($result) {
-            Session::flash('alert-message','删除成功');
-            Session::flash('alert-class','alert-success');
-            return $result;
-        }else{
-            return false;
-        }
-    }
 
 
 

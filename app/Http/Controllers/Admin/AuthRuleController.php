@@ -67,7 +67,10 @@ class AuthRuleController extends Controller
      */
     public function destroy(AuthRule $authRule, $id)
     {
-        $authRule->deleteData($id);
+        $map=[
+            'id'=>$id
+        ];
+        $authRule->deleteData($map);
         return redirect('admin/auth_rule/index');
     }
     

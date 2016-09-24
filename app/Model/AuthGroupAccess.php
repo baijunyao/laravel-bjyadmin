@@ -82,28 +82,7 @@ class AuthGroupAccess extends Base
             return false;
         }
     }
-
-    /**
-     * 删除数据
-     *
-     * @param  array $map   需要删除的用户id
-     * @return bool         是否成功
-     */
-    public function deleteData($map)
-    {
-        //软删除
-        $result=$this
-            ->where($map)
-            ->delete();
-        if ($result) {
-            Session::flash('alert-message','设置成功');
-            Session::flash('alert-class','alert-success');
-            return $result;
-        }else{
-            return false;
-        }
-    }
-
+    
     /**
      * 获取后台管理员列表数据
      *

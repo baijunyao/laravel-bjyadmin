@@ -61,6 +61,27 @@ class Base extends Model
     }
 
     /**
+     * 删除数据
+     *
+     * @param  array $map   where 条件数组形式
+     * @return bool         是否成功
+     */
+    public function deleteData($map)
+    {
+        //软删除
+        $result=$this
+            ->where($map)
+            ->delete();
+        if ($result) {
+            Session::flash('alert-message','设置成功');
+            Session::flash('alert-class','alert-success');
+            return $result;
+        }else{
+            return false;
+        }
+    }
+
+    /**
      * 排序
      * @param  array $data 需要排序的数据
      * @return bool        是否成功

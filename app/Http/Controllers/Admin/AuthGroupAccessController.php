@@ -201,12 +201,11 @@ class AuthGroupAccessController extends Controller
      */
     public function delete_user_from_group(AuthGroupAccess $authGroupAccess, $uid, $group_id)
     {
-        $data=[
+        $map=[
             'uid'=>$uid,
             'group_id'=>$group_id
         ];
-        p($data);die;
-        $authGroupAccess->deleteData($data);
+        $authGroupAccess->deleteData($map);
         return redirect()->back();
     }
 
