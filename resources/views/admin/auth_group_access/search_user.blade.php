@@ -24,7 +24,6 @@
             <th width="10%">用户名</th>
             <th>操作</th>
         </tr>
-        <foreach name="user_data" item="v">
         @foreach($user_data as $v)
             <tr>
                 <th>{{ $v['username'] }}</th>

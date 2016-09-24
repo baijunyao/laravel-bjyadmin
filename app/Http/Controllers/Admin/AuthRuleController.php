@@ -51,7 +51,10 @@ class AuthRuleController extends Controller
     public function update(Request $request, AuthRule $authRule)
     {
         $data=$request->except('_token');
-        $authRule->editData($data);
+        $map=[
+            'id'=>$data['id']
+        ];
+        $authRule->editData($map, $data);
         return redirect('admin/auth_rule/index');
     }
 

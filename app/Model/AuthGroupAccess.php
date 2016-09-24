@@ -86,14 +86,14 @@ class AuthGroupAccess extends Base
     /**
      * 删除数据
      *
-     * @param  $uid   需要删除的用户id
-     * @return bool   是否成功
+     * @param  array $map   需要删除的用户id
+     * @return bool         是否成功
      */
-    public function deleteData($uid)
+    public function deleteData($map)
     {
         //软删除
         $result=$this
-            ->where('uid', $uid)
+            ->where($map)
             ->delete();
         if ($result) {
             Session::flash('alert-message','设置成功');

@@ -52,7 +52,10 @@ class AuthGroupController extends Controller
     public function update(Request $request, AuthGroup $authGroup)
     {
         $data=$request->except('_token');
-        $authGroup->editData($data);
+        $map = [
+            'id'=>$data['id']
+        ];
+        $authGroup->editData($map, $data);
         return redirect('admin/auth_group/index');
     }
 
@@ -102,7 +105,10 @@ class AuthGroupController extends Controller
     {
         $data=$request->except('_token');
         $data['rules']=implode(',', $data['rules']);
-        $authGroup->editData($data);
+        $map = [
+            'id'=>$data['id']
+        ];
+        $authGroup->editData($map, $data);
         return redirect()->back();
     }
 

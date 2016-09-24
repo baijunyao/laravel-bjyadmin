@@ -155,7 +155,7 @@ class AuthGroupAccessController extends Controller
         $username=$request->input('username');
         //根据用户名查找user表中的用户
         if (empty($username)) {
-            $user_data='';
+            $user_data=[];
         }else{
             $user_data=$user::where('username','like',"%$username%")
                 ->select('id','username')
@@ -205,6 +205,7 @@ class AuthGroupAccessController extends Controller
             'uid'=>$uid,
             'group_id'=>$group_id
         ];
+        p($data);die;
         $authGroupAccess->deleteData($data);
         return redirect()->back();
     }
