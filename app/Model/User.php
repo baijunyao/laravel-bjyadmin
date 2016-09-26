@@ -20,7 +20,7 @@ class User extends Model
      */
     protected $fillable = [
         'id',
-        'username',
+        'name',
         'password',
         'avatar',
         'email',
@@ -40,9 +40,9 @@ class User extends Model
     public function validate($data)
     {
         //检测用户名是否存在
-        if (!empty($data['username'])) {
+        if (!empty($data['name'])) {
             $name_count=$this
-                ->where('username',$data['username'])
+                ->where('name',$data['name'])
                 ->count();
             if ($name_count !==0) {
                 Session::flash('alert-message','用户名已存在');

@@ -46,7 +46,7 @@
                         <img class="nav-user-photo" src="{{asset('/statics/aceadmin/avatars/user.jpg')}}" alt="Jason's Photo" />
 						<span class="user-info">
 							<small>欢迎光临,</small>
-							{$_SESSION['user']['username']}
+							{{ session('user.name') }}
 						</span>
                         <i class="icon-caret-down"></i>
                     </a>

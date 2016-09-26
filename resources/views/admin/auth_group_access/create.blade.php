@@ -35,7 +35,7 @@
             <tr>
                 <th>姓名</th>
                 <td>
-                    <input class="form-control" type="text" name="username">
+                    <input class="form-control" type="text" name="name">
                 </td>
             </tr>
             <tr>

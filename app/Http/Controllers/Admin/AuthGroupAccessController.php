@@ -60,7 +60,7 @@ class AuthGroupAccessController extends Controller
     {
         $data=$request->except('_token');
         $user_data=[
-            'username'=>$data['username'],
+            'name'=>$data['name'],
             'phone'=>$data['phone'],
             'email'=>$data['email'],
             'password'=>$data['password'],
@@ -158,13 +158,13 @@ class AuthGroupAccessController extends Controller
     public function search_user(AuthGroup $authGroup, AuthGroupAccess $authGroupAccess, User $user, Request $request, $group_id)
     {
         //获取搜索的用户名
-        $username=$request->input('username');
+        $name=$request->input('name');
         //根据用户名查找user表中的用户
-        if (empty($username)) {
+        if (empty($name)) {
             $user_data=[];
         }else{
-            $user_data=$user::where('username','like',"%$username%")
-                ->select('id','username')
+            $user_data=$user::where('name','like',"%$name%")
+                ->select('id','name')
                 ->get()
                 ->toArray();
         }
@@ -177,7 +177,7 @@ class AuthGroupAccessController extends Controller
             'group_id'=>$group_id,
             'group_title'=>$group_title,
             'group_uid'=>$group_uid,
-            'username'=>$username,
+            'name'=>$name,
             'user_data'=>$user_data
         ];
         return view('admin/auth_group_access/search_user', $assign);

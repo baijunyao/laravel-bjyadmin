@@ -38,7 +38,7 @@
             <tr>
                 <th>姓名</th>
                 <td>
-                    <input class="form-control" type="text" name="username" value="{{ $user_data['username'] }}">
+                    <input class="form-control" type="text" name="name" value="{{ $user_data['name'] }}">
                 </td>
             </tr>
             <tr>

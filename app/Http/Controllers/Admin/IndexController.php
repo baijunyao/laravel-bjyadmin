@@ -16,7 +16,7 @@ class IndexController extends Controller
     public function index(AdminNav $adminNav)
     {
         //模拟登陆
-        session(['user'=>['id'=>89]]);
+        session(['user'=>['id'=>88]]);
         //获取菜单
         $nav_data=$adminNav->getTreeData('level','order_number,id');
         $assign=[

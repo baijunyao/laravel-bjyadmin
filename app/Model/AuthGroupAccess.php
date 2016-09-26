@@ -92,7 +92,7 @@ class AuthGroupAccess extends Base
     {
         //获取数据
         $data=$this
-            ->select('u.id','u.username','u.email','auth_group_accesses.group_id','ag.title')
+            ->select('u.id','u.name','u.email','auth_group_accesses.group_id','ag.title')
             ->rightJoin('users as u','auth_group_accesses.uid','=','u.id')
             ->leftJoin('auth_groups as ag','auth_group_accesses.group_id','=','ag.id')
             ->get()

@@ -17,15 +17,15 @@ class AdminAuth
      */
     public function handle($request, Closure $next)
     {
-        //判断是否有权限
-        $path=$request->path();
-        $uid=session('user.id');
-        $auth=new Auth();
-        $result=$auth->check($path,$uid);
-        //如果没有权限访问；则重定向到首页
-        if(!$result){
-            return redirect('/');
-        }
+        ////判断是否有权限
+        //$path=$request->path();
+        //$uid=session('user.id');
+        //$auth=new Auth();
+        //$result=$auth->check($path,$uid);
+        ////如果没有权限访问；则重定向到首页
+        //if(!$result){
+        //    return redirect('/');
+        //}
         return $next($request);
     }
 }
