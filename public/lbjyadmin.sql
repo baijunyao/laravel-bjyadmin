@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50547
 File Encoding         : 65001
 
-Date: 2016-09-24 17:38:02
+Date: 2016-09-26 13:45:40
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -65,7 +65,7 @@ CREATE TABLE `la_auth_groups` (
 -- Records of la_auth_groups
 -- ----------------------------
 INSERT INTO `la_auth_groups` VALUES ('1', '超级管理员', '1', '6,96,20,1,2,3,4,5,64,21,7,8,9,10,11,12,13,14,15,16,123,124,125,19,104,105,106,107,108,118,109,110,111,112,117', null, null, null);
-INSERT INTO `la_auth_groups` VALUES ('2', '产品管理员', '1', '6,96,1,2,3,4,56,57,60,61,63,71,72,65,67,74,75,66,68,69,70,73,77,78,82,83,88,89,90,99,91,92,97,98,104,105,106,107,108,118,109,110,111,112,117,113,114', null, null, null);
+INSERT INTO `la_auth_groups` VALUES ('2', '产品管理员', '1', '6,96', null, '2016-09-24 09:44:37', null);
 INSERT INTO `la_auth_groups` VALUES ('4', '文章编辑', '1', '6,96,57,60,61,63,71,72,65,67,74,75,66,68,69,73,79,80,78,82,83,88,89,90,99,100,97,98,104,105,106,107,108,118,109,110,111,112,117,113,114', null, null, null);
 
 -- ----------------------------
@@ -158,7 +158,7 @@ INSERT INTO `la_auth_rules` VALUES ('144', '19', 'admin/auth_group_access/update
 DROP TABLE IF EXISTS `la_users`;
 CREATE TABLE `la_users` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `username` varchar(60) NOT NULL DEFAULT '' COMMENT '用户名',
+  `name` varchar(60) NOT NULL DEFAULT '' COMMENT '用户名',
   `password` varchar(64) NOT NULL DEFAULT '' COMMENT '登录密码；mb_password加密',
   `avatar` varchar(255) NOT NULL DEFAULT '' COMMENT '用户头像，相对于upload/avatar目录',
   `email` varchar(100) NOT NULL DEFAULT '' COMMENT '登录邮箱',
@@ -171,8 +171,8 @@ CREATE TABLE `la_users` (
   `updated_at` datetime DEFAULT NULL,
   `deleted_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `user_login_key` (`username`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=93 DEFAULT CHARSET=utf8;
+  KEY `user_login_key` (`name`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=90 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of la_users
