@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50547
 File Encoding         : 65001
 
-Date: 2016-09-26 13:45:40
+Date: 2016-09-27 17:31:43
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -153,15 +153,32 @@ INSERT INTO `la_auth_rules` VALUES ('143', '19', 'admin/auth_group_access/store'
 INSERT INTO `la_auth_rules` VALUES ('144', '19', 'admin/auth_group_access/update', '修改管理员功能', '1', '1', '', '2016-09-24 09:37:29', '2016-09-24 09:37:29', null);
 
 -- ----------------------------
+-- Table structure for la_password_resets
+-- ----------------------------
+DROP TABLE IF EXISTS `la_password_resets`;
+CREATE TABLE `la_password_resets` (
+  `email` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `token` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  KEY `password_resets_email_index` (`email`),
+  KEY `password_resets_token_index` (`token`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- ----------------------------
+-- Records of la_password_resets
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for la_users
 -- ----------------------------
 DROP TABLE IF EXISTS `la_users`;
 CREATE TABLE `la_users` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(60) NOT NULL DEFAULT '' COMMENT '用户名',
-  `password` varchar(64) NOT NULL DEFAULT '' COMMENT '登录密码；mb_password加密',
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL DEFAULT '' COMMENT '用户名',
+  `email` varchar(255) NOT NULL DEFAULT '' COMMENT '登录邮箱',
+  `password` varchar(60) NOT NULL DEFAULT '' COMMENT '登录密码；mb_password加密',
+  `remember_token` varchar(100) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
   `avatar` varchar(255) NOT NULL DEFAULT '' COMMENT '用户头像，相对于upload/avatar目录',
-  `email` varchar(100) NOT NULL DEFAULT '' COMMENT '登录邮箱',
   `email_code` varchar(60) DEFAULT NULL COMMENT '激活码',
   `phone` bigint(11) unsigned DEFAULT NULL COMMENT '手机号',
   `status` tinyint(1) NOT NULL DEFAULT '2' COMMENT '用户状态 0：禁用； 1：正常 ；2：未验证',
@@ -172,10 +189,10 @@ CREATE TABLE `la_users` (
   `deleted_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `user_login_key` (`name`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=90 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=92 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of la_users
 -- ----------------------------
-INSERT INTO `la_users` VALUES ('88', 'admin', 'e10adc3949ba59abbe56e057f20f883e', '/Upload/avatar/user1.jpg', '', '', '0', '1', '', '0', null, null, null);
-INSERT INTO `la_users` VALUES ('89', 'admin2', 'e10adc3949ba59abbe56e057f20f883e', '/Upload/avatar/user2.jpg', '', '', '0', '1', '', '0', null, null, null);
+INSERT INTO `la_users` VALUES ('88', 'admin', '', 'e10adc3949ba59abbe56e057f20f883e', null, '/Upload/avatar/user1.jpg', '', '0', '1', '', '0', null, null, null);
+INSERT INTO `la_users` VALUES ('89', 'admin2', '', 'e10adc3949ba59abbe56e057f20f883e', null, '/Upload/avatar/user2.jpg', '', '0', '1', '', '0', null, null, null);
