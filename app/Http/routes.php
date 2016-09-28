@@ -11,9 +11,11 @@
 |
 */
 
+use Illuminate\Support\Facades\Auth;
 //前台首页
 Route::get('/', function () {
-    return view('welcome');
+    $session=session()->all();
+    p($session);
 });
 
 //后台首页
