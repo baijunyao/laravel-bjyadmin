@@ -16,3 +16,19 @@
     </form>
 
 @endsection
+
+
+@section('js')
+
+    <script>
+        function sendCode() {
+            var phone=$("input[name='phone']").val();
+            var postData={
+                'phone': phone
+            };
+
+        }
+    </script>
+
+
+@endsection
