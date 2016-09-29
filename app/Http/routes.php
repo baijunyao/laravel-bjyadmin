@@ -95,4 +95,6 @@ Route::post('password/reset', 'Auth\PasswordController@postReset');
 Route::group(['prefix'=>'user/phone_register', 'namespace'=>'User'], function () {
     Route::get('index', 'PhoneRegisterController@index');
     Route::post('store', 'PhoneRegisterController@store');
+    //发送验证码
+    Route::get('get_code', 'PhoneRegisterController@get_code');
 });
