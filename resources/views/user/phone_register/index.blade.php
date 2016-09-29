@@ -1,4 +1,4 @@
-@extends('public.vue')
+@extends('public.app')
 
 @section('title', '手机注册')
 
@@ -8,7 +8,7 @@
         {{ csrf_field() }}
         手机号：<input type="text" name="phone"> <br>
         验证码：<input type="text" name="code">
-        <a href="javascript:;">获取验证码</a>
+        <a href="javascript:;" onclick="sendCode()">获取验证码</a>
         <br>
         用户名：<input type="text" name="name"> <br>
         密码：<input type="text" name="password"> <br>
@@ -26,7 +26,7 @@
             var postData={
                 'phone': phone
             };
-
+            console.log(greet);
         }
     </script>
 
