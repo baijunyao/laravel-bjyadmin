@@ -16,17 +16,7 @@ class PhoneRegisterController extends Controller
      */
     public function index()
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        return view('user/phone_register/index');
     }
 
     /**
@@ -37,7 +27,8 @@ class PhoneRegisterController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data=$request->except('_token');
+        p($data);
     }
 
     /**
@@ -84,4 +75,12 @@ class PhoneRegisterController extends Controller
     {
         //
     }
+
+    public function get_code()
+    {
+        
+    }
+
+
+
 }

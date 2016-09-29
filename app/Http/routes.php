@@ -91,3 +91,8 @@ Route::post('password/email', 'Auth\PasswordController@postEmail');
 Route::get('password/reset/{token}', 'Auth\PasswordController@getReset');
 Route::post('password/reset', 'Auth\PasswordController@postReset');
 
+//手机注册
+Route::group(['prefix'=>'user/phone_register', 'namespace'=>'User'], function () {
+    Route::get('index', 'PhoneRegisterController@index');
+    Route::post('store', 'PhoneRegisterController@store');
+});
