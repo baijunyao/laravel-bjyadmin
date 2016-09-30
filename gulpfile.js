@@ -5,14 +5,16 @@ var elixir      = require('laravel-elixir'),
     browserSync = require('browser-sync').create(),
     reload      = browserSync.reload;
 
-
+// 增加监听scss
 new elixir.Task('bjyCss', function() {
     return gulp.src('resources/assets/sass/**/*.scss', { base: 'resources/assets/sass'})
         .pipe(sass())
         .pipe(gulp.dest('public/css'));
 }).watch('resources/assets/sass/**/*.scss');
 
+
 elixir(function(mix) {
+    mix.version('public/css/app.css');
     // 自动刷新
     mix.browserSync({
         proxy: "lbjyadmin.com", // 指定代理url
