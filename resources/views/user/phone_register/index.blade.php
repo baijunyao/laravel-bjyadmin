@@ -26,7 +26,7 @@
             var postData={
                 'phone': phone
             };
-            console.log(greet);
+            console.log(module);
         }
     </script>
 

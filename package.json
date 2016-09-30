@@ -1,7 +1,7 @@
 {
   "private": true,
   "devDependencies": {
-    "browser-sync": "^2.16.0",
+    "browser-sync": "^2.16.1",
     "gulp": "^3.9.1",
     "gulp-clean-css": "^2.0.13",
     "gulp-concat": "^2.6.0",

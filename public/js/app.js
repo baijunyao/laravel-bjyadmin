@@ -12722,6 +12722,17 @@ return jQuery;
 window.$ = window.jQuery = require('jquery');
 require('bootstrap-sass');
 
-},{"bootstrap-sass":1,"jquery":2}]},{},[3]);
+var foo = require('./public/base.js');
+
+console.log(foo(5));
+
+},{"./public/base.js":4,"bootstrap-sass":1,"jquery":2}],4:[function(require,module,exports){
+"use strict";
+
+module.exports = function (n) {
+    return n * 111;
+};
+
+},{}]},{},[3]);
 
 //# sourceMappingURL=app.js.map
