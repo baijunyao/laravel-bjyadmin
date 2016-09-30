@@ -5,6 +5,7 @@
     "gulp": "^3.9.1",
     "gulp-clean-css": "^2.0.13",
     "gulp-concat": "^2.6.0",
+    "gulp-connect-php": "^0.0.8",
     "gulp-imagemin": "^3.0.3",
     "gulp-less": "^3.1.0",
     "gulp-load-plugins": "^1.3.0",
@@ -13,7 +14,9 @@
     "gulp-rename": "^1.2.2",
     "gulp-sass": "^2.3.2",
     "gulp-uglify": "^2.0.0",
-    "laravel-elixir-browser-sync": "^1.0.0"
+    "laravel-elixir-browser-sync": "^1.0.0",
+    "laravel-elixir-browsersync": "^0.1.5",
+    "laravel-elixir-browsersync2": "^0.1.0"
   },
   "dependencies": {
     "bootstrap-sass": "^3.0.0",

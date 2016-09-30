@@ -14,6 +14,8 @@
 use Illuminate\Support\Facades\Auth;
 //前台首页
 Route::get('/', function () {
+    return view('welcome');
+    die;
     $session=session()->all();
     p($session);
 });
