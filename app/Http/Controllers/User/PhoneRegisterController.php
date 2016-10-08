@@ -85,6 +85,7 @@ class PhoneRegisterController extends Controller
         // 配置信息
         $config=config('key.alidayu');
         p($config);
+        die;
         $client = new Client(new App($config));
         $req    = new AlibabaAliqinFcSmsNumSend;
 

@@ -1,4 +1,4 @@
-@extends('public.app')
+@extends('public.bootstrap')
 
 @section('title', '手机注册')
 
@@ -19,16 +19,8 @@
 
 
 @section('js')
-
     <script>
-        function sendCode() {
-            var phone=$("input[name='phone']").val();
-            var postData={
-                'phone': phone
-            };
-            console.log(module);
-        }
+        var get_code='{{ url('user/phone_register/get_code') }}';
     </script>
-
-
+    <script src="{{ elixir('js/user/bjy-phone-public.js') }}"></script>
 @endsection

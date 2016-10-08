@@ -1,1 +1,0 @@
-module.exports=function(e){return 111*e};

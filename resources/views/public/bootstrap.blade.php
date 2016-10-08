@@ -5,6 +5,7 @@
     <title>@yield('title') - bjyadmin</title>
     <meta http-equiv="Cache-Control" content="no-transform" />
     <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="{{ asset('/statics/bootstrap-3.3.5/css/bootstrap.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('/statics/bootstrap-3.3.5/css/bootstrap-theme.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('/statics/font-awesome-4.4.0/css/font-awesome.min.css') }}" />
