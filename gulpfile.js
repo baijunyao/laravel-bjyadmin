@@ -2,9 +2,7 @@ var elixir      = require('laravel-elixir'),
     gulp        = require('gulp'),
     sass        = require('gulp-sass'),
     minifyCss   = require('gulp-minify-css'),
-    uglify      = require('gulp-uglify'),
-    browserSync = require('browser-sync').create(),
-    reload      = browserSync.reload;
+    uglify      = require('gulp-uglify');
 
 // 增加监听scss
 new elixir.Task('bjyCss', function() {
