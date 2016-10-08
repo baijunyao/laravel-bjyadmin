@@ -13,12 +13,7 @@
 
 use Illuminate\Support\Facades\Auth;
 //前台首页
-Route::get('/', function () {
-    return view('welcome');
-    die;
-    $session=session()->all();
-    p($session);
-});
+Route::get('/', 'Home\IndexController@index');
 
 //后台首页
 Route::get('/admin','Admin\IndexController@index');
