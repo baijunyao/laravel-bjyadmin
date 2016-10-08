@@ -10,6 +10,7 @@ var elixir      = require('laravel-elixir'),
 new elixir.Task('bjyCss', function() {
     return gulp.src('resources/assets/sass/**/*.scss', { base: 'resources/assets/sass'})
         .pipe(sass())
+        .pipe(minifyCss())
         .pipe(gulp.dest('public/css'));
 }).watch('resources/assets/sass/**/*.scss');
 
