@@ -20,14 +20,16 @@ new elixir.Task('bjyJs', function() {
         .pipe(gulp.dest('public/js'));
 }).watch('resources/assets/js/**/*.js');
 
+
 elixir(function(mix) {
-    // mix.version(['css/**/*.css','js/**/*.js']);
-    // // 自动刷新
-    // mix.browserSync({
-    //     proxy: "lbjyadmin.com", // 指定代理url
-    //     notify: false, // 刷新不弹出提示
-    //     open: false, // 不自动打开浏览器
-    // });
+    // 版本号控制
+    mix.version(['css/**/*.css','js/**/*.js']);
+    // 自动刷新
+    mix.browserSync({
+        proxy: "lbjyadmin.com", // 指定代理url
+        notify: false, // 刷新不弹出提示
+        open: false, // 不自动打开浏览器
+    });
 });
 
 
