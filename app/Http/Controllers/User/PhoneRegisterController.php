@@ -80,28 +80,28 @@ class PhoneRegisterController extends Controller
         //
     }
 
-    public function get_code()
+    public function get_code(Request $request)
     {
+        $phone=$request->except('_token');
+        $code=rand(100000, 999999);
         // 配置信息
         $config=config('key.alidayu');
-        p($config);
-        die;
         $client = new Client(new App($config));
         $req    = new AlibabaAliqinFcSmsNumSend;
-
-        $req->setRecNum('手机号')
+        //发送验证码
+        $req->setRecNum($phone)
             ->setSmsParam([
-                'code' => rand(100000, 999999),
-                'product'=> '测试'
+                'code' => $code,
+                'product'=> '注册验证'
             ])
             ->setSmsFreeSignName('注册验证')
             ->setSmsTemplateCode('SMS_9690875');
-
-        $resp = $client->execute($req);
-
-        print_r($resp);
-        print_r($resp->result->model);
-        echo 1;die;
+        $result = $client->execute($req);
+        if (method_exists($result, 'result')) {
+            echo '发送成功';
+        }else{
+            echo $result->sub_msg;
+        }
     }
 
 
