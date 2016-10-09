@@ -34,3 +34,48 @@ function dbObjectToArray($array){
     });
     return $array;
 }
+
+/**
+ * ajax返回数据
+ * @param $data  需要返回的数据
+ * @param string $error_message 提示语句
+ * @param int $error_code
+ * @return \Illuminate\Http\JsonResponse
+ */
+function ajaxReturn($data,$error_message='成功', $error_code=200){
+    /**
+     * 将数组递归转字符串
+     * @param  array $arr 需要转的数组
+     * @return array       转换后的数组
+     */
+    function toString($arr){
+        foreach ($arr as $k => $v) {
+            if (is_array($v)) {
+                $arr[$k]=toString($v);
+            }else{
+                $arr[$k]=strval($v);
+            }
+        }
+        return $arr;
+    }
+    //先把所有字段都转成字符串类型
+    $data=toString($data);
+    //增加error_code
+    $all_data=array(
+        'error_code'=>$error_code,
+        'error_message'=>$error_message,
+    );
+    //判断是否有禁止的字段
+    if ($data!=='') {
+        $all_data['data']=$data;
+        // app 禁止使用和为了统一字段做的判断
+        $reserved_words=array('id','title','description');
+        foreach ($reserved_words as $k => $v) {
+            if (array_key_exists($v, $data)) {
+                echo 'app不允许使用【'.$v.'】这个键名 —— 此提示是helper.php 中的ajaxReturn函数返回的';
+                die;
+            }
+        }
+    }
+    return response()->json($all_data);
+}

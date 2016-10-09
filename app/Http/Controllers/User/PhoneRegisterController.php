@@ -82,6 +82,11 @@ class PhoneRegisterController extends Controller
 
     public function get_code(Request $request)
     {
+        $test=[
+            'name'=>'2',
+            'age'=>3
+        ];
+        return ajaxReturn($test);die;
         $phone=$request->except('_token');
         $code=rand(100000, 999999);
         // 配置信息
