@@ -16,7 +16,13 @@ class TestController extends Controller
      */
     public function index()
     {
-        echo 2;
+        return view('home/test/index');
+    }
+
+    public function send_email(Request $request)
+    {
+        $data=$request->except('_token');
+        p($data);
     }
 
 }

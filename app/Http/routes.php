@@ -96,6 +96,7 @@ Route::group(['prefix'=>'user/phone_register', 'namespace'=>'User'], function ()
 });
 
 //测试功能
-Route::group(['prefix'=>'home/test', 'namespace'=>'Test'], function () {
-    
+Route::group(['prefix'=>'home/test', 'namespace'=>'Home'], function () {
+    Route::get('index', 'TestController@index');
+    Route::post('send_email', 'TestController@send_email');
 });
