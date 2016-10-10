@@ -106,15 +106,17 @@ function ajaxReturn($data,$error_message='成功', $error_code=200){
         }
         return $arr;
     }
-    //先把所有字段都转成字符串类型
-    $data=toString($data);
+
     //增加error_code
     $all_data=array(
         'error_code'=>$error_code,
         'error_message'=>$error_message,
     );
-    //判断是否有禁止的字段
+
+    //判断是否有返回的数据
     if ($data!=='') {
+        //先把所有字段都转成字符串类型
+        $data=toString($data);
         $all_data['data']=$data;
         // app 禁止使用和为了统一字段做的判断
         $reserved_words=array('id','title','description');
@@ -127,3 +129,63 @@ function ajaxReturn($data,$error_message='成功', $error_code=200){
     }
     return response()->json($all_data);
 }
+
+/**
+ * 阿里大于发送短信
+ *
+ * @param $phone         发送的手机号
+ * @param $content       发送的内容
+ * @param $signName      签名
+ * @param $templateCode  模板
+ * @return array         发送状态
+ */
+function sendSms($phone, $content, $signName, $templateCode){
+    // 配置信息
+    $config=config('key.alidayu');
+    $client = new Client(new App($config));
+    $req    = new AlibabaAliqinFcSmsNumSend;
+    //发送验证码
+    $req->setRecNum($phone)
+        ->setSmsParam($content)
+        ->setSmsFreeSignName($signName)
+        ->setSmsTemplateCode($templateCode);
+    $result = $client->execute($req);
+    if (property_exists($result, 'result')) {
+        $data=array(
+            'error_code'=>200,
+        );
+    }else{
+        $msg=$result->sub_msg;
+        $data=array(
+            'error_code'=>500,
+            'error_message'=>$msg
+        );
+    }
+    return $data;
+}
+
+/**
+ * 阿里大于发送短信验证码
+ *
+ * @param $phone  发送的手机号
+ * @param $code   验证码
+ * @return array  发送状态
+ */
+function sendSmsCode($phone, $code){
+    if (empty($phone)) {
+        $data=array(
+            'error_code'=>500,
+            'error_message'=>'手机号不能为空'
+        );
+        return $data;
+    }
+    $company_name=config('project.company_name');
+    $project_name=config('project.project_name');
+    $content=[
+        'code' => $code,
+        'product'=> $project_name
+    ];
+    return sendSms($phone, $content, $company_name, 'SMS_9690875');
+}
+
+

@@ -18,9 +18,6 @@ class PhoneRegisterController extends Controller
      */
     public function index()
     {
-        $test=reEnv('PROJECT_NAME');
-        p($test);
-        die;
         return view('user/phone_register/index');
     }
 
@@ -83,14 +80,14 @@ class PhoneRegisterController extends Controller
 
     public function get_code(Request $request)
     {
-        sendSmsCode(1,2);die;
-        $test=[
-            'name'=>'2',
-            'age'=>3
-        ];
-        return ajaxReturn($test);die;
         $phone=$request->except('_token');
         $code=rand(100000, 999999);
+        $result=sendSmsCode($phone,$code);
+        if ($result['error_code']==200) {
+            return ajaxReturn('','发送成功',200);
+        }else{
+            return ajaxReturn('',$result['error_message'],500);
+        }
 
     }
 
