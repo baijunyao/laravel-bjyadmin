@@ -67,7 +67,6 @@ Route::group(['prefix'=>'admin', 'namespace'=>'Admin', 'middleware'=>'adminAuth'
     });
 });
 
-
 // 注册
 Route::get('auth/register', 'Auth\AuthController@getRegister');
 Route::post('auth/register', 'Auth\AuthController@postRegister');
@@ -94,4 +93,9 @@ Route::group(['prefix'=>'user/phone_register', 'namespace'=>'User'], function ()
     Route::post('store', 'PhoneRegisterController@store');
     //发送验证码
     Route::post('get_code', 'PhoneRegisterController@get_code');
+});
+
+//测试功能
+Route::group(['prefix'=>'home/test', 'namespace'=>'Test'], function () {
+    
 });
