@@ -54,7 +54,7 @@ return [
     |
     */
 
-    'from' => ['address' => 'it.beijing@niuschools.com', 'name' => 'test'],
+    'from' => ['address' => env('MAIL_USERNAME', 'address'), 'name' => env('MAIL_FROM_NAME', 'name')],
 
     /*
     |--------------------------------------------------------------------------
