@@ -11,6 +11,8 @@ use Flc\Alidayu\App;
 use Flc\Alidayu\Requests\AlibabaAliqinFcSmsNumSend;
 
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Mail;
+
 
 //传递数据以易于阅读的样式格式化后输出
 function p($data){
@@ -76,7 +78,8 @@ if (! function_exists('reEnv')) {
  * @param $array 包含对象的二维数组
  * @return mixed 全部转换为数组
  */
-function dbObjectToArray($array){
+function dbObjectToArray($array)
+{
     array_walk($array,function(&$v){
         $v=get_object_vars($v);
     });
@@ -90,7 +93,8 @@ function dbObjectToArray($array){
  * @param int $error_code
  * @return \Illuminate\Http\JsonResponse
  */
-function ajaxReturn($data,$error_message='成功', $error_code=200){
+function ajaxReturn($data,$error_message='成功', $error_code=200)
+{
     /**
      * 将数组递归转字符串
      * @param  array $arr 需要转的数组
@@ -139,7 +143,8 @@ function ajaxReturn($data,$error_message='成功', $error_code=200){
  * @param $templateCode  模板
  * @return array         发送状态
  */
-function sendSms($phone, $content, $signName, $templateCode){
+function sendSms($phone, $content, $signName, $templateCode)
+{
     // 配置信息
     $config=[
         'app_key'=>config('key.alidayu.app_key'),
@@ -174,7 +179,8 @@ function sendSms($phone, $content, $signName, $templateCode){
  * @param $code   验证码
  * @return array  发送状态
  */
-function sendSmsCode($phone, $code){
+function sendSmsCode($phone, $code)
+{
     if (empty($phone)) {
         $data=array(
             'error_code'=>500,
@@ -192,4 +198,17 @@ function sendSmsCode($phone, $code){
     return sendSms($phone, $content, $signName, $templateCode);
 }
 
+function sendEmail($email, $name, $subject, $data, $template='emails.test')
+{
+    Mail::send($template, $data, function($message) use($email, $name, $subject) {
+        //如果是数组；则群发邮件
+        if (is_array($email)) {
+            foreach ($email as $k => $v) {
+                $message->to($v, $name)->subject($subject);
+            }
+        }else{
+            $message->to($email, $name)->subject($subject);
+        }
 
+    });
+}

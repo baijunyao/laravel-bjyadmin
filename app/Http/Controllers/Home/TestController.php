@@ -16,6 +16,9 @@ class TestController extends Controller
      */
     public function index()
     {
+        $data=['content'=>'内容123'];
+        sendEmail(['junyao.bai@niuschools.com', 'b593026987@qq.com'], '帅白', '邮件标题', $data);
+        die;
         return view('home/test/index');
     }
 
