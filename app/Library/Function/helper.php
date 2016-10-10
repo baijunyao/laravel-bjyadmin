@@ -141,7 +141,10 @@ function ajaxReturn($data,$error_message='成功', $error_code=200){
  */
 function sendSms($phone, $content, $signName, $templateCode){
     // 配置信息
-    $config=config('key.alidayu');
+    $config=[
+        'app_key'=>config('key.alidayu.app_key'),
+        'app_secret'=>config('key.alidayu.app_secret')
+    ];
     $client = new Client(new App($config));
     $req    = new AlibabaAliqinFcSmsNumSend;
     //发送验证码
@@ -179,13 +182,14 @@ function sendSmsCode($phone, $code){
         );
         return $data;
     }
-    $company_name=config('project.company_name');
-    $project_name=config('project.project_name');
+    $signName=config('key.alidayu.sign_name');
+    $projectName=config('key.alidayu.project_name');
+    $templateCode=config('key.alidayu.template_code');
     $content=[
         'code' => $code,
-        'product'=> $project_name
+        'product'=> $projectName
     ];
-    return sendSms($phone, $content, $company_name, 'SMS_9690875');
+    return sendSms($phone, $content, $signName, $templateCode);
 }
 
 
