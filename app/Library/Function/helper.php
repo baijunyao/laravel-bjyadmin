@@ -13,7 +13,6 @@ use Flc\Alidayu\Requests\AlibabaAliqinFcSmsNumSend;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Mail;
 
-
 //传递数据以易于阅读的样式格式化后输出
 function p($data){
     // 定义样式
@@ -198,9 +197,19 @@ function sendSmsCode($phone, $code)
     return sendSms($phone, $content, $signName, $templateCode);
 }
 
+/**
+ * 发送邮件
+ *
+ * @param $email            收件人邮箱  如果群发 则传入数组
+ * @param $name             收件名称
+ * @param $subject          标题
+ * @param $data             邮件内容
+ * @param string $template  邮件模板
+ * @return array            发送状态
+ */
 function sendEmail($email, $name, $subject, $data, $template='emails.test')
 {
-    Mail::send($template, $data, function($message) use($email, $name, $subject) {
+    $flag = Mail::send($template, $data, function($message) use($email, $name, $subject) {
         //如果是数组；则群发邮件
         if (is_array($email)) {
             foreach ($email as $k => $v) {
@@ -209,6 +218,18 @@ function sendEmail($email, $name, $subject, $data, $template='emails.test')
         }else{
             $message->to($email, $name)->subject($subject);
         }
-
     });
+    if ($flag) {
+        $data=array(
+            'error_code'=>200,
+            'error_message'=>'邮件发送成功'
+        );
+    }else{
+        $data=array(
+            'error_code'=>500,
+            'error_message'=>'邮件发送失败'
+        );
+    }
+    return $data;
+
 }
