@@ -5,6 +5,12 @@
  * Date: 2016-9-7
  * Time: 16:49
  */
+//阿里大于短信
+use Flc\Alidayu\Client;
+use Flc\Alidayu\App;
+use Flc\Alidayu\Requests\AlibabaAliqinFcSmsNumSend;
+
+use Illuminate\Support\Str;
 
 //传递数据以易于阅读的样式格式化后输出
 function p($data){
@@ -21,6 +27,48 @@ function p($data){
     $str.=$show_data;
     $str.='</pre>';
     echo $str;
+}
+
+if (! function_exists('reEnv')) {
+    /**
+     * Gets the value of an environment variable by getenv() or $_ENV.
+     *
+     * @param  string  $key
+     * @param  mixed   $default
+     * @return mixed
+     */
+    function reEnv($key, $default = null)
+    {
+        // try to read from $_ENV or $_SERVER
+        if (isset($_ENV[$key])) {
+            $value = $_ENV[$key];
+        } elseif (isset($_SERVER[$key])) {
+            $value = $_SERVER[$key];
+        } else {
+            return value($default);
+        }
+
+        switch (strtolower($value)) {
+            case 'true':
+            case '(true)':
+                return true;
+            case 'false':
+            case '(false)':
+                return false;
+            case 'empty':
+            case '(empty)':
+                return '';
+            case 'null':
+            case '(null)':
+                return;
+        }
+
+        if (strlen($value) > 1 && Str::startsWith($value, '"') && Str::endsWith($value, '"')) {
+            return substr($value, 1, -1);
+        }
+
+        return $value;
+    }
 }
 
 /**

@@ -7,9 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-use Flc\Alidayu\Client;
-use Flc\Alidayu\App;
-use Flc\Alidayu\Requests\AlibabaAliqinFcSmsNumSend;
+
 
 class PhoneRegisterController extends Controller
 {
@@ -20,6 +18,9 @@ class PhoneRegisterController extends Controller
      */
     public function index()
     {
+        $test=reEnv('PROJECT_NAME');
+        p($test);
+        die;
         return view('user/phone_register/index');
     }
 
@@ -82,6 +83,7 @@ class PhoneRegisterController extends Controller
 
     public function get_code(Request $request)
     {
+        sendSmsCode(1,2);die;
         $test=[
             'name'=>'2',
             'age'=>3
@@ -89,24 +91,7 @@ class PhoneRegisterController extends Controller
         return ajaxReturn($test);die;
         $phone=$request->except('_token');
         $code=rand(100000, 999999);
-        // 配置信息
-        $config=config('key.alidayu');
-        $client = new Client(new App($config));
-        $req    = new AlibabaAliqinFcSmsNumSend;
-        //发送验证码
-        $req->setRecNum($phone)
-            ->setSmsParam([
-                'code' => $code,
-                'product'=> '注册验证'
-            ])
-            ->setSmsFreeSignName('注册验证')
-            ->setSmsTemplateCode('SMS_9690875');
-        $result = $client->execute($req);
-        if (method_exists($result, 'result')) {
-            echo '发送成功';
-        }else{
-            echo $result->sub_msg;
-        }
+
     }
 
 
