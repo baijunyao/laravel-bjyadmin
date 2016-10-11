@@ -13,6 +13,7 @@ use Flc\Alidayu\Requests\AlibabaAliqinFcSmsNumSend;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Mail;
 
+
 //传递数据以易于阅读的样式格式化后输出
 function p($data){
     // 定义样式
@@ -294,3 +295,12 @@ function upload($file, $path='upload', $childPath=true){
     ];
     return $data;
 }
+
+function showCaptcha()
+{
+
+   
+}
+
+
+

@@ -101,4 +101,5 @@ Route::group(['prefix'=>'home/test', 'namespace'=>'Home'], function () {
     Route::post('send_email', 'TestController@send_email');
     Route::post('upload', 'TestController@upload');
     Route::get('page', 'TestController@page');
+    Route::any('captcha', 'TestController@captcha');
 });
