@@ -201,12 +201,12 @@ class AuthGroupAccessController extends Controller
 
     /**
      * @param \App\Model\AuthGroupAccess $authGroupAccess
-     * @param $uid
-     * @param $group_id
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function delete_user_from_group(AuthGroupAccess $authGroupAccess, $uid, $group_id)
+    public function delete_user_from_group(AuthGroupAccess $authGroupAccess)
     {
+        $uid=request()->input('uid');
+        $group_id=request()->input('group_id');
         $map=[
             'uid'=>$uid,
             'group_id'=>$group_id

@@ -66,7 +66,7 @@ Route::group(['prefix'=>'admin', 'namespace'=>'Admin', 'middleware'=>'adminAuth'
         //添加用户到用户组
         Route::get('/search_user' ,'AuthGroupAccessController@search_user');
         Route::get('/add_user_to_group' ,'AuthGroupAccessController@add_user_to_group');
-        Route::get('/delete_user_from_group/{uid}/{group_id}' ,'AuthGroupAccessController@delete_user_from_group')->where(['uid'=>'[0-9]+', 'group_id'=>'[0-9]']);
+        Route::get('/delete_user_from_group' ,'AuthGroupAccessController@delete_user_from_group');
 
     });
 
