@@ -80,11 +80,11 @@ class AuthGroupController extends Controller
      *
      * @param  \App\Model\AuthGroup       $authGroup 用户组模型
      * @param  \App\Model\AuthRule        $authRule  权限模型
-     * @param  int                        $id        用户组id
      * @return \Illuminate\Http\Response
      */
-    public function rule_group_show(AuthGroup $authGroup, AuthRule $authRule, $id)
+    public function rule_group_show(AuthGroup $authGroup, AuthRule $authRule)
     {
+        $id=request()->input('id');
         //获取用户组数据
         $group_data=$authGroup::find($id)->toArray();
         $group_data['rules']=explode(',', $group_data['rules']);

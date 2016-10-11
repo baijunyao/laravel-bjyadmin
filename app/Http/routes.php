@@ -50,7 +50,7 @@ Route::group(['prefix'=>'admin', 'namespace'=>'Admin', 'middleware'=>'adminAuth'
         Route::post('/update' ,'AuthGroupController@update');
         Route::get('/destroy' ,'AuthGroupController@destroy');
         //权限-用户组
-        Route::get('/rule_group_show/{id}' ,'AuthGroupController@rule_group_show')->where('id', '[0-9]+');
+        Route::get('/rule_group_show' ,'AuthGroupController@rule_group_show');
         Route::post('/rule_group_update' ,'AuthGroupController@rule_group_update');
     });
 
