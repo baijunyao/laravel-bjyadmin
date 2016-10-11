@@ -65,8 +65,9 @@ class AdminNavController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(AdminNav $adminNav, $id)
+    public function destroy(AdminNav $adminNav)
     {
+        $id=request()->input('id');
         $map=[
             'id'=>$id
         ];

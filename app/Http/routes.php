@@ -29,7 +29,7 @@ Route::group(['prefix'=>'admin', 'namespace'=>'Admin', 'middleware'=>'adminAuth'
         Route::get('/index' ,'AdminNavController@index');
         Route::post('/store' ,'AdminNavController@store');
         Route::post('/update' ,'AdminNavController@update');
-        Route::get('/destroy/{id}' ,'AdminNavController@destroy')->where('id', '[0-9]+');
+        Route::get('/destroy' ,'AdminNavController@destroy');
         Route::post('/order' ,'AdminNavController@order');
     });
 
