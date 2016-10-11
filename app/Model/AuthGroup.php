@@ -70,7 +70,7 @@ class AuthGroup extends Base
             ->where($map)
             ->delete();
         if ($result) {
-            Session::flash('alert-message','设置成功');
+            Session::flash('alert-message','删除成功');
             Session::flash('alert-class','alert-success');
             return $result;
         }else{

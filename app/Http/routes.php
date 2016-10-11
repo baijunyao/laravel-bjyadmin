@@ -48,7 +48,7 @@ Route::group(['prefix'=>'admin', 'namespace'=>'Admin', 'middleware'=>'adminAuth'
         Route::get('/index' ,'AuthGroupController@index');
         Route::post('/store' ,'AuthGroupController@store');
         Route::post('/update' ,'AuthGroupController@update');
-        Route::get('/destroy/{id}' ,'AuthGroupController@destroy')->where('id', '[0-9]+');
+        Route::get('/destroy' ,'AuthGroupController@destroy');
         //权限-用户组
         Route::get('/rule_group_show/{id}' ,'AuthGroupController@rule_group_show')->where('id', '[0-9]+');
         Route::post('/rule_group_update' ,'AuthGroupController@rule_group_update');

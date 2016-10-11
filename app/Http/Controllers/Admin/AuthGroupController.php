@@ -63,11 +63,11 @@ class AuthGroupController extends Controller
      * 删除用户组
      *
      * @param  \App\Model\AuthGroup       $authGroup 用户组模型
-     * @param  int                        $id        用户组id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(AuthGroup $authGroup, $id)
+    public function destroy(AuthGroup $authGroup)
     {
+        $id=request()->input('id');
         $map=[
             'id'=>$id
         ];
