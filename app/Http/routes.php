@@ -12,14 +12,15 @@
 */
 
 use Illuminate\Support\Facades\Auth;
+
 //前台首页
 Route::get('/', 'Home\IndexController@index');
 
-//后台首页
-Route::get('/admin','Admin\IndexController@index');
-
 //后台路由
 Route::group(['prefix'=>'admin', 'namespace'=>'Admin', 'middleware'=>'adminAuth'], function () {
+    //后台首页
+    Route::get('/index/index','IndexController@index');
+
     //菜单管理
     Route::group(['prefix'=>'admin_nav'], function () {
         Route::get('/index' ,'AdminNavController@index');
@@ -65,6 +66,12 @@ Route::group(['prefix'=>'admin', 'namespace'=>'Admin', 'middleware'=>'adminAuth'
         Route::get('/delete_user_from_group/{uid}/{group_id}' ,'AuthGroupAccessController@delete_user_from_group')->where(['uid'=>'[0-9]+', 'group_id'=>'[0-9]']);
 
     });
+
+    //文章管理
+    Route::group(['prefix'=>'posts'], function () {
+       Route::get('index', 'PostsController@index');
+    });
+
 });
 
 // 注册

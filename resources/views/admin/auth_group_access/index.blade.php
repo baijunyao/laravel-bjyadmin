@@ -22,7 +22,7 @@
         </tr>
         @foreach($data as $v)
             <tr>
-                <td>{{ $v['username'] }}</td>
+                <td>{{ $v['name'] }}</td>
                 <td>{{ $v['title'] }}</td>
                 <td>
                     <a href="{{ url('admin/auth_group_access/edit',['id'=>$v['id']]) }}">修改权限或密码</a>

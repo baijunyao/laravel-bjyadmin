@@ -1,14 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\Home;
+namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-
-class IndexController extends Controller
+class PostsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,7 +16,7 @@ class IndexController extends Controller
      */
     public function index()
     {
-        return view('home/index/index');
+        return view('admin/posts/index');
     }
 
     /**

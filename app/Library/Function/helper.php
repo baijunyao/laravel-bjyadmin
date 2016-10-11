@@ -13,6 +13,7 @@ use Flc\Alidayu\Requests\AlibabaAliqinFcSmsNumSend;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Mail;
 
+use Illuminate\Support\Facades\Auth;
 
 //传递数据以易于阅读的样式格式化后输出
 function p($data){
@@ -296,5 +297,13 @@ function upload($file, $path='upload', $childPath=true){
     return $data;
 }
 
-
+/**
+ * 返回登录的用户id
+ *
+ * @return mixed 用户id
+ */
+function getUid()
+{
+    return Auth::id();
+}
 
