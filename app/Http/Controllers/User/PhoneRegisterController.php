@@ -78,16 +78,18 @@ class PhoneRegisterController extends Controller
         //
     }
 
+    /**
+     * 发送验证码
+     *
+     * @param Request $request  
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function get_code(Request $request)
     {
         $phone=$request->except('_token');
         $code=rand(100000, 999999);
         $result=sendSmsCode($phone,$code);
-        if ($result['status_code']==200) {
-            return ajaxReturn('','发送成功',200);
-        }else{
-            return ajaxReturn('',$result['message'],500);
-        }
+        return response()->json($result);
 
     }
 

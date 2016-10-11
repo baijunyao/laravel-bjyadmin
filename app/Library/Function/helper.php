@@ -160,6 +160,7 @@ function sendSms($phone, $content, $signName, $templateCode)
     if (property_exists($result, 'result')) {
         $data=array(
             'status_code'=>200,
+            'message'=>'验证码发送成功'
         );
     }else{
         $msg=$result->sub_msg;
