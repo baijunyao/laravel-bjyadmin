@@ -161,7 +161,7 @@
         </div>
         <div class="main-content">
             <div class="page-content">
-                <iframe id="content-iframe" src="{:U('Admin/Index/welcome')}" frameborder="0" width="100%" height="100%" name="right_content" scrolling="auto" frameborder="0" scrolling="no"></iframe>
+                <iframe id="content-iframe" src="{{ url('admin/index/welcome') }}" frameborder="0" width="100%" height="100%" name="right_content" scrolling="auto" frameborder="0" scrolling="no"></iframe>
             </div><!-- /.page-content -->
         </div><!-- /.main-content -->
     </div><!-- /.main-container-inner -->

@@ -15,8 +15,6 @@ class IndexController extends Controller
      */
     public function index(AdminNav $adminNav)
     {
-        //模拟登陆
-        session(['user'=>['id'=>88]]);
         //获取菜单
         $nav_data=$adminNav->getTreeData('level','order_number,id');
         $assign=[
@@ -24,6 +22,15 @@ class IndexController extends Controller
         ];
         return view('admin/index/index', $assign);
     }
+
+    /**
+     * 欢迎页面
+     */
+    public function welcome()
+    {
+        echo '欢迎页面';
+    }
+
 
     /**
      * Show the form for creating a new resource.
@@ -90,4 +97,7 @@ class IndexController extends Controller
     {
         //
     }
+
+
+
 }

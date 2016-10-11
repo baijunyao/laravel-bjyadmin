@@ -19,7 +19,10 @@ Route::get('/', 'Home\IndexController@index');
 //后台路由
 Route::group(['prefix'=>'admin', 'namespace'=>'Admin', 'middleware'=>'adminAuth'], function () {
     //后台首页
-    Route::get('/index/index','IndexController@index');
+    Route::group(['prefix'=>'index'], function () {
+        Route::get('/index','IndexController@index');
+        Route::get('/welcome','IndexController@welcome');
+    });
 
     //菜单管理
     Route::group(['prefix'=>'admin_nav'], function () {
