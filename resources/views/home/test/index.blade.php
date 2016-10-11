@@ -3,7 +3,6 @@
 @section('title', '测试')
 
 @section('body')
-
     <form action="{{ url('home/test/send_email') }}" method="post">
         {{ csrf_field() }}
         邮箱：<input type="text" name="email">
@@ -18,4 +17,10 @@
         <input type="submit" value="上传">
     </form>
 
+    <form action="{{ url('home/test/captcha') }}" method="post">
+        {{ csrf_field() }}
+        <img src="{{ captcha_src() }}" alt="captcha">
+        <input type="text" name="captcha">
+        <input type="submit" value="提交">
+    </form>
 @endsection

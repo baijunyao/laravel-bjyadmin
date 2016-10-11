@@ -47,6 +47,11 @@ class TestController extends Controller
         p($data);
     }
 
+    /**
+     * 分页
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function page()
     {
         $data=AuthRule::where('id','>',0)->paginate(3);
@@ -56,29 +61,16 @@ class TestController extends Controller
         return view('home/test/page', $assign);
     }
 
+    /**
+     * 验证码
+     *
+     * @param Request $request
+     */
     public function captcha(Request $request)
     {
-        if ($request->getMethod() == 'POST')
-        {
-            $rules = ['captcha' => 'required|captcha'];
-            $validator = Validator::make($request->all(), $rules);
-            if ($validator->fails())
-            {
-                echo '<p style="color: #ff0000;">失败!</p>';
-            }
-            else
-            {
-                echo '<p style="color: #00ff30;">成功 :)</p>';
-            }
-        }
-
-        $form = '<form method="post" action="">';
-        $form .= '<input type="hidden" name="_token" value="' . csrf_token() . '">';
-        $form .= '<p>' . captcha_img() . '</p>';
-        $form .= '<p><input type="text" name="captcha"></p>';
-        $form .= '<p><button type="submit" name="check">Check</button></p>';
-        $form .= '</form>';
-        return $form;
+        $value=$request->input('captcha');
+        $result=captcha_check($value);
+        p($result);
     }
 
 }

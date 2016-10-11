@@ -296,11 +296,5 @@ function upload($file, $path='upload', $childPath=true){
     return $data;
 }
 
-function showCaptcha()
-{
-
-   
-}
-
 
 
