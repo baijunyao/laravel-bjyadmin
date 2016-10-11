@@ -22,7 +22,17 @@ class TestController extends Controller
     public function send_email(Request $request)
     {
         $data=$request->except('_token');
+        $content=[
+            'content'=>$data['content']
+        ];
+        sendEmail($data['email'], '测试', '测试', $content);
+    }
+
+    public function upload(Request $request)
+    {
+        $data=upload('file', 'upload/test');
         p($data);
     }
+
 
 }

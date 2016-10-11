@@ -99,4 +99,5 @@ Route::group(['prefix'=>'user/phone_register', 'namespace'=>'User'], function ()
 Route::group(['prefix'=>'home/test', 'namespace'=>'Home'], function () {
     Route::get('index', 'TestController@index');
     Route::post('send_email', 'TestController@send_email');
+    Route::post('upload', 'TestController@upload');
 });

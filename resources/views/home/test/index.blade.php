@@ -11,6 +11,11 @@
         <input type="submit" value="发送邮件">
     </form>
 
-
+    <form action="{{ url('home/test/upload') }}" method="post"  enctype="multipart/form-data">
+        {{ csrf_field() }}
+        <input type="file" name="file">
+        <input type="text" name="test" id="">
+        <input type="submit" value="上传">
+    </form>
 
 @endsection
