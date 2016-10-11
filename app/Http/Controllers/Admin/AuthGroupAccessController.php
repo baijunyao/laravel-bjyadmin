@@ -148,15 +148,15 @@ class AuthGroupAccessController extends Controller
     /**
      * 添加用户到用户组的页面 搜索用户
      *
-     * @param  int  $group_id
      * @param  \App\Model\AuthGroup $authGroup
      * @param  \App\Model\AuthGroupAccess $authGroupAccess
      * @param  \App\Model\User $user
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function search_user(AuthGroup $authGroup, AuthGroupAccess $authGroupAccess, User $user, Request $request, $group_id)
+    public function search_user(AuthGroup $authGroup, AuthGroupAccess $authGroupAccess, User $user, Request $request)
     {
+        $group_id=request()->input('group_id');
         //获取搜索的用户名
         $name=$request->input('name');
         //根据用户名查找user表中的用户
