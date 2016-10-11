@@ -83,10 +83,10 @@ class PhoneRegisterController extends Controller
         $phone=$request->except('_token');
         $code=rand(100000, 999999);
         $result=sendSmsCode($phone,$code);
-        if ($result['error_code']==200) {
+        if ($result['status_code']==200) {
             return ajaxReturn('','发送成功',200);
         }else{
-            return ajaxReturn('',$result['error_message'],500);
+            return ajaxReturn('',$result['message'],500);
         }
 
     }

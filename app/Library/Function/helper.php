@@ -88,11 +88,11 @@ function dbObjectToArray($array)
 /**
  * ajax返回数据
  * @param $data  需要返回的数据
- * @param string $error_message 提示语句
- * @param int $error_code
+ * @param string $message 提示语句
+ * @param int $status_code
  * @return \Illuminate\Http\JsonResponse
  */
-function ajaxReturn($data,$error_message='成功', $error_code=200)
+function ajaxReturn($data,$message='成功', $status_code=200)
 {
     /**
      * 将数组递归转字符串
@@ -110,10 +110,10 @@ function ajaxReturn($data,$error_message='成功', $error_code=200)
         return $arr;
     }
 
-    //增加error_code
+    //增加status_code
     $all_data=array(
-        'error_code'=>$error_code,
-        'error_message'=>$error_message,
+        'status_code'=>$status_code,
+        'message'=>$message,
     );
 
     //判断是否有返回的数据
@@ -159,13 +159,13 @@ function sendSms($phone, $content, $signName, $templateCode)
     $result = $client->execute($req);
     if (property_exists($result, 'result')) {
         $data=array(
-            'error_code'=>200,
+            'status_code'=>200,
         );
     }else{
         $msg=$result->sub_msg;
         $data=array(
-            'error_code'=>500,
-            'error_message'=>$msg
+            'status_code'=>500,
+            'message'=>$msg
         );
     }
     return $data;
@@ -182,8 +182,8 @@ function sendSmsCode($phone, $code)
 {
     if (empty($phone)) {
         $data=array(
-            'error_code'=>500,
-            'error_message'=>'手机号不能为空'
+            'status_code'=>500,
+            'message'=>'手机号不能为空'
         );
         return $data;
     }
@@ -221,13 +221,13 @@ function sendEmail($email, $name, $subject, $data, $template='emails.test')
     });
     if ($flag) {
         $data=array(
-            'error_code'=>200,
-            'error_message'=>'邮件发送成功'
+            'status_code'=>200,
+            'message'=>'邮件发送成功'
         );
     }else{
         $data=array(
-            'error_code'=>500,
-            'error_message'=>'邮件发送失败'
+            'status_code'=>500,
+            'message'=>'邮件发送失败'
         );
     }
     return $data;
@@ -246,8 +246,8 @@ function upload($file, $path='upload', $childPath=true){
     //判断请求中是否包含name=file的上传文件
     if(!request()->hasFile($file)){
         $data=[
-            'error_code'=>500,
-            'error_message'=>'上传文件为空'
+            'status_code'=>500,
+            'message'=>'上传文件为空'
         ];
         return $data;
     }
@@ -255,8 +255,8 @@ function upload($file, $path='upload', $childPath=true){
     //判断文件上传过程中是否出错
     if(!$file->isValid()){
         $data=[
-            'error_code'=>500,
-            'error_message'=>'文件上传出错'
+            'status_code'=>500,
+            'message'=>'文件上传出错'
         ];
         return $data;
     }
@@ -276,15 +276,15 @@ function upload($file, $path='upload', $childPath=true){
     //上传失败
     if(!$file->move($path, $newName)){
         $data=[
-            'error_code'=>500,
-            'error_message'=>'保存文件失败'
+            'status_code'=>500,
+            'message'=>'保存文件失败'
         ];
         return $data;
     }
     //上传成功
     $data=[
-        'error_code'=>200,
-        'error_message'=>'上传成功',
+        'status_code'=>200,
+        'message'=>'上传成功',
         'data'=>[
             'old_name'=>$oldName,
             'new_name'=>$newName,
