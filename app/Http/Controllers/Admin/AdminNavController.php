@@ -62,7 +62,6 @@ class AdminNavController extends Controller
      * 删除菜单
      *
      * @param  \App\Model\AdminNav        $adminNav 后台菜单模型
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function destroy(AdminNav $adminNav)

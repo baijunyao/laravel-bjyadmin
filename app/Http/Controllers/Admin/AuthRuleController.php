@@ -62,11 +62,11 @@ class AuthRuleController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  \App\Model\AuthRule       $authRule 权限模型
-     * @param  int                       $id       权限id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(AuthRule $authRule, $id)
+    public function destroy(AuthRule $authRule)
     {
+        $id=request()->input('id');
         $map=[
             'id'=>$id
         ];

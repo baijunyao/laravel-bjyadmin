@@ -30,7 +30,7 @@
                         <td>
                             <a href="javascript:;" ruleId="{{ $v['id'] }}" onclick="add_child(this)">添加子权限</a> |
                             <a href="javascript:;" ruleId="{{ $v['id'] }}" ruleName="{{ $v['name'] }}" ruleTitle="{{ $v['title'] }}" onclick="edit(this)">修改</a> |
-                            <a href="javascript:if(confirm('确定删除？'))location='{{ url('admin/auth_rule/destroy',['id'=>$v['id']]) }}'">删除</a>
+                            <a href="javascript:if(confirm('确定删除？'))location='{{ url('admin/auth_rule/destroy').'?id='.$v['id'] }}'">删除</a>
                         </td>
                     </tr>
                 @endforeach

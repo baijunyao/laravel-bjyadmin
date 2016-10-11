@@ -39,7 +39,7 @@ Route::group(['prefix'=>'admin', 'namespace'=>'Admin', 'middleware'=>'adminAuth'
         Route::get('/index' ,'AuthRuleController@index');
         Route::post('/store' ,'AuthRuleController@store');
         Route::post('/update' ,'AuthRuleController@update');
-        Route::get('/destroy/{id}' ,'AuthRuleController@destroy')->where('id', '[0-9]+');
+        Route::get('/destroy' ,'AuthRuleController@destroy');
     });
 
     //用户组管理
