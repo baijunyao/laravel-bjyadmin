@@ -185,12 +185,12 @@ class AuthGroupAccessController extends Controller
 
     /**
      * @param \App\Model\AuthGroupAccess $authGroupAccess
-     * @param $uid
-     * @param $group_id
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function add_user_to_group(AuthGroupAccess $authGroupAccess, $uid, $group_id)
+    public function add_user_to_group(AuthGroupAccess $authGroupAccess)
     {
+        $uid=request()->input('uid');
+        $group_id=request()->input('group_id');
         $data=[
             'uid'=>$uid,
             'group_id'=>$group_id

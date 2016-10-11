@@ -13,6 +13,7 @@
             </th>
             <td>
                 <form class="form-inline" action="">
+                    <input type="hidden" name="group_id" value="{{ $group_id }}">
                     <input class="form-control" type="text" name="name" value="{{ $name }}">
                     <input class="btn btn-success" type="submit" value="搜索">
                 </form>
@@ -32,7 +33,7 @@
                         已经是{{ $group_title }}
                         <a href="{{ url('admin/auth_group_access/delete_user_from_group',['uid'=>$v['id'],'group_id'=>$group_id]) }}">取消管理员权限</a>
                     @else
-                        <a href="{{ url('admin/auth_group_access/add_user_to_group',['uid'=>$v['id'],'group_id'=>$group_id]) }}">设为{{ $group_title }}</a>
+                        <a href="{{ url('admin/auth_group_access/add_user_to_group').'?uid='.$v['id'].'&group_id='.$group_id }}">设为{{ $group_title }}</a>
                     @endif
                 </td>
             </tr>
