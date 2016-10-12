@@ -1,1 +1,0 @@
-function sendCode(){var n=$("input[name='phone']").val(),o={phone:n};$.post(get_code,o,function(n){console.log(n)})}
