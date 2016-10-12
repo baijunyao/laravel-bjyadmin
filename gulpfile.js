@@ -13,7 +13,12 @@ require('laravel-elixir-vue-2');
  |
  */
 
-elixir(mix => {
+elixir(function(mix) {
     mix.sass('app.scss')
-       .webpack('app.js');
+        .webpack('app.js');
+    mix.browserSync({
+        proxy: "lbjyadmin.com:8000", // 指定代理url
+        notify: false, // 刷新不弹出提示
+        open: false, // 不自动打开浏览器
+    });
 });
