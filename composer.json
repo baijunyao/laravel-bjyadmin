@@ -6,7 +6,7 @@
     "type": "project",
     "require": {
         "php": ">=5.5.9",
-        "laravel/framework": "5.1.*",
+        "laravel/framework": "5.2.*",
         "flc/alidayu": "^2.0",
         "mews/captcha": "^2.1"
     },
@@ -17,7 +17,9 @@
         "phpspec/phpspec": "~2.1",
         "xethron/migrations-generator": "dev-l5",
         "way/generators": "dev-feature/laravel-five-stable",
-        "orangehill/iseed": "dev-master"
+        "orangehill/iseed": "dev-master",
+        "symfony/dom-crawler": "~3.0",
+        "symfony/css-selector": "~3.0"
     },
     "autoload": {
         "classmap": [
