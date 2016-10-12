@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50547
 File Encoding         : 65001
 
-Date: 2016-09-27 17:31:43
+Date: 2016-10-12 10:05:53
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -30,7 +30,7 @@ CREATE TABLE `la_admin_navs` (
   `updated_at` datetime DEFAULT NULL,
   `deleted_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=75 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=80 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of la_admin_navs
@@ -59,12 +59,12 @@ CREATE TABLE `la_auth_groups` (
   `updated_at` datetime DEFAULT NULL,
   `deleted_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COMMENT='用户组表';
+) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COMMENT='用户组表';
 
 -- ----------------------------
 -- Records of la_auth_groups
 -- ----------------------------
-INSERT INTO `la_auth_groups` VALUES ('1', '超级管理员', '1', '6,96,20,1,2,3,4,5,64,21,7,8,9,10,11,12,13,14,15,16,123,124,125,19,104,105,106,107,108,118,109,110,111,112,117', null, null, null);
+INSERT INTO `la_auth_groups` VALUES ('1', '超级管理员', '1', '6,96,20,1,2,3,4,5,64,21,7,8,9,10,11,12,13,14,15,19,16,123,124,125,142,143,144,145,104,105,106,107,108,118,109,110,111,112,117', null, '2016-10-11 10:18:45', null);
 INSERT INTO `la_auth_groups` VALUES ('2', '产品管理员', '1', '6,96', null, '2016-09-24 09:44:37', null);
 INSERT INTO `la_auth_groups` VALUES ('4', '文章编辑', '1', '6,96,57,60,61,63,71,72,65,67,74,75,66,68,69,73,79,80,78,82,83,88,89,90,99,100,97,98,104,105,106,107,108,118,109,110,111,112,117,113,114', null, null, null);
 
@@ -107,7 +107,7 @@ CREATE TABLE `la_auth_rules` (
   `deleted_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `name` (`name`)
-) ENGINE=MyISAM AUTO_INCREMENT=145 DEFAULT CHARSET=utf8 COMMENT='规则表';
+) ENGINE=MyISAM AUTO_INCREMENT=148 DEFAULT CHARSET=utf8 COMMENT='规则表';
 
 -- ----------------------------
 -- Records of la_auth_rules
@@ -151,6 +151,7 @@ INSERT INTO `la_auth_rules` VALUES ('141', '11', 'admin/auth_group/rule_group_up
 INSERT INTO `la_auth_rules` VALUES ('142', '19', 'admin/auth_group_access/delete_user_from_group', '从用户组中删除用户', '1', '1', '', '2016-09-24 09:34:33', '2016-09-24 09:34:33', null);
 INSERT INTO `la_auth_rules` VALUES ('143', '19', 'admin/auth_group_access/store', '添加管理员功能', '1', '1', '', '2016-09-24 09:36:50', '2016-09-24 09:36:50', null);
 INSERT INTO `la_auth_rules` VALUES ('144', '19', 'admin/auth_group_access/update', '修改管理员功能', '1', '1', '', '2016-09-24 09:37:29', '2016-09-24 09:37:29', null);
+INSERT INTO `la_auth_rules` VALUES ('145', '19', 'admin/auth_group/rule_group_show/22', 'test', '1', '1', '', null, null, null);
 
 -- ----------------------------
 -- Table structure for la_password_resets
@@ -189,10 +190,10 @@ CREATE TABLE `la_users` (
   `deleted_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `user_login_key` (`name`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=92 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=90 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of la_users
 -- ----------------------------
-INSERT INTO `la_users` VALUES ('88', 'admin', '', 'e10adc3949ba59abbe56e057f20f883e', null, '/Upload/avatar/user1.jpg', '', '0', '1', '', '0', null, null, null);
-INSERT INTO `la_users` VALUES ('89', 'admin2', '', 'e10adc3949ba59abbe56e057f20f883e', null, '/Upload/avatar/user2.jpg', '', '0', '1', '', '0', null, null, null);
+INSERT INTO `la_users` VALUES ('88', 'admin', 'baijunyao@baijunyao.com', '$2y$10$62PoswJIay0xaMR5BAyrHez64qydRoZ25RrNg1JyIycbRt5kfqCPu', null, '/Upload/avatar/user1.jpg', '', '0', '1', '', '0', null, null, null);
+INSERT INTO `la_users` VALUES ('89', 'admin2', 'test@baijunyao.com', '$2y$10$62PoswJIay0xaMR5BAyrHez64qydRoZ25RrNg1JyIycbRt5kfqCPu', null, '/Upload/avatar/user2.jpg', '', '0', '1', '', '0', null, null, null);
