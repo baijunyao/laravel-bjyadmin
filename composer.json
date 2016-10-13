@@ -18,11 +18,15 @@
     },
     "autoload": {
         "classmap": [
-            "database"
+            "database",
+            "app/Library/Org"
         ],
         "psr-4": {
             "App\\": "app/"
-        }
+        },
+        "files": [
+            "app/Library/Function/helper.php"
+        ]
     },
     "autoload-dev": {
         "classmap": [
