@@ -20,15 +20,24 @@ Route::get('/user', function (Request $request) {
 $api = app('Dingo\Api\Routing\Router');
 
 
+//共有接口
 $api->version('v1', function ($api) {
     $api->group(['namespace'=>'App\Http\Controllers\Api'], function ($api) {
-        $api->get('test', 'V1\Home\TestController@index')->middleware('jwt');
+        $api->get('test', 'V1\Home\TestController@index')->middleware('jwt.auth');
         $api->any('authenticate', 'V1\Jwt\AuthenticateController@authenticate');
     });
 });
 
+
+//私有接口
 $api->version('v2', function ($api) {
     $api->group(['namespace'=>'App\Http\Controllers\Api'], function ($api) {
         $api->post('test', 'V1\Home\TestController@test');
+    });
+});
+
+$api->version('v1', ['protected' => true], function ($api) {
+    $api->get('test2', function () {
+       echo 2222;
     });
 });
