@@ -20,8 +20,14 @@ Route::get('/user', function (Request $request) {
 $api = app('Dingo\Api\Routing\Router');
 
 
-$api->version('v3', function ($api) {
-    $api->get('users', function () {
-        echo 3;
+$api->version('v1', function ($api) {
+    $api->group(['namespace'=>'App\Http\Controllers\Api'], function ($api) {
+        $api->get('test', 'V1\Home\TestController@index');
+    });
+});
+
+$api->version('v2', function ($api) {
+    $api->group(['namespace'=>'App\Http\Controllers\Api'], function ($api) {
+        $api->post('test', 'V1\Home\TestController@test');
     });
 });

@@ -83,6 +83,19 @@
                 </div>
             </div>
         </div>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
         <script src="{{ elixir('js/public/base.js') }}"></script>
+        <script>
+            $.ajax({
+                headers: {
+                    Accept: "application/vnd.test.v2+json; charset=utf-8"
+                },
+                url: '/api/test',
+                type: "post",
+                data: {test:1},
+                success: function (data) {
+                }
+            });
+        </script>
     </body>
 </html>
