@@ -19,4 +19,7 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index');
 
-Route::get('/test2', '\App\Api\V1\Home\TestController@index');
+Route::get('/logout', function () {
+    Auth::logout();
+    echo '退出';
+});
