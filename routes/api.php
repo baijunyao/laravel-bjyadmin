@@ -23,21 +23,23 @@ $api = app('Dingo\Api\Routing\Router');
 //共有接口
 $api->version('v1', function ($api) {
     $api->group(['namespace'=>'App\Http\Controllers\Api'], function ($api) {
-        $api->get('test', 'V1\Home\TestController@index')->middleware('jwt.auth');
+        $api->any('test', 'V1\Home\TestController@index')->middleware(['jwt.auth','jwt.refresh']);
         $api->any('authenticate', 'V1\Jwt\AuthenticateController@authenticate');
+        $api->post('register', '');
     });
+
+    $api->group(['namespace'=>'App\Http\Controllers\Auth'], function ($api) {
+        $api->post('register', '');
+    });
+
 });
 
 
 //私有接口
 $api->version('v2', function ($api) {
     $api->group(['namespace'=>'App\Http\Controllers\Api'], function ($api) {
-        $api->post('test', 'V1\Home\TestController@test');
-    });
-});
-
-$api->version('v1', ['protected' => true], function ($api) {
-    $api->get('test2', function () {
-       echo 2222;
+        $api->post('test', function () {
+            echo 'v2';
+        });
     });
 });

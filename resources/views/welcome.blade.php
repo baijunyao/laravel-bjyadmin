@@ -88,7 +88,9 @@
         <script>
             $.ajax({
                 headers: {
-                    Accept: "application/vnd.test.v2+json; charset=utf-8"
+                    Accept: "application/vnd.test.v1+json; charset=utf-8",
+                    Authorization: "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImlzcyI6Imh0dHA6XC9cL2xianlhZG1pbi5jb206ODAwMFwvYXBpXC9hdXRoZW50aWNhdGUiLCJpYXQiOjE0NzY2NzEyOTQsImV4cCI6MTQ3NjY3NDg5NCwibmJmIjoxNDc2NjcxMjk0LCJqdGkiOiI0YjM0NmMzZWZhNTUzNjg5ZWQ1NmZkNWQzZWEzNzk1NSJ9.ZPMixSAen7_A68XOSE4mBMaaSZ4GP-sX3SHFi29LenU"
+
                 },
                 url: '/api/test',
                 type: "post",
