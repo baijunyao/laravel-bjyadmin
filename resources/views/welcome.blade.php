@@ -4,6 +4,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="csrf-token" content="{{ csrf_token() }}">
         <title>Laravel</title>
         <!-- Styles -->
         <style>
@@ -70,17 +71,8 @@
             @endif
 
             <div class="content">
-                <div class="title m-b-md">
-                    Laravel
-                </div>
-
-                <div class="links">
-                    <a href="https://laravel.com/docs">Documentation</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
-                </div>
+                <button v-on:click="login">login</button>
+                <button v-on:click="refresh">refresh</button>
             </div>
         </div>
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
@@ -88,18 +80,27 @@
         <script src="{{ asset('statics/vue/vue-resource.min.js') }}"></script>
         <script src="{{ elixir('js/public/base.js') }}"></script>
         <script>
-            Vue.http.headers.common['Accept'] = 'application/vnd.test.v1+json';
-            Vue.http.headers.common['Authorization'] = 'Bearer YXBpOnBhc3N3b3Jk';
             var vm = new Vue({
                 el: 'body',
-                ready:function () {
-                    var postData = {
-                        email: 'junyao.bai@niuschools.com',
-                        password: '123456'
-                    };
-                    this.$http.post("{{ url('api/authenticate') }}", postData).then(function (response) {
-                        console.log(response);
-                    })
+                methods: {
+                    login: function(){
+                        var postData = {
+                            email: 'junyao.bai@niuschools.com',
+                            password: '123456'
+                        };
+                        this.$http.post("{{ url('api/authenticate') }}", postData).then(function (response) {
+                            localStorage.setItem('Authorization', response.data.token);
+                            console.log(localStorage.getItem('Authorization'));
+                        })
+                    },
+                    refresh: function () {
+                        this.$http.post("{{ url('api/test') }}").then(function (response) {
+//                            console.log(localStorage.getItem('Authorization'));
+                        })
+                    }
+                },
+                ready: function () {
+
                 }
             })
         </script>

@@ -1,9 +1,9 @@
-$.ajaxSetup({
-    // ajax 发送_token
-    headers: {
-        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-    }
-});
+// $.ajaxSetup({
+//     // ajax 发送_token
+//     headers: {
+//         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+//     }
+// });
 
 // 常用函数
 bjy={
@@ -87,7 +87,38 @@ bjy={
         this.alert('2222');
     },
 
-
-
-
 }
+
+/**
+ * vue设置
+ */
+// 接收json格式数据
+Vue.http.options.emulateJSON = true;
+// 设置请求时添加Accept 和 Authorization
+Vue.http.interceptors.push(function () {
+    return {
+        request: function (request) {
+            // 设置csrf token
+            request.headers['X-CSRF-TOKEN'] = document.querySelector("meta[name='csrf-token']").getAttribute('content');
+            // 获取存储在本地的jwt令牌
+            var Authorization = localStorage.getItem('Authorization');
+            // 设置版本
+            request.headers['Accept'] = 'application/vnd.test.v1+json';
+            // 如果令牌存在；则header增加令牌
+            if(Authorization) {
+                request.beforeSend = function() {
+                    request.headers['Authorization'] = 'Bearer '+Authorization;
+                }
+            }
+            return request;
+        },
+        response: function (response) {
+            // 如果返回的有令牌；则刷新本地新的令牌
+            if (response.headers('Authorization')) {
+                localStorage.setItem('Authorization', response.headers('Authorization'));
+            }
+            return response;
+        }
+
+    };
+});
