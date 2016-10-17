@@ -84,10 +84,24 @@
             </div>
         </div>
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script src="{{ asset('statics/vue/vue.js') }}"></script>
+        <script src="{{ asset('statics/vue/vue-resource.min.js') }}"></script>
         <script src="{{ elixir('js/public/base.js') }}"></script>
-        <script src="{{ asset('js/public/base.js') }}"></script>
         <script>
-
+            Vue.http.headers.common['Accept'] = 'application/vnd.test.v1+json';
+            Vue.http.headers.common['Authorization'] = 'Bearer YXBpOnBhc3N3b3Jk';
+            var vm = new Vue({
+                el: 'body',
+                ready:function () {
+                    var postData = {
+                        email: 'junyao.bai@niuschools.com',
+                        password: '123456'
+                    };
+                    this.$http.post("{{ url('api/authenticate') }}", postData).then(function (response) {
+                        console.log(response);
+                    })
+                }
+            })
         </script>
     </body>
 </html>
