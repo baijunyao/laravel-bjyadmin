@@ -25,13 +25,16 @@ $api->version('v1', function ($api) {
     $api->group(['namespace'=>'App\Http\Controllers\Api'], function ($api) {
         $api->any('test', 'V1\Home\TestController@index')->middleware(['jwt.auth','jwt.refresh']);
         $api->any('authenticate', 'V1\Jwt\AuthenticateController@authenticate');
-        $api->post('register', '');
     });
 
     $api->group(['namespace'=>'App\Http\Controllers\Auth'], function ($api) {
-        $api->post('register', '');
+        $api->post('register', 'RegisterController@register');
+        $api->post('login', 'LoginController@login');
     });
 
+    $api->post('test2', function () {
+        echo 'v2';
+    });
 });
 
 
