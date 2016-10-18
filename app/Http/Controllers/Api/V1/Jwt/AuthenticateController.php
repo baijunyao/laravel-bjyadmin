@@ -32,17 +32,13 @@ class AuthenticateController extends Controller
 
     public function register(Store $request)
     {
-        $this->validate($request, [
-            'name' => 'required|unique:users',
-        ]);
-        echo 1;die;
+        $postData=$request->all();
         $newUser = [
-            'name' => $request->get('name'),
-            'email' => $request->get('email'),
-            'password' => bcrypt($request->get('password'))
+            'name' => $postData['name'],
+            'email' => $postData['email'],
+            'password' => bcrypt($postData['password'])
         ];
         $user = User::create($newUser);
-        //p($user);die;
         $token = JWTAuth::fromUser($user);//根据用户得到token
         $data=[
             'token'=> $token

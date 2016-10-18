@@ -33,7 +33,7 @@ return array(
     "different"        => ":attribute和:other 必须不同。",
     "digits"           => ":attribute必须是:digits 位的数字。",
     "digits_between"   => ":attribute必须是介于:min 和:max 位的数字。",
-    "email"            => ":attribute邮箱格式非法。",
+    "email"            => ":attribute格式非法。",
     "exists"           => "已选的属性:attribute非法。",
     "image"            => ":attribute必须是一张图片。",
     "in"               => "已选的属性:attribute非法。",
