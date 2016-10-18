@@ -6,10 +6,14 @@ use Illuminate\Foundation\Http\FormRequest;
 
 use Illuminate\Contracts\Validation\Validator;
 
+use Dingo\Api\Exception\ResourceException;
+
 class Request extends FormRequest
 {
 
     /**
+     * 统一返回json格式的没有通过验证的错误信息
+     *
      * {@inheritdoc}
      */
     protected function formatErrors(Validator $validator){
@@ -20,7 +24,6 @@ class Request extends FormRequest
         ];
         return $data;
     }
-
 
 
 
