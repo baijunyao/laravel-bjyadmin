@@ -21,12 +21,12 @@ return array(
     "alpha_num"        => ":attribute只能由字母和数字组成。",
     "array"            => ":attribute必须是一个数组。",
     "before"           => ":attribute必须是一个在:date 之前的日期。",
-    "between"          => array(
+    "between"          => [
         "numeric" => ":attribute必须介于:min -:max 之间。",
         "file"    => ":attribute必须介于:min -:max kb之间。",
         "string"  => ":attribute必须介于:min -:max 个字符之间。",
         "array"   => ":attribute必须只有:min -:max 个单元。"
-    ),
+    ],
     "confirmed"        => ":attribute与重复输入不匹配。",
     "date"             => ":attribute不是一个有效的日期。",
     "date_format"      => ":attribute不匹配日期格式:format。",
@@ -39,19 +39,19 @@ return array(
     "in"               => "已选的属性:attribute非法。",
     "integer"          => ":attribute必须是一个整数。",
     "ip"               => ":attribute必须是一个有效的IP地址。",
-    "max"              => array(
+    "max"              => [
         "numeric" => ":attribute必须小于:max 。",
         "file"    => ":attribute必须小于:max kb。",
         "string"  => ":attribute必须小于:max 个字符。",
         "array"   => ":attribute最多只有:max 个单元。"
-    ),
+    ],
     "mimes"            => ":attribute必须是一个:values 类型的文件。",
-    "min"              => array(
+    "min"              => [
         "numeric" => ":attribute必须大于:min 。",
         "file"    => ":attribute必须大于:min kb。",
         "string"  => ":attribute必须大于:min 个字符。",
         "array"   => ":attribute至少有:min 个单元。"
-    ),
+    ],
     "not_in"           => "已选的属性:attribute非法。",
     "numeric"          => ":attribute必须是一个数字。",
     "regex"            => ":attribute格式不正确。",
@@ -62,12 +62,12 @@ return array(
     "required_without" => "当:values 不存在时:attribute不能为空。",
     "required_without_all" => "当:values 都不存在时:attribute不能为空。",
     "same"             => ":attribute和:other 必须匹配。",
-    "size"             => array(
+    "size"             => [
         "numeric" => ":attribute大小必须是:size 。",
         "file"    => ":attribute大小必须是:size kb。",
         "string"  => ":attribute必须是:size 个字符。",
         "array"   => ":attribute必须为:size 个单元。"
-    ),
+    ],
     "unique"           => ":attribute已经存在。",
     "url"              => ":attribute不是一个合法的URL。",
 
@@ -82,11 +82,11 @@ return array(
     |
     */
 
-    'custom' => array(
-        'attribute-name' => array(
+    'custom' => [
+        'attribute-name' => [
             'rule-name' => 'custom-message',
-        ),
-    ),
+        ],
+    ],
 
     /*
     |--------------------------------------------------------------------------
@@ -99,6 +99,10 @@ return array(
     |
     */
 
-    'attributes' => array(),
+    'attributes' => [
+        'name'=>'用户名',
+        'email'=>'邮箱',
+        'password'=>'密码',
+    ],
 
 );

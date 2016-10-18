@@ -3,7 +3,6 @@
 namespace App\Http\Requests\User;
 
 use App\Http\Requests\Request;
-use Illuminate\Foundation\Http\FormRequest;
 
 class Store extends Request
 {
@@ -39,9 +38,20 @@ class Store extends Request
     public function messages()
     {
         return [
-            'unique' => ' :attribute 必填.',
+            //'name.required'=>':attribute不能为空'
         ];
     }
 
-    
+    /**
+     * 定义字段名中文
+     *
+     * @return array
+     */
+    public function attributes()
+    {
+        return [
+            //'name'=>'用户名',
+        ];
+    }
+
 }
