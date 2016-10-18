@@ -25,6 +25,20 @@ class Request extends FormRequest
         return $data;
     }
 
+    /**
+     * 返回具体没有通过验证的值
+     *
+     * @param Validator $validator
+     * @throws \Illuminate\Validation\ValidationException
+     */
+    protected function failedValidation(Validator $validator)
+    {
+        if($this->is(config('api.prefix') . '/*')) {
+            $message = $validator->errors()->first();
+            throw new ResourceException($message);
+        }
+        parent::failedValidation($validator);
+    }
 
 
 }
