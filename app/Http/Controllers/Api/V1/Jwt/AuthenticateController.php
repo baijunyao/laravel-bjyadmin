@@ -2,16 +2,17 @@
 
 namespace App\Http\Controllers\Api\V1\Jwt;
 
-use Illuminate\Http\Request;
-
-use App\Http\Requests;
-use App\Http\Controllers\Controller;
-
 use JWTAuth;
+use App\User;
+use App\Http\Requests;
+use Illuminate\Http\Request;
+use App\Http\Requests\User\Store;
+use App\Http\Controllers\Controller;
 use Tymon\JWTAuth\Exceptions\JWTException;
 
 class AuthenticateController extends Controller
 {
+
     public function authenticate(Request $request)
     {
         // grab credentials from the request
@@ -29,15 +30,23 @@ class AuthenticateController extends Controller
         return response()->json(compact('token'));
     }
 
-    public function register(Request $request)
+    public function register(Store $request)
     {
+        $this->validate($request, [
+            'name' => 'required|unique:users',
+        ]);
+        echo 1;die;
         $newUser = [
             'name' => $request->get('name'),
             'email' => $request->get('email'),
-            'pasword' => bcrypt($request->get('password'))
+            'password' => bcrypt($request->get('password'))
         ];
         $user = User::create($newUser);
+        //p($user);die;
         $token = JWTAuth::fromUser($user);//根据用户得到token
-        return response()->json(compact('token'));
+        $data=[
+            'token'=> $token
+        ];
+        return ajaxReturn($data, '注册成功', 200);
     }
 }

@@ -19,6 +19,8 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index');
 
+Route::post('/test', 'Api\V1\Jwt\AuthenticateController@register');
+
 Route::get('/logout', function () {
     Auth::logout();
     echo '退出';

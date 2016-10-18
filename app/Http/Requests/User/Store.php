@@ -2,9 +2,10 @@
 
 namespace App\Http\Requests\User;
 
+use App\Http\Requests\Request;
 use Illuminate\Foundation\Http\FormRequest;
 
-class Store extends FormRequest
+class Store extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -38,8 +39,9 @@ class Store extends FormRequest
     public function messages()
     {
         return [
-            'required' => ' :attribute 必填.',
+            'unique' => ' :attribute 必填.',
         ];
     }
 
+    
 }

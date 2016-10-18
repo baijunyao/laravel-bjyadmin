@@ -74,6 +74,13 @@
                 <button v-on:click="login">login</button>
                 <button v-on:click="refresh">refresh</button>
             </div>
+            <div>
+                <form action="{{ url('test') }}" method="post">
+                    {{ csrf_field() }}
+                    <input type="text" name="name">
+                    <input type="submit" value="提交">
+                </form>
+            </div>
         </div>
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
         <script src="{{ asset('statics/vue/vue.js') }}"></script>
@@ -100,7 +107,9 @@
                     }
                 },
                 ready: function () {
-
+                    this.$http.post("{{ url('test') }}").then(function (response) {
+                        console.log(response);
+                    })
                 }
             })
         </script>

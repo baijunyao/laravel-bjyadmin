@@ -17,32 +17,35 @@ Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:api');
 
+Route::any('/test5', 'HomeController@test');
+
 $api = app('Dingo\Api\Routing\Router');
 
 
-//共有接口
+//共有接口 不需要登录
 $api->version('v1', function ($api) {
-    $api->group(['namespace'=>'App\Http\Controllers\Api'], function ($api) {
-        $api->any('test', 'V1\Home\TestController@index')->middleware(['jwt.auth','jwt.refresh']);
-        $api->any('authenticate', 'V1\Jwt\AuthenticateController@authenticate');
-    });
 
-    $api->group(['namespace'=>'App\Http\Controllers\Auth'], function ($api) {
-        $api->post('register', 'RegisterController@register');
-        $api->post('login', 'LoginController@login');
-    });
+    // 用户相关
+    $api->group(['namespace'=>'App\Http\Controllers\Api\V1\Jwt'], function ($api) {
+        //注册
+        $api->post('register', 'AuthenticateController@register');
+        //登录
+        $api->post('authenticate', 'AuthenticateController@authenticate');
+        
 
-    $api->post('test2', function () {
-        echo 'v2';
     });
+    $api->any('test', 'V1\Home\TestController@index')->middleware(['jwt.auth','jwt.refresh']);
+
+
 });
 
 
-//私有接口
+//私有接口 必须登录
 $api->version('v2', function ($api) {
     $api->group(['namespace'=>'App\Http\Controllers\Api'], function ($api) {
         $api->post('test', function () {
             echo 'v2';
         });
     });
+
 });
