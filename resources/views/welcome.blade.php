@@ -97,19 +97,16 @@
                         };
                         this.$http.post("{{ url('api/authenticate') }}", postData).then(function (response) {
                             localStorage.setItem('Authorization', response.data.token);
-                            console.log(localStorage.getItem('Authorization'));
                         })
                     },
                     refresh: function () {
                         this.$http.post("{{ url('api/test') }}").then(function (response) {
-//                            console.log(localStorage.getItem('Authorization'));
+                            
                         })
                     }
                 },
                 ready: function () {
-                    this.$http.post("{{ url('test') }}").then(function (response) {
-                        console.log(response);
-                    })
+
                 }
             })
         </script>
