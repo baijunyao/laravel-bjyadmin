@@ -179,14 +179,19 @@ return [
         App\Providers\RouteServiceProvider::class,
 
         /**
-         * dingo/api
+         * dingo/api 接口
          */
         Dingo\Api\Provider\LaravelServiceProvider::class,
 
         /**
-         * jwt-auth
+         * jwt-auth 接口认证
          */
         Tymon\JWTAuth\Providers\JWTAuthServiceProvider::class,
+
+        /**
+         * zizaco/entrust 权限认证
+         */
+        Zizaco\Entrust\EntrustServiceProvider::class,
 
     ],
 
@@ -237,6 +242,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'JWTAuth' => Tymon\JWTAuth\Facades\JWTAuth::class,
         'JWTFactory' => Tymon\JWTAuth\Facades\JWTFactory::class,
+        'Entrust' => Zizaco\Entrust\EntrustFacade::class,
     ],
 
 ];
