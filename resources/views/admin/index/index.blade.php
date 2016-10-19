@@ -4,6 +4,5 @@
 
 @section('body')
 
-    后台首页
 
 @endsection
