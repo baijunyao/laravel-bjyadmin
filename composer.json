@@ -9,7 +9,8 @@
         "laravel/framework": "5.3.*",
         "doctrine/dbal": "^2.5",
         "dingo/api": "1.0.x@dev",
-        "tymon/jwt-auth": "0.5.*"
+        "tymon/jwt-auth": "0.5.*",
+        "zizaco/entrust": "5.2.x-dev"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
