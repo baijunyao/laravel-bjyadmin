@@ -25,3 +25,12 @@ Route::get('/logout', function () {
     Auth::logout();
     echo '退出';
 });
+
+/**
+ * 管理后台
+ */
+Route::group(['prefix'=>'admin', 'namespace'=>'Admin'], function () {
+   Route::group(['prefix'=>'index'], function () {
+      Route::get('index', 'IndexController@index');
+   });
+});
