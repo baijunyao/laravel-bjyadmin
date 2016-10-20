@@ -3,7 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-
+use App\Models\AdminNav;
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -13,7 +13,13 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        //分配后台通用的左侧导航数据
+        view()->composer('admin/*',function($view){
+            $adminNavModel = new AdminNav();
+            $adminNav = $adminNavModel->getTreeData();
+            //p($adminNav);
+            $view->with('adminNav', $adminNav);
+        });
     }
 
     /**
