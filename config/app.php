@@ -193,6 +193,14 @@ return [
          */
         Zizaco\Entrust\EntrustServiceProvider::class,
 
+        /**
+         * migrations-generator 逆向迁移
+         */
+        Way\Generators\GeneratorsServiceProvider::class,
+        Xethron\MigrationsGenerator\MigrationsGeneratorServiceProvider::class,
+
+
+
     ],
 
     /*
