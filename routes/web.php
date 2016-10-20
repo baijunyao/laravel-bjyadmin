@@ -11,9 +11,28 @@
 |
 */
 
+use App\Models\Role;
+
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('rbac', function () {
+    //$owner = new Role();
+    //$owner->name = 'owner';
+    //$owner->display_name = 'Project Owner';
+    //$owner->description = 'User is the owner of a given project';
+    //$owner->save();
+
+    $admin = new Role();
+    $admin->name = 'admin';
+    $admin->display_name = 'User Administrator';
+    $admin->description = 'User is allowed to manage and edit other users';
+    $admin->save();
+
+
+});
+
 
 Auth::routes();
 

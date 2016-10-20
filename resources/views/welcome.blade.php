@@ -81,9 +81,6 @@
                     <input type="submit" value="提交">
                 </form>
             </div>
-            <div>
-                {{ $user['avatar'] }}
-            </div>
         </div>
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
         <script src="{{ asset('statics/vue/vue.js') }}"></script>
