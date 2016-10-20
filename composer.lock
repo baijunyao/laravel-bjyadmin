@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "96c775e0c0ebd87c2d0675f768dafada",
-    "content-hash": "7072adff5cc1bb919a2292e0a36fd7a1",
+    "hash": "d419cbe775d16e591d29957d5348a979",
+    "content-hash": "5f2a7992556a1f19e54d257c88077427",
     "packages": [
         {
             "name": "classpreloader/classpreloader",
@@ -1382,6 +1382,55 @@
                 "php"
             ],
             "time": "2016-09-16 12:04:44"
+        },
+        {
+            "name": "orangehill/iseed",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/orangehill/iseed.git",
+                "reference": "9f635a3884a4a98502fd14988d4309774b7b0340"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://packagist.phpcomposer.com/files/orangehill/iseed/9f635a3884a4a98502fd14988d4309774b7b0340.zip",
+                "reference": "9f635a3884a4a98502fd14988d4309774b7b0340",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "illuminate/filesystem": "5.x",
+                "mockery/mockery": "dev-master"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Orangehill\\Iseed": "src/"
+                },
+                "classmap": [
+                    "src/Orangehill/Iseed/Exceptions.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-2-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Tihomir Opacic",
+                    "email": "tihomir.opacic@orangehilldev.com"
+                }
+            ],
+            "description": "Generate a new Laravel database seed file based on data from the existing database table.",
+            "keywords": [
+                "artisan",
+                "generators",
+                "laravel",
+                "seed"
+            ],
+            "time": "2016-09-14 08:35:19"
         },
         {
             "name": "paragonie/random_compat",
@@ -4455,6 +4504,7 @@
     "stability-flags": {
         "dingo/api": 20,
         "zizaco/entrust": 20,
+        "orangehill/iseed": 20,
         "xethron/migrations-generator": 20,
         "way/generators": 20
     },
