@@ -1,9 +1,9 @@
 @extends('layouts.admin')
 
-@section('title', '首页')
+@section('title', '管理后台首页')
 
 @section('content')
-
+    
     <!-- page content -->
     <div class="right_col" role="main">
         <div class="">
