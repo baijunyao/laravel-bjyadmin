@@ -14,9 +14,9 @@ class AdminNavsTableSeeder extends Seeder
     {
         
 
-        \DB::table('admin_navs')->delete();
+        DB::table('admin_navs')->delete();
         
-        \DB::table('admin_navs')->insert(array (
+        DB::table('admin_navs')->insert(array (
             0 => 
             array (
                 'id' => 1,

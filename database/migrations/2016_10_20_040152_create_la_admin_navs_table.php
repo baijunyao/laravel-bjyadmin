@@ -12,7 +12,7 @@ class CreateLaAdminNavsTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('la_admin_navs', function(Blueprint $table)
+		Schema::create('admin_navs', function(Blueprint $table)
 		{
 			$table->increments('id');
 			$table->integer('pid')->unsigned()->nullable()->default(0);
@@ -33,7 +33,7 @@ class CreateLaAdminNavsTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('la_admin_navs');
+		Schema::drop('admin_navs');
 	}
 
 }
