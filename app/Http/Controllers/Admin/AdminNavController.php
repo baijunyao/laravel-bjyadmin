@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-use App\Model\AdminNav;
+use App\Models\AdminNav;
 
 class AdminNavController extends Controller
 {
@@ -14,7 +14,7 @@ class AdminNavController extends Controller
     /**
      * 菜单管理页面
      *
-     * @param  \App\Model\AdminNav        $adminNav 后台菜单模型
+     * @param  \App\Models\AdminNav        $adminNav 后台菜单模型
      * @return \Illuminate\Http\Response
      */
     public function index(AdminNav $adminNav)
@@ -30,7 +30,7 @@ class AdminNavController extends Controller
      * 添加菜单
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Model\AdminNav        $adminNav 后台菜单模型
+     * @param  \App\Models\AdminNav        $adminNav 后台菜单模型
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request ,AdminNav $adminNav)
@@ -44,7 +44,7 @@ class AdminNavController extends Controller
      * 修改菜单
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Model\AdminNav        $adminNav 后台菜单模型
+     * @param  \App\Models\AdminNav        $adminNav 后台菜单模型
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request ,AdminNav $adminNav)
@@ -61,7 +61,7 @@ class AdminNavController extends Controller
     /**
      * 删除菜单
      *
-     * @param  \App\Model\AdminNav        $adminNav 后台菜单模型
+     * @param  \App\Models\AdminNav        $adminNav 后台菜单模型
      * @return \Illuminate\Http\Response
      */
     public function destroy(AdminNav $adminNav)
@@ -78,7 +78,7 @@ class AdminNavController extends Controller
      * 排序
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Model\AdminNav        $adminNav 后台菜单模型
+     * @param  \App\Models\AdminNav        $adminNav 后台菜单模型
      * @return \Illuminate\Http\Response
      */
     public function order(Request $request, AdminNav $adminNav){
