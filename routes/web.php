@@ -11,21 +11,19 @@
 |
 */
 
-
 Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
+Route::get('test', function () {
 
-
-
-Route::post('/test', 'Api\V1\Jwt\AuthenticateController@register');
-
-Route::get('/logout', function () {
-    Auth::logout();
-    echo '退出';
 });
+
+
+/**
+ * auth 登录注册退出
+ */
+Auth::routes();
 
 /**
  * 管理后台

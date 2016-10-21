@@ -200,11 +200,6 @@ return [
         Xethron\MigrationsGenerator\MigrationsGeneratorServiceProvider::class,
         Orangehill\Iseed\IseedServiceProvider::class,
 
-        /**
-         * baum/baum 无限级分类递归
-         */
-        Baum\Providers\BaumServiceProvider::class,
-
     ],
 
     /*

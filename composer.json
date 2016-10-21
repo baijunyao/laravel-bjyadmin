@@ -11,8 +11,7 @@
         "dingo/api": "1.0.x@dev",
         "tymon/jwt-auth": "0.5.*",
         "zizaco/entrust": "5.2.x-dev",
-        "orangehill/iseed": "dev-master",
-        "baum/baum": "~1.1"
+        "orangehill/iseed": "dev-master"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
