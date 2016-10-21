@@ -30,7 +30,7 @@ Route::get('/logout', function () {
 /**
  * 管理后台
  */
-Route::group(['prefix'=>'admin', 'namespace'=>'Admin', 'middleware'=>'adminAuth'], function () {
+Route::group(['prefix'=>'admin', 'namespace'=>'Admin', 'middleware'=>'entrust.admin'], function () {
     //后台首页
     Route::group(['prefix'=>'index'], function () {
         Route::get('/index','IndexController@index');
