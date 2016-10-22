@@ -31,53 +31,53 @@ Auth::routes();
 Route::group(['prefix'=>'admin', 'namespace'=>'Admin', 'middleware'=>'entrust.admin'], function () {
     //后台首页
     Route::group(['prefix'=>'index'], function () {
-        Route::get('/index','IndexController@index');
-        Route::get('/welcome','IndexController@welcome');
+        Route::get('index','IndexController@index');
+        Route::get('welcome','IndexController@welcome');
     });
 
     //菜单管理
     Route::group(['prefix'=>'admin_nav'], function () {
-        Route::get('/index' ,'AdminNavController@index');
-        Route::post('/store' ,'AdminNavController@store');
-        Route::post('/update' ,'AdminNavController@update');
-        Route::get('/destroy' ,'AdminNavController@destroy');
-        Route::post('/order' ,'AdminNavController@order');
+        Route::get('index' ,'AdminNavController@index');
+        Route::post('store' ,'AdminNavController@store');
+        Route::post('update' ,'AdminNavController@update');
+        Route::get('destroy' ,'AdminNavController@destroy');
+        Route::post('order' ,'AdminNavController@order');
     });
 
     //权限管理
     Route::group(['prefix'=>'permissions'] ,function () {
         //权限
-        Route::get('/index' ,'PermissionsController@index');
-        Route::post('/store' ,'PermissionsController@store');
-        Route::post('/update' ,'PermissionsController@update');
-        Route::get('/destroy' ,'PermissionsController@destroy');
+        Route::get('index' ,'PermissionsController@index');
+        Route::post('store' ,'PermissionsController@store');
+        Route::post('update' ,'PermissionsController@update');
+        Route::get('destroy' ,'PermissionsController@destroy');
     });
 
     //用户组管理
     Route::group(['prefix'=>'auth_group'], function (){
         //用户组
-        Route::get('/index' ,'AuthGroupController@index');
-        Route::post('/store' ,'AuthGroupController@store');
-        Route::post('/update' ,'AuthGroupController@update');
-        Route::get('/destroy' ,'AuthGroupController@destroy');
+        Route::get('index' ,'AuthGroupController@index');
+        Route::post('store' ,'AuthGroupController@store');
+        Route::post('update' ,'AuthGroupController@update');
+        Route::get('destroy' ,'AuthGroupController@destroy');
         //权限-用户组
-        Route::get('/rule_group_show' ,'AuthGroupController@rule_group_show');
-        Route::post('/rule_group_update' ,'AuthGroupController@rule_group_update');
+        Route::get('rule_group_show' ,'AuthGroupController@rule_group_show');
+        Route::post('rule_group_update' ,'AuthGroupController@rule_group_update');
     });
 
     //用户-用户组
     Route::group(['prefix'=>'auth_group_access'], function (){
         //管理员列表
-        Route::get('/index' ,'AuthGroupAccessController@index');
-        Route::get('/create' ,'AuthGroupAccessController@create');
-        Route::post('/store' ,'AuthGroupAccessController@store');
-        Route::get('/edit/{uid}' ,'AuthGroupAccessController@edit');
-        Route::post('/update' ,'AuthGroupAccessController@update');
+        Route::get('index' ,'AuthGroupAccessController@index');
+        Route::get('create' ,'AuthGroupAccessController@create');
+        Route::post('store' ,'AuthGroupAccessController@store');
+        Route::get('edit/{uid}' ,'AuthGroupAccessController@edit');
+        Route::post('update' ,'AuthGroupAccessController@update');
 
         //添加用户到用户组
-        Route::get('/search_user' ,'AuthGroupAccessController@search_user');
-        Route::get('/add_user_to_group' ,'AuthGroupAccessController@add_user_to_group');
-        Route::get('/delete_user_from_group' ,'AuthGroupAccessController@delete_user_from_group');
+        Route::get('search_user' ,'AuthGroupAccessController@search_user');
+        Route::get('add_user_to_group' ,'AuthGroupAccessController@add_user_to_group');
+        Route::get('delete_user_from_group' ,'AuthGroupAccessController@delete_user_from_group');
 
     });
 
