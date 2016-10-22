@@ -34,7 +34,7 @@
                         <td>
                             <a href="javascript:;" ruleId="{{ $v['id'] }}" onclick="add_child(this)">添加子权限</a> |
                             <a href="javascript:;" ruleId="{{ $v['id'] }}" ruleName="{{ $v['name'] }}" ruledisplayname="{{ $v['display_name'] }}" onclick="edit(this)">修改</a> |
-                            <a href="javascript:if(confirm('确定删除？'))location='{{ url('admin/permissions/destroy').'?id='.$v['id'] }}'">删除</a>
+                            <a href="javascript:if(confirm('确定删除？'))location='{{ url('admin/permission/destroy').'?id='.$v['id'] }}'">删除</a>
                         </td>
                     </tr>
                 @endforeach
@@ -55,7 +55,7 @@
                     </h4>
                 </div>
                 <div class="modal-body">
-                    <form id="bjy-form" class="form-inline" action="{{ url('admin/permissions/store') }}" method="post">
+                    <form id="bjy-form" class="form-inline" action="{{ url('admin/permission/store') }}" method="post">
                         {{ csrf_field() }}
                         <input type="hidden" name="pid" value="0">
                         <table class="table table-striped table-bordered table-hover">
@@ -98,7 +98,7 @@
                     </h4>
                 </div>
                 <div class="modal-body">
-                    <form id="bjy-form" class="form-inline" action="{{ url('admin/permissions/update') }}" method="post">
+                    <form id="bjy-form" class="form-inline" action="{{ url('admin/permission/update') }}" method="post">
                         {{ csrf_field() }}
                         <input type="hidden" name="id">
                         <table class="table table-striped table-bordered table-hover">

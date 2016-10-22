@@ -11,10 +11,34 @@ class UserTableSeeder extends Seeder
      */
     public function run()
     {
-        //DB::table('users')->insert([
-        //    'name' => str_random(10),
-        //    'email' => str_random(10).'@gmail.com',
-        //    'password' => bcrypt('secret'),
-        //]);
+
+        DB::table('users')->delete();
+        DB::table('users')->insert(array (
+            0 =>
+                array (
+                    'id' => 1,
+                    'name' => 'baijunyao',
+                    'email' => 'baijunyao@baijunyao.com',
+                    'password' => '$2y$10$q/2hpiC3nqv6UCeL4mm.nOK/z/dIv4lRryN4aKI0erJSTH6dFFkgW',
+                    'remember_token' => NULL,
+                    'phone' => NULL,
+                    'created_at' => '2016-10-22 07:35:12',
+                    'updated_at' => '2016-10-22 07:35:12',
+                    'deleted_at' => NULL,
+                ),
+            1 =>
+                array (
+                    'id' => 2,
+                    'name' => 'test',
+                    'email' => 'test@baijunyao.com',
+                    'password' => '$2y$10$q/2hpiC3nqv6UCeL4mm.nOK/z/dIv4lRryN4aKI0erJSTH6dFFkgW',
+                    'remember_token' => NULL,
+                    'phone' => NULL,
+                    'created_at' => '2016-10-22 07:35:12',
+                    'updated_at' => '2016-10-22 07:35:12',
+                    'deleted_at' => NULL,
+                ),
+        ));
+
     }
 }

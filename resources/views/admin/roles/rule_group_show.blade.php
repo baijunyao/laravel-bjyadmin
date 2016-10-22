@@ -7,7 +7,7 @@
 @section('body')
 
     <h1 class="text-center">为<span style="color:red">{{ $group_data['title'] }}</span>分配权限</h1>
-    <form action="{{ url('admin/auth_group/rule_group_update') }}" method="post">
+    <form action="{{ url('roles') }}" method="post">
         {{ csrf_field() }}
         <input type="hidden" name="id" value="{{ $group_data['id'] }}">
         <input type="hidden" name="title" value="{{ $group_data['title'] }}">

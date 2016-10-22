@@ -45,7 +45,7 @@ Route::group(['prefix'=>'admin', 'namespace'=>'Admin', 'middleware'=>'entrust.ad
     });
 
     //权限管理
-    Route::group(['prefix'=>'permissions'] ,function () {
+    Route::group(['prefix'=>'permission'] ,function () {
         //权限
         Route::get('index' ,'PermissionsController@index');
         Route::post('store' ,'PermissionsController@store');

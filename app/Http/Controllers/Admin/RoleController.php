@@ -10,7 +10,7 @@ use App\Http\Controllers\Controller;
 use App\Model\AuthGroup;
 use App\Model\AuthRule;
 
-class AuthGroupController extends Controller
+class RoleController extends Controller
 {
     /**
      * 用户组列表

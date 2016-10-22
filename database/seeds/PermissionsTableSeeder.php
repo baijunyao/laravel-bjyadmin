@@ -108,7 +108,7 @@ class PermissionsTableSeeder extends Seeder
             array (
                 'id' => 11,
                 'pid' => 21,
-                'name' => 'admin/auth_group/index',
+                'name' => 'admin/roles/index',
                 'display_name' => '用户组列表',
                 'created_at' => NULL,
                 'updated_at' => NULL,
@@ -117,7 +117,7 @@ class PermissionsTableSeeder extends Seeder
             array (
                 'id' => 12,
                 'pid' => 11,
-                'name' => 'admin/auth_group/store',
+                'name' => 'admin/roles/store',
                 'display_name' => '添加用户组',
                 'created_at' => NULL,
                 'updated_at' => NULL,
@@ -126,7 +126,7 @@ class PermissionsTableSeeder extends Seeder
             array (
                 'id' => 13,
                 'pid' => 11,
-                'name' => 'admin/auth_group/update',
+                'name' => 'admin/roles/update',
                 'display_name' => '修改用户组',
                 'created_at' => NULL,
                 'updated_at' => NULL,
@@ -135,7 +135,7 @@ class PermissionsTableSeeder extends Seeder
             array (
                 'id' => 14,
                 'pid' => 11,
-                'name' => 'admin/auth_group/destroy',
+                'name' => 'admin/roles/destroy',
                 'display_name' => '删除用户组',
                 'created_at' => NULL,
                 'updated_at' => NULL,
@@ -144,7 +144,7 @@ class PermissionsTableSeeder extends Seeder
             array (
                 'id' => 15,
                 'pid' => 11,
-                'name' => 'admin/auth_group/rule_group_show',
+                'name' => 'admin/roles/rule_group_show',
                 'display_name' => '分配权限页面',
                 'created_at' => NULL,
                 'updated_at' => '2016-09-24 09:16:38',
@@ -333,7 +333,7 @@ class PermissionsTableSeeder extends Seeder
             array (
                 'id' => 141,
                 'pid' => 11,
-                'name' => 'admin/auth_group/rule_group_update',
+                'name' => 'admin/roles/rule_group_update',
                 'display_name' => '分配权限功能',
                 'created_at' => '2016-09-24 09:17:06',
                 'updated_at' => '2016-09-24 09:17:06',
@@ -369,7 +369,7 @@ class PermissionsTableSeeder extends Seeder
             array (
                 'id' => 145,
                 'pid' => 19,
-                'name' => 'admin/auth_group/rule_group_show/22',
+                'name' => 'admin/roles/rule_group_show/22',
                 'display_name' => 'test',
                 'created_at' => NULL,
                 'updated_at' => NULL,
