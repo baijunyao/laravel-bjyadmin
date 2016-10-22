@@ -12,10 +12,7 @@ class AdminNavsTableSeeder extends Seeder
      */
     public function run()
     {
-        
-
         DB::table('admin_navs')->delete();
-        
         DB::table('admin_navs')->insert(array (
             0 => 
             array (
@@ -46,7 +43,7 @@ class AdminNavsTableSeeder extends Seeder
                 'id' => 7,
                 'pid' => 4,
                 'name' => '权限管理',
-                'mca' => 'admin/auth_rule/index',
+                'mca' => 'admin/permissions/index',
                 'ico' => '',
                 'order_number' => 1,
                 'created_at' => NULL,

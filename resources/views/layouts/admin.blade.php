@@ -51,7 +51,6 @@
                             @endforeach
                         </ul>
                     </div>
-
                 </div>
                 <!-- /sidebar menu -->
 

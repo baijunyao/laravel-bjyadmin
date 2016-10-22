@@ -36,6 +36,7 @@ class EntrustSetupTables extends Migration
         // Create table for storing permissions
         Schema::create('permissions', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('pid')->unsigned()->nullable()->default(0);
             $table->string('name')->unique();
             $table->string('display_name')->nullable();
             $table->string('description')->nullable();

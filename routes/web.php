@@ -45,12 +45,12 @@ Route::group(['prefix'=>'admin', 'namespace'=>'Admin', 'middleware'=>'entrust.ad
     });
 
     //权限管理
-    Route::group(['prefix'=>'auth_rule'] ,function () {
+    Route::group(['prefix'=>'permissions'] ,function () {
         //权限
-        Route::get('/index' ,'AuthRuleController@index');
-        Route::post('/store' ,'AuthRuleController@store');
-        Route::post('/update' ,'AuthRuleController@update');
-        Route::get('/destroy' ,'AuthRuleController@destroy');
+        Route::get('/index' ,'PermissionsController@index');
+        Route::post('/store' ,'PermissionsController@store');
+        Route::post('/update' ,'PermissionsController@update');
+        Route::get('/destroy' ,'PermissionsController@destroy');
     });
 
     //用户组管理

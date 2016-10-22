@@ -2,42 +2,40 @@
 
 namespace App\Http\Controllers\Admin;
 
-use Illuminate\Http\Request;
-
 use App\Http\Requests;
+use App\Models\Permission;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-use App\Model\AuthRule;
-
-class AuthRuleController extends Controller
+class PermissionsController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @param  \App\Model\AuthRule       $authRule 权限模型
+     * @param  \App\Models\Permission       $authRule 权限模型
      * @return \Illuminate\Http\Response
      */
-    public function index(AuthRule $authRule)
+    public function index(Permission $authRule)
     {
         $data=$authRule->getTreeData('tree','id');
         $assign=[
             'data'=>$data
         ];
-        return view('admin/auth_rule/index', $assign);
+        return view('admin/permissions/index', $assign);
     }
 
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Model\AuthRule       $authRule 权限模型
+     * @param  \App\Models\Permission       $authRule 权限模型
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, AuthRule $authRule)
+    public function store(Request $request, Permission $authRule)
     {
         $data=$request->except('_token');
         $authRule->addData($data);
-        return redirect('admin/auth_rule/index');
+        return redirect('admin/permissions/index');
     }
 
 
@@ -45,33 +43,33 @@ class AuthRuleController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Model\AuthRule       $authRule 权限模型
+     * @param  \App\Models\Permission       $authRule 权限模型
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, AuthRule $authRule)
+    public function update(Request $request, Permission $authRule)
     {
         $data=$request->except('_token');
         $map=[
             'id'=>$data['id']
         ];
         $authRule->editData($map, $data);
-        return redirect('admin/auth_rule/index');
+        return redirect('admin/permissions/index');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Model\AuthRule       $authRule 权限模型
+     * @param  \App\Models\Permission       $authRule 权限模型
      * @return \Illuminate\Http\Response
      */
-    public function destroy(AuthRule $authRule)
+    public function destroy(Permission $authRule)
     {
         $id=request()->input('id');
         $map=[
             'id'=>$id
         ];
         $authRule->deleteData($map);
-        return redirect('admin/auth_rule/index');
+        return redirect('admin/permissions/index');
     }
     
 

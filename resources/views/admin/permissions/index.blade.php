@@ -1,23 +1,27 @@
-@extends('admin.public.master')
+@extends('layouts.admin')
 
 @section('title','权限管理')
 
 @section('nav','权限管理')
 
-@section('body')
+@section('description', '对权限的一些操作')
+
+@section('content')
 
     <!-- 导航栏结束 -->
-    <ul id="myTab" class="nav nav-tabs">
-        <li class="active">
-            <a href="#home" data-toggle="tab">权限列表</a>
-        </li>
-        <li>
-            <a href="javascript:;" onclick="add()">添加权限</a>
-        </li>
-    </ul>
+    <div class="x_panel">
+        <ul id="myTab" class="nav nav-tabs bar_tabs">
+            <li class="active">
+                <a href="#home" data-toggle="tab">权限列表</a>
+            </li>
+            <li>
+                <a href="javascript:;" onclick="add()">添加权限</a>
+            </li>
+        </ul>
+    </div>
     <div id="myTabContent" class="tab-content">
         <div class="tab-pane fade in active" id="home">
-            <table class="table table-striped table-bordered table-hover table-condensed">
+            <table class="table table-striped table-bordered table-hover">
                 <tr>
                     <th>权限名</th>
                     <th>权限</th>
@@ -29,8 +33,8 @@
                         <td>{{ $v['name'] }}</td>
                         <td>
                             <a href="javascript:;" ruleId="{{ $v['id'] }}" onclick="add_child(this)">添加子权限</a> |
-                            <a href="javascript:;" ruleId="{{ $v['id'] }}" ruleName="{{ $v['name'] }}" ruleTitle="{{ $v['title'] }}" onclick="edit(this)">修改</a> |
-                            <a href="javascript:if(confirm('确定删除？'))location='{{ url('admin/auth_rule/destroy').'?id='.$v['id'] }}'">删除</a>
+                            <a href="javascript:;" ruleId="{{ $v['id'] }}" ruleName="{{ $v['name'] }}" ruledisplayname="{{ $v['display_name'] }}" onclick="edit(this)">修改</a> |
+                            <a href="javascript:if(confirm('确定删除？'))location='{{ url('permissions').'?id='.$v['id'] }}'">删除</a>
                         </td>
                     </tr>
                 @endforeach
@@ -51,14 +55,14 @@
                     </h4>
                 </div>
                 <div class="modal-body">
-                    <form id="bjy-form" class="form-inline" action="{{ url('admin/auth_rule/store') }}" method="post">
+                    <form id="bjy-form" class="form-inline" action="{{ url('permissions') }}" method="post">
                         {{ csrf_field() }}
                         <input type="hidden" name="pid" value="0">
-                        <table class="table table-striped table-bordered table-hover table-condensed">
+                        <table class="table table-striped table-bordered table-hover">
                             <tr>
                                 <th width="12%">权限名：</th>
                                 <td>
-                                    <input class="form-control" type="text" name="title">
+                                    <input class="form-control" type="text" name="display_name">
                                 </td>
                             </tr>
                             <tr>
@@ -94,14 +98,14 @@
                     </h4>
                 </div>
                 <div class="modal-body">
-                    <form id="bjy-form" class="form-inline" action="{{ url('admin/auth_rule/update') }}" method="post">
+                    <form id="bjy-form" class="form-inline" action="{{ url('permissions') }}" method="post">
                         {{ csrf_field() }}
                         <input type="hidden" name="id">
-                        <table class="table table-striped table-bordered table-hover table-condensed">
+                        <table class="table table-striped table-bordered table-hover">
                             <tr>
                                 <th width="12%">权限名：</th>
                                 <td>
-                                    <input class="form-control" type="text" name="title">
+                                    <input class="form-control" type="text" name="display_name">
                                 </td>
                             </tr>
                             <tr>
@@ -131,7 +135,7 @@
     <script>
         // 添加菜单
         function add(){
-            $("input[name='title'],input[name='name']").val('');
+            $("input[name='display_name'],input[name='name']").val('');
             $("input[name='pid']").val(0);
             $('#bjy-add').modal('show');
         }
@@ -140,7 +144,7 @@
         function add_child(obj){
             var ruleId=$(obj).attr('ruleId');
             $("input[name='pid']").val(ruleId);
-            $("input[name='title']").val('');
+            $("input[name='display_name']").val('');
             $("input[name='name']").val('');
             $('#bjy-add').modal('show');
         }
@@ -148,10 +152,10 @@
         // 修改菜单
         function edit(obj){
             var ruleId=$(obj).attr('ruleId');
-            var ruletitle=$(obj).attr('ruletitle');
+            var rule_display_name=$(obj).attr('ruledisplayname');
             var ruleName=$(obj).attr('ruleName');
             $("input[name='id']").val(ruleId);
-            $("input[name='title']").val(ruletitle);
+            $("input[name='display_name']").val(rule_display_name);
             $("input[name='name']").val(ruleName);
             $('#bjy-edit').modal('show');
         }
