@@ -1,25 +1,29 @@
-@extends('admin.public.master')
+@extends('layouts.admin')
 
-@section('title','菜单管理')
+@section('title', '菜单管理')
 
-@section('nav','菜单管理')
+@section('nav', '菜单管理')
 
-@section('body')
+@section('description', '对菜单的一些操作')
+
+@section('content')
 
     <!-- 导航栏结束 -->
-    <ul id="myTab" class="nav nav-tabs">
-        <li class="active">
-            <a href="#home" data-toggle="tab">菜单列表</a>
-        </li>
-        <li>
-            <a href="javascript:;" onclick="add()">添加菜单</a>
-        </li>
-    </ul>
+    <div class="x_panel">
+        <ul id="myTab" class="nav nav-tabs bar_tabs">
+            <li class="active">
+                <a href="#home" data-toggle="tab">菜单列表</a>
+            </li>
+            <li>
+                <a href="javascript:;" onclick="add()">添加菜单</a>
+            </li>
+        </ul>
+    </div>
     <form action="{{url('admin/admin_nav/order')}}" method="post">
         <input type="hidden" name="_token" value="{{csrf_token()}}">
         <div id="myTabContent" class="tab-content">
             <div class="tab-pane fade in active" id="home">
-                <table class="table table-striped table-bordered table-hover table-condensed">
+                <table class="table table-striped table-bordered table-hover">
                     <tr>
                         <th width="5%">排序</th>
                         <th>菜单名</th>
@@ -67,7 +71,7 @@
                     <form id="bjy-form" class="form-inline" action="{{url('admin/admin_nav/store')}}" method="post">
                         <input type="hidden" name="pid" value="0">
                         {{ csrf_field() }}
-                        <table class="table table-striped table-bordered table-hover table-condensed">
+                        <table class="table table-striped table-bordered table-hover">
                             <tr>
                                 <th width="12%">菜单名：</th>
                                 <td>
@@ -117,7 +121,7 @@
                     <form id="bjy-form" class="form-inline" action="{{url('admin/admin_nav/update')}}" method="post">
                         <input type="hidden" name="id">
                         {{ csrf_field() }}
-                        <table class="table table-striped table-bordered table-hover table-condensed">
+                        <table class="table table-striped table-bordered table-hover">
                             <tr>
                                 <th width="12%">菜单名：</th>
                                 <td>

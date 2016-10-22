@@ -1,15 +1,10 @@
 <?php
-
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\SoftDeletes;
 use DB;
-use Validator;
-use Session;
-
 use app\Library\Org\Data;
-
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class AdminNav extends Model
 {
@@ -39,26 +34,14 @@ class AdminNav extends Model
                 ->get()
                 ->toArray();
         }
+
         // 获取树形或者结构数据
         if($type=='tree'){
             $data=Data::tree($data,'name','id','pid');
         }elseif($type="level"){
             $data=Data::channelLevel($data,0,'&nbsp;','id');
-            $uid=session('user.id');
             // 显示有权限的菜单
-            $auth=new Auth();
-            foreach ($data as $k => $v) {
-                if ($auth->check($v['mca'],$uid)) {
-                    foreach ($v['_data'] as $m => $n) {
-                        if(!$auth->check($n['mca'],$uid)){
-                            unset($data[$k]['_data'][$m]);
-                        }
-                    }
-                }else{
-                    // 删除无权限的菜单
-                    unset($data[$k]);
-                }
-            }
+
         }
         return $data;
     }

@@ -48,14 +48,13 @@
                                         {{--<li><a href="index3.html">Dashboard3</a></li>--}}
                                     {{--</ul>--}}
                                 {{--</li>--}}
-                                <li><a><i class="fa fa-edit"></i> {{ $v->name }} <span class="fa fa-chevron-down"></span></a>
+                                <li><a><i class="fa fa-edit"></i> {{ $v['name'] }} <span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu">
-                                        @foreach($v->child as $n)
-                                            <li><a href="{{ url($n->mca) }}">{{ $n->name }}</a></li>
+                                        @foreach($v['_data'] as $n)
+                                            <li><a href="{{ url($n['mca']) }}">{{ $n['name'] }}</a></li>
                                         @endforeach
                                     </ul>
                                 </li>
-
                             @endforeach
                         </ul>
                     </div>
@@ -180,7 +179,33 @@
         </div>
         <!-- /top navigation -->
 
-        @yield('content')
+        <!-- page content -->
+        <div class="right_col" role="main">
+            <div class="">
+                <div class="page-title">
+                    <div class="title_left">
+                        <h3>@yield('nav') <small>@yield('description')</small></h3>
+                    </div>
+
+                    <div class="title_right">
+                        <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Search for...">
+                    <span class="input-group-btn">
+                      <button class="btn btn-default" type="button">Go!</button>
+                    </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+                <div class="row">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        @yield('content')
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <!-- footer content -->
         <footer>

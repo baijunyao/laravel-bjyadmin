@@ -16,8 +16,8 @@ class AppServiceProvider extends ServiceProvider
         //分配后台通用的左侧导航数据
         view()->composer('admin/*',function($view){
             $adminNavModel = new AdminNav();
-            $adminNav = $adminNavModel->getTreeData();
-            //p($adminNav);
+            $adminNav = $adminNavModel->getTreeData('level');
+            //p($adminNav);die;
             $view->with('adminNav', $adminNav);
         });
     }
