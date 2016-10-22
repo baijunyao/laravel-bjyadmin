@@ -41,14 +41,7 @@
                         <h3>General</h3>
                         <ul class="nav side-menu">
                             @foreach($adminNav as $v)
-                                {{--<li class="active"><a><i class="fa fa-home"></i> Home <span class="fa fa-chevron-down"></span></a>--}}
-                                    {{--<ul class="nav child_menu" style="display: block;">--}}
-                                        {{--<li class="current-page"><a href="index.html">Dashboard</a></li>--}}
-                                        {{--<li><a href="index2.html">Dashboard2</a></li>--}}
-                                        {{--<li><a href="index3.html">Dashboard3</a></li>--}}
-                                    {{--</ul>--}}
-                                {{--</li>--}}
-                                <li><a><i class="fa fa-edit"></i> {{ $v['name'] }} <span class="fa fa-chevron-down"></span></a>
+                                <li><a><i class="fa fa-{{ $v['ico'] }}"></i> {{ $v['name'] }} <span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu">
                                         @foreach($v['_data'] as $n)
                                             <li><a href="{{ url($n['mca']) }}">{{ $n['name'] }}</a></li>
@@ -58,7 +51,6 @@
                             @endforeach
                         </ul>
                     </div>
-
 
                 </div>
                 <!-- /sidebar menu -->
