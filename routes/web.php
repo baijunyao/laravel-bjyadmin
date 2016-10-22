@@ -47,22 +47,22 @@ Route::group(['prefix'=>'admin', 'namespace'=>'Admin', 'middleware'=>'entrust.ad
     //权限管理
     Route::group(['prefix'=>'permission'] ,function () {
         //权限
-        Route::get('index' ,'PermissionsController@index');
-        Route::post('store' ,'PermissionsController@store');
-        Route::post('update' ,'PermissionsController@update');
-        Route::get('destroy' ,'PermissionsController@destroy');
+        Route::get('index' ,'PermissionController@index');
+        Route::post('store' ,'PermissionController@store');
+        Route::post('update' ,'PermissionController@update');
+        Route::get('destroy' ,'PermissionController@destroy');
     });
 
     //用户组管理
-    Route::group(['prefix'=>'auth_group'], function (){
+    Route::group(['prefix'=>'role'], function (){
         //用户组
-        Route::get('index' ,'AuthGroupController@index');
-        Route::post('store' ,'AuthGroupController@store');
-        Route::post('update' ,'AuthGroupController@update');
-        Route::get('destroy' ,'AuthGroupController@destroy');
+        Route::get('index' ,'RoleController@index');
+        Route::post('store' ,'RoleController@store');
+        Route::post('update' ,'RoleController@update');
+        Route::get('destroy' ,'RoleController@destroy');
         //权限-用户组
-        Route::get('rule_group_show' ,'AuthGroupController@rule_group_show');
-        Route::post('rule_group_update' ,'AuthGroupController@rule_group_update');
+        Route::get('rule_group_show' ,'RoleController@rule_group_show');
+        Route::post('rule_group_update' ,'RoleController@rule_group_update');
     });
 
     //用户-用户组

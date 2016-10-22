@@ -1,42 +1,48 @@
-@extends('admin.public.master')
+@extends('layouts.admin')
 
 @section('title', '用户组管理')
 
 @section('nav', '用户组管理')
 
-@section('body')
+@section('description', '对用户组的一些操作')
 
-    <ul id="myTab" class="nav nav-tabs">
-        <li class="active">
-            <a href="#home" data-toggle="tab">用户组列表</a>
-        </li>
-        <li>
-            <a href="javascript:;" onclick="add()">添加用户组</a>
-        </li>
-    </ul>
-    <div id="myTabContent" class="tab-content">
-        <div class="tab-pane fade in active" id="home">
-            <table class="table table-striped table-bordered table-hover table-condensed">
-                <tr>
-                    <th>用户组名</th>
-                    <th>操作</th>
-                </tr>
-                @foreach($data as $v)
+@section('content')
+
+    <div class="x_panel">
+        <ul id="myTab" class="nav nav-tabs bar_tabs">
+            <li class="active">
+                <a href="#home" data-toggle="tab">用户组列表</a>
+            </li>
+            <li>
+                <a href="javascript:;" onclick="add()">添加用户组</a>
+            </li>
+        </ul>
+
+        <div id="myTabContent" class="tab-content">
+            <div class="tab-pane fade in active" id="home">
+                <table class="table table-striped table-bordered table-hover">
                     <tr>
-                        <td>{{ $v['title'] }}</td>
-                        <td>
-                            <a href="javascript:;" ruleId="{{ $v['id'] }}" ruleTitle="{{ $v['title'] }}" onclick="edit(this)">修改</a> |
-                            <a href="javascript:if(confirm('确定删除？'))location='{{ url('admin/auth_group/destroy').'?id='.$v['id'] }}'">删除</a> |
-                            <a href="{{ url('roles').'?id='.$v['id'] }}">分配权限</a> |
-                            <a href="{{ url('admin/auth_group_access/search_user').'?group_id='.$v['id'] }}">添加成员</a>
-                        </td>
+                        <th>用户组名</th>
+                        <th>用户组</th>
+                        <th>操作</th>
                     </tr>
-                @endforeach
-            </table>
+                    @foreach($data as $v)
+                        <tr>
+                            <td>{{ $v['display_name'] }}</td>
+                            <td>{{ $v['name'] }}</td>
+                            <td>
+                                <a href="javascript:;" ruleId="{{ $v['id'] }}" ruleName="{{ $v['name'] }}" ruleDisplayName="{{ $v['display_name'] }}" onclick="edit(this)">修改</a> |
+                                <a href="javascript:if(confirm('确定删除？'))location='{{ url('admin/role/destroy').'?id='.$v['id'] }}'">删除</a> |
+                                <a href="{{ url('roles').'?id='.$v['id'] }}">分配权限</a> |
+                                <a href="{{ url('admin/auth_group_access/search_user').'?group_id='.$v['id'] }}">添加成员</a>
+                            </td>
+                        </tr>
+                    @endforeach
+                </table>
+            </div>
         </div>
     </div>
-
-    <!-- 添加菜单模态框开始 -->
+    <!-- 添加用户组模态框开始 -->
     <div class="modal fade" id="bjy-add" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -49,13 +55,19 @@
                     </h4>
                 </div>
                 <div class="modal-body">
-                    <form id="bjy-form" class="form-inline" action="{{ url('admin/auth_group/store') }}" method="post">
+                    <form id="bjy-form" class="form-inline" action="{{ url('admin/role/store') }}" method="post">
                         {{ csrf_field() }}
-                        <table class="table table-striped table-bordered table-hover table-condensed">
+                        <table class="table table-striped table-bordered table-hover">
                             <tr>
-                                <th width="15%">用户组名：</th>
+                                <th width="20%">用户组名：</th>
                                 <td>
-                                    <input class="form-control" type="text" name="title">
+                                    <input class="form-control" type="text" name="display_name">
+                                </td>
+                            </tr>
+                            <tr>
+                                <th width="20%">用户组：</th>
+                                <td>
+                                    <input class="form-control" type="text" name="name">
                                 </td>
                             </tr>
                             <tr>
@@ -70,9 +82,9 @@
             </div>
         </div>
     </div>
-    <!-- 添加菜单模态框结束 -->
+    <!-- 添加用户组模态框结束 -->
 
-    <!-- 修改菜单模态框开始 -->
+    <!-- 修改用户组模态框开始 -->
     <div class="modal fade" id="bjy-edit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -81,18 +93,24 @@
                         &times;
                     </button>
                     <h4 class="modal-title" id="myModalLabel">
-                        修改规则
+                        修改用户组
                     </h4>
                 </div>
                 <div class="modal-body">
-                    <form id="bjy-form" class="form-inline" action="{{ url('admin/auth_group/update') }}" method="post">
+                    <form id="bjy-form" class="form-inline" action="{{ url('admin/role/update') }}" method="post">
                         {{ csrf_field() }}
                         <input type="hidden" name="id">
-                        <table class="table table-striped table-bordered table-hover table-condensed">
+                        <table class="table table-striped table-bordered table-hover">
                             <tr>
-                                <th width="12%">规则名：</th>
+                                <th width="20%">用户组名：</th>
                                 <td>
-                                    <input class="form-control" type="text" name="title">
+                                    <input class="form-control" type="text" name="display_name">
+                                </td>
+                            </tr>
+                            <tr>
+                                <th width="20%">用户组：</th>
+                                <td>
+                                    <input class="form-control" type="text" name="name">
                                 </td>
                             </tr>
                             <tr>
@@ -107,25 +125,28 @@
             </div>
         </div>
     </div>
-    <!-- 修改菜单模态框结束 -->
+    <!-- 修改用户组模态框结束 -->
 
 @endsection
 
 @section('js')
 
     <script>
-        // 添加菜单
+        // 添加用户组
         function add(){
-            $("input[name='title']").val('');
+            $("input[name='name']").val('');
+            $("input[name='display_name']").val('');
             $('#bjy-add').modal('show');
         }
 
-        // 修改菜单
+        // 修改用户组
         function edit(obj){
             var ruleId=$(obj).attr('ruleId');
-            var ruleTitle=$(obj).attr('ruleTitle');
+            var ruleName=$(obj).attr('ruleName');
+            var ruleDisplayName=$(obj).attr('ruleDisplayName');
             $("input[name='id']").val(ruleId);
-            $("input[name='title']").val(ruleTitle);
+            $("input[name='name']").val(ruleName);
+            $("input[name='display_name']").val(ruleDisplayName);
             $('#bjy-edit').modal('show');
         }
     </script>

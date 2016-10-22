@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests;
 use App\Models\Permission;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Permission\Store;
 
 class PermissionController extends Controller
 {
@@ -21,39 +21,39 @@ class PermissionController extends Controller
         $assign=[
             'data'=>$data
         ];
-        return view('admin/permissions/index', $assign);
+        return view('admin/permission/index', $assign);
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Permission       $authRule 权限模型
+     * @param  \App\Http\Requests\Permission\Store      $request
+     * @param  \App\Models\Permission                   $authRule 权限模型
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Permission $authRule)
+    public function store(Store $request, Permission $authRule)
     {
         $data=$request->except('_token');
         $authRule->addData($data);
-        return redirect('admin/permissions/index');
+        return redirect('admin/permission/index');
     }
 
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\Permission\Store  $request
      * @param  \App\Models\Permission       $authRule 权限模型
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Permission $authRule)
+    public function update(Store $request, Permission $authRule)
     {
         $data=$request->except('_token');
         $map=[
             'id'=>$data['id']
         ];
         $authRule->editData($map, $data);
-        return redirect('admin/permissions/index');
+        return redirect('admin/permission/index');
     }
 
     /**
@@ -69,7 +69,7 @@ class PermissionController extends Controller
             'id'=>$id
         ];
         $authRule->deleteData($map);
-        return redirect('admin/permissions/index');
+        return redirect('admin/permission/index');
     }
     
 

@@ -18,8 +18,8 @@
                 <a href="javascript:;" onclick="add()">添加权限</a>
             </li>
         </ul>
-    </div>
-    <div id="myTabContent" class="tab-content">
+
+        <div id="myTabContent" class="tab-content">
         <div class="tab-pane fade in active" id="home">
             <table class="table table-striped table-bordered table-hover">
                 <tr>
@@ -41,7 +41,7 @@
             </table>
         </div>
     </div>
-
+    </div>
     <!-- 添加菜单模态框开始 -->
     <div class="modal fade" id="bjy-add" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -60,7 +60,7 @@
                         <input type="hidden" name="pid" value="0">
                         <table class="table table-striped table-bordered table-hover">
                             <tr>
-                                <th width="12%">权限名：</th>
+                                <th width="20%">权限名：</th>
                                 <td>
                                     <input class="form-control" type="text" name="display_name">
                                 </td>
@@ -103,7 +103,7 @@
                         <input type="hidden" name="id">
                         <table class="table table-striped table-bordered table-hover">
                             <tr>
-                                <th width="12%">权限名：</th>
+                                <th width="20%">权限名：</th>
                                 <td>
                                     <input class="form-control" type="text" name="display_name">
                                 </td>

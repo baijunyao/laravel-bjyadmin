@@ -8,7 +8,6 @@
 
 @section('content')
 
-    <!-- 导航栏结束 -->
     <div class="x_panel">
         <ul id="myTab" class="nav nav-tabs bar_tabs">
             <li class="active">
@@ -18,41 +17,42 @@
                 <a href="javascript:;" onclick="add()">添加菜单</a>
             </li>
         </ul>
-    </div>
-    <div id="myTabContent" class="tab-content">
-        <div class="tab-pane fade in active" id="home">
-            <form action="{{url('admin/admin_nav/order')}}" method="post">
-                <input type="hidden" name="_token" value="{{csrf_token()}}">
-                <table class="table table-striped table-bordered table-hover">
-                            <tr>
-                                <th width="5%">排序</th>
-                                <th>菜单名</th>
-                                <th>连接</th>
-                                <th>操作</th>
-                            </tr>
-                            @foreach($data as $k=>$v)
+
+        <div id="myTabContent" class="tab-content">
+            <div class="tab-pane fade in active" id="home">
+                <form action="{{url('admin/admin_nav/order')}}" method="post">
+                    <input type="hidden" name="_token" value="{{csrf_token()}}">
+                    <table class="table table-striped table-bordered table-hover">
                                 <tr>
-                                    <td>
-                                        <input class="form-control" style="width:40px;height:25px;" type="text" name="{{$v['id']}}" value="{{$v['order_number']}}">
-                                    </td>
-                                    <td>{{$v['_name']}}</td>
-                                    <td>{{$v['mca']}}</td>
-                                    <td>
-                                        <a href="javascript:;" navId="{{$v['id']}}" navName="{{$v['name']}}"  onclick="add_child(this)">添加子菜单</a> |
-                                        <a href="javascript:;" navId="{{$v['id']}}" navName="{{$v['name']}}" navMca="{{$v['mca']}}" navIco="{{$v['ico']}}" onclick="edit(this)">修改</a> |
-                                        <a href="javascript:if(confirm('确定删除？'))location='{{url('admin/admin_nav/destroy'.'?id='.$v['id'])}}'">删除</a>
-                                    </td>
+                                    <th width="5%">排序</th>
+                                    <th>菜单名</th>
+                                    <th>连接</th>
+                                    <th>操作</th>
                                 </tr>
-                            @endforeach
-                            <tr>
-                                <th>
-                                    <input class="btn btn-success" type="submit" value="排序">
-                                </th>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                        </table>
-            </form>
+                                @foreach($data as $k=>$v)
+                                    <tr>
+                                        <td>
+                                            <input class="form-control" style="width:40px;height:25px;" type="text" name="{{$v['id']}}" value="{{$v['order_number']}}">
+                                        </td>
+                                        <td>{{$v['_name']}}</td>
+                                        <td>{{$v['mca']}}</td>
+                                        <td>
+                                            <a href="javascript:;" navId="{{$v['id']}}" navName="{{$v['name']}}"  onclick="add_child(this)">添加子菜单</a> |
+                                            <a href="javascript:;" navId="{{$v['id']}}" navName="{{$v['name']}}" navMca="{{$v['mca']}}" navIco="{{$v['ico']}}" onclick="edit(this)">修改</a> |
+                                            <a href="javascript:if(confirm('确定删除？'))location='{{url('admin/admin_nav/destroy'.'?id='.$v['id'])}}'">删除</a>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                                <tr>
+                                    <th>
+                                        <input class="btn btn-success" type="submit" value="排序">
+                                    </th>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                            </table>
+                </form>
+            </div>
         </div>
     </div>
     <!-- 添加菜单模态框开始 -->
@@ -73,7 +73,7 @@
                         {{ csrf_field() }}
                         <table class="table table-striped table-bordered table-hover">
                             <tr>
-                                <th width="12%">菜单名：</th>
+                                <th width="20%">菜单名：</th>
                                 <td>
                                     <input class="form-control" type="text" name="name">
                                 </td>
@@ -123,7 +123,7 @@
                         {{ csrf_field() }}
                         <table class="table table-striped table-bordered table-hover">
                             <tr>
-                                <th width="12%">菜单名：</th>
+                                <th width="20%">菜单名：</th>
                                 <td>
                                     <input class="form-control" type="text" name="name">
                                 </td>
