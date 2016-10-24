@@ -3,10 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <title>@yield('title') - laravel-bjyadmin</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Bootstrap -->
     <link href="{{ asset('statics/gentelella/vendors/bootstrap/dist/css/bootstrap.min.css') }}" rel="stylesheet">
+    <!-- Font Awesome -->
     <link href="{{ asset('statics/gentelella/vendors/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet">
+    <!-- NProgress -->
     <link href="{{ asset('statics/gentelella/vendors/nprogress/nprogress.css') }}" rel="stylesheet">
-    <link href="{{ asset('statics/gentelella/vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css') }}" rel="stylesheet">
+
+    <!-- Custom Theme Style -->
     <link href="{{ asset('statics/gentelella/build/css/custom.min.css') }}" rel="stylesheet">
     @yield('css')
 </head>
@@ -236,27 +242,19 @@
     </div>
 </div>
 
+
+
+<!-- jQuery -->
 <script src="{{ asset('statics/gentelella/vendors/jquery/dist/jquery.min.js') }}"></script>
+<!-- Bootstrap -->
 <script src="{{ asset('statics/gentelella/vendors/bootstrap/dist/js/bootstrap.min.js') }}"></script>
+<!-- FastClick -->
 <script src="{{ asset('statics/gentelella/vendors/fastclick/lib/fastclick.js') }}"></script>
+<!-- NProgress -->
 <script src="{{ asset('statics/gentelella/vendors/nprogress/nprogress.js') }}"></script>
-<script src="{{ asset('statics/gentelella/vendors/Chart.js/dist/Chart.min.js') }}"></script>
-<script src="{{ asset('statics/gentelella/vendors/bootstrap-progressbar/bootstrap-progressbar.min.js') }}"></script>
-<script src="{{ asset('statics/gentelella/vendors/iCheck/icheck.min.js') }}"></script>
-<script src="{{ asset('statics/gentelella/vendors/skycons/skycons.js') }}"></script>
 
-
-<script src="{{ asset('statics/gentelella/vendors/DateJS/build/date.js') }}"></script>
-<script src="{{ asset('statics/gentelella/vendors/jqvmap/dist/jquery.vmap.js') }}"></script>
-<script src="{{ asset('statics/gentelella/vendors/jqvmap/dist/maps/jquery.vmap.world.js') }}"></script>
-<script src="{{ asset('statics/gentelella/vendors/jqvmap/examples/js/jquery.vmap.sampledata.js') }}"></script>
-<script src="{{ asset('statics/gentelella/production/js/moment/moment.min.js') }}"></script>
-<script src="{{ asset('statics/gentelella/production/js/datepicker/daterangepicker.js') }}"></script>
+<!-- Custom Theme Scripts -->
 <script src="{{ asset('statics/gentelella/build/js/custom.min.js') }}"></script>
-
-
-
-
 @yield('js')
 </body>
 </html>

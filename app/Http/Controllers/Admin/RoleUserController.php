@@ -60,15 +60,15 @@ class RoleUserController extends Controller
             'password'=>$data['password'],
             'status'=>$data['status']
         ];
-        $uid=$user->addData($user_data);
-        if($uid){
-            if (!empty($data['group_ids'])) {
-                foreach ($data['group_ids'] as $k => $v) {
-                    $group=array(
-                        'uid'=>$uid,
-                        'group_id'=>$v
+        $user_id=$user->addData($user_data);
+        if($user_id){
+            if (!empty($data['role_ids'])) {
+                foreach ($data['role_ids'] as $k => $v) {
+                    $roleUserData=array(
+                        'user_id'=>$user_id,
+                        'role_id'=>$v
                     );
-                    $roleUser->addData($group);
+                    $roleUser->addData($roleUserData);
                 }
             }
         }
@@ -119,7 +119,7 @@ class RoleUserController extends Controller
             return redirect()->back();
         }
         //再添加权限
-        foreach ($data['group_ids'] as $k => $v) {
+        foreach ($data['role_ids'] as $k => $v) {
             $group=array(
                 'uid'=>$uid,
                 'group_id'=>$v
@@ -131,7 +131,7 @@ class RoleUserController extends Controller
             unset($data['password']);
         }
         //删除id和group_id
-        unset($data['id'], $data['group_ids']);
+        unset($data['id'], $data['role_ids']);
         $user_map=array(
             'id'=>$uid
         );

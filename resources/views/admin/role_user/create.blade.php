@@ -1,4 +1,4 @@
-@extends('admin.public.master')
+@extends('layouts.admin')
 
 @section('title', '添加管理员')
 
@@ -6,28 +6,30 @@
     <link rel="stylesheet" href="{{ asset('/statics/iCheck-1.0.2/skins/all.css') }}">
 @endsection
 
-@section('nav', '权限管理 > 添加管理员')
+@section('nav', '添加管理员')
 
-@section('body')
+@section('description', '添加管理员并设置用户组')
+
+@section('content')
 
     <!-- 导航栏结束 -->
-    <ul id="myTab" class="nav nav-tabs">
+    <ul id="myTab" class="nav nav-tabs bar_tabs">
         <li>
-            <a href="{{ url('admin/auth_group_access/index') }}">管理员列表</a>
+            <a href="{{ url('admin/role_user/index') }}">管理员列表</a>
         </li>
         <li class="active">
-            <a href="{{ url('admin/auth_group_access/create') }}">添加管理员</a>
+            <a href="{{ url('admin/role_user/create') }}">添加管理员</a>
         </li>
     </ul>
-    <form class="form-inline" action="{{ url('admin/auth_group_access/store') }}" method="post">
+    <form class="form-inline" action="{{ url('admin/role_user/store') }}" method="post">
         {{ csrf_field() }}
-        <table class="table table-striped table-bordered table-hover table-condensed">
+        <table class="table table-striped table-bordered table-hover">
             <tr>
                 <th>管理组</th>
                 <td>
                     @foreach($data as $v)
-                        {{ $v['title'] }}
-                        <input class="xb-icheck" type="checkbox" name="group_ids[]" value="{{ $v['id'] }}">
+                        {{ $v['display_name'] }}
+                        <input class="xb-icheck" type="checkbox" name="role_ids[]" value="{{ $v['id'] }}">
                         &emsp;
                     @endforeach
                 </td>
@@ -74,8 +76,6 @@
             </tr>
         </table>
     </form>
-
-
 
 @endsection
 

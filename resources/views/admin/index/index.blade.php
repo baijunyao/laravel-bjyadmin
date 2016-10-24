@@ -570,6 +570,21 @@
 @endsection
 
 @section('js')
+    <script src="{{ asset('statics/gentelella/vendors/fastclick/lib/fastclick.js') }}"></script>
+    <script src="{{ asset('statics/gentelella/vendors/nprogress/nprogress.js') }}"></script>
+    <script src="{{ asset('statics/gentelella/vendors/Chart.js/dist/Chart.min.js') }}"></script>
+    <script src="{{ asset('statics/gentelella/vendors/bootstrap-progressbar/bootstrap-progressbar.min.js') }}"></script>
+    <script src="{{ asset('statics/gentelella/vendors/iCheck/icheck.min.js') }}"></script>
+    <script src="{{ asset('statics/gentelella/vendors/skycons/skycons.js') }}"></script>
+
+
+    <script src="{{ asset('statics/gentelella/vendors/DateJS/build/date.js') }}"></script>
+    <script src="{{ asset('statics/gentelella/vendors/jqvmap/dist/jquery.vmap.js') }}"></script>
+    <script src="{{ asset('statics/gentelella/vendors/jqvmap/dist/maps/jquery.vmap.world.js') }}"></script>
+    <script src="{{ asset('statics/gentelella/vendors/jqvmap/examples/js/jquery.vmap.sampledata.js') }}"></script>
+    <script src="{{ asset('statics/gentelella/production/js/moment/moment.min.js') }}"></script>
+    <script src="{{ asset('statics/gentelella/production/js/datepicker/daterangepicker.js') }}"></script>
+    <script src="{{ asset('statics/gentelella/build/js/custom.min.js') }}"></script>
     <script src="{{ asset('statics/gentelella/vendors/gauge.js/dist/gauge.min.js') }}"></script>
     <script src="{{ asset('statics/gentelella/vendors/Flot/jquery.flot.js') }}"></script>
     <script src="{{ asset('statics/gentelella/vendors/Flot/jquery.flot.pie.js') }}"></script>
