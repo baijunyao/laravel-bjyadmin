@@ -3,7 +3,7 @@
 namespace App\Http\Middleware;
 
 use Closure;
-
+use Auth;
 class AdminAuth
 {
     /**
@@ -15,6 +15,11 @@ class AdminAuth
      */
     public function handle($request, Closure $next)
     {
+        $path=$request->path();
+        $hasRole=Auth::user()->can($path);
+        if ($hasRole == false) {
+            die('禁止访问');
+        }
         return $next($request);
     }
 }

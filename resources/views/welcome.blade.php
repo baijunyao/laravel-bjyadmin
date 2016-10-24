@@ -70,6 +70,11 @@
                 </div>
             @endif
 
+            @if (Auth::check())
+                <div>
+                    登录用户：{{ Auth::user()->name }}
+                </div>
+            @endif
             <div class="content">
                 <button v-on:click="login">login</button>
                 <button v-on:click="refresh">refresh</button>
