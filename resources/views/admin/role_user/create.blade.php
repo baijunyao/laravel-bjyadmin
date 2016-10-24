@@ -65,7 +65,7 @@
                     <input class="xb-icheck" type="radio" name="status" value="1" checked="checked">
                     &emsp;
                     <span class="inputword">禁止登录</span>
-                    <input class="xb-icheck" type="radio" name="status" value="0">
+                    <input class="xb-icheck" type="radio" name="status" value="2">
                 </td>
             </tr>
             <tr>

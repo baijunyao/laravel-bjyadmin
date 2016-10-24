@@ -78,23 +78,23 @@ class RoleUserController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $uid
+     * @param  int  $user_id
      * @return \Illuminate\Http\Response
      */
-    public function edit($uid)
+    public function edit($user_id)
     {
         // 获取用户数据
-        $user_data=User::find($uid)->toArray();
+        $user_data=User::find($user_id)->toArray();
         // 获取已加入用户组
-        $group_access_data=RoleUser::where('uid', $uid)
-            ->lists('group_id')
+        $role_ids=RoleUser::where('user_id', $user_id)
+            ->pluck('role_id')
             ->toArray();
         // 全部用户组
-        $group_data=Role::all()->toArray();
+        $role_data=Role::all()->toArray();
         $assign=[
             'user_data'=>$user_data,
-            'group_data'=>$group_data,
-            'group_access_data'=>$group_access_data,
+            'role_data'=>$role_data,
+            'role_ids'=>$role_ids,
         ];
         return view('admin/role_user/edit', $assign);
     }
@@ -109,20 +109,17 @@ class RoleUserController extends Controller
     {
         $data=$request->except('_token');
         // 组合where数组条件
-        $uid=$data['id'];
+        $user_id=$data['user_id'];
         $delete_map=[
-            'uid'=>$uid
+            'user_id'=>$user_id
         ];
         //先删除已有的权限
-        $result=$roleUser->deleteData($delete_map);
-        if ($result) {
-            return redirect()->back();
-        }
+        $roleUser->deleteData($delete_map);
         //再添加权限
         foreach ($data['role_ids'] as $k => $v) {
             $group=array(
-                'uid'=>$uid,
-                'group_id'=>$v
+                'user_id'=>$user_id,
+                'role_id'=>$v
             );
             $roleUser->addData($group);
         }
@@ -130,10 +127,10 @@ class RoleUserController extends Controller
         if (empty($data['password'])) {
             unset($data['password']);
         }
-        //删除id和group_id
-        unset($data['id'], $data['role_ids']);
+        //删除id和role_id
+        unset($data['user_id'], $data['role_ids']);
         $user_map=array(
-            'id'=>$uid
+            'id'=>$user_id
         );
         $user->editData($user_map,$data);
         return redirect()->back();

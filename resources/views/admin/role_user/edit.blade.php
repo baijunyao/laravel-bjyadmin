@@ -1,4 +1,4 @@
-@extends('admin.public.master')
+@extends('layouts.admin')
 
 @section('title', '修改管理员')
 
@@ -6,31 +6,32 @@
     <link rel="stylesheet" href="{{ asset('/statics/iCheck-1.0.2/skins/all.css') }}">
 @endsection
 
-@section('nav', '权限管理 > 修改管理员')
+@section('nav', '权限管理')
 
+@section('description', '编辑管理员和权限')
 
-@section('body')
+@section('content')
 
     <!-- 导航栏结束 -->
     <ul id="myTab" class="nav nav-tabs">
         <li>
-            <a href="{{ url('admin/auth_group_access/index') }}">管理员列表</a>
+            <a href="{{ url('admin/role_user/index') }}">管理员列表</a>
         </li>
         <li class="active">
-            <a href="{{ url('admin/auth_group_access/edit') }}">修改管理员</a>
+            <a href="{{ url('admin/role_user/edit') }}">修改管理员</a>
         </li>
     </ul>
 
-    <form class="form-inline" action="{{ url('admin/auth_group_access/update') }}" method="post">
-        <input type="hidden" name="id" value="{{ $user_data['id'] }}">
-        <table class="table table-striped table-bordered table-hover table-condensed">
+    <form class="form-inline" action="{{ url('admin/role_user/update') }}" method="post">
+        <input type="hidden" name="user_id" value="{{ $user_data['id'] }}">
+        <table class="table table-striped table-bordered table-hover">
             {{ csrf_field() }}
             <tr>
                 <th>管理组</th>
                 <td>
-                    @foreach($group_data as $v)
-                        {{ $v['title'] }}
-                        <input class="xb-icheck" type="checkbox" name="group_ids[]" value="{{ $v['id'] }}" @if(in_array($v['id'], $group_access_data)) checked="checked" @endif >
+                    @foreach($role_data as $v)
+                        {{ $v['display_name'] }}
+                        <input class="xb-icheck" type="checkbox" name="role_ids[]" value="{{ $v['id'] }}" @if(in_array($v['id'], $role_ids)) checked="checked" @endif >
                         &emsp;
                     @endforeach
                 </td>
@@ -66,7 +67,7 @@
                     <input class="xb-icheck" type="radio" name="status" value="1" @if($user_data['status']==1) checked="checked" @endif >
                     &emsp;
                     <span class="inputword">禁止登录</span>
-                    <input class="xb-icheck" type="radio" name="status" value="0" @if($user_data['status']==0) checked="checked" @endif >
+                    <input class="xb-icheck" type="radio" name="status" value="2" @if($user_data['status']==2) checked="checked" @endif >
                 </td>
             </tr>
             <tr>
