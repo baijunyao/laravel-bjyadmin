@@ -59,13 +59,13 @@
                         {{ csrf_field() }}
                         <table class="table table-striped table-bordered table-hover">
                             <tr>
-                                <th width="20%">用户组名：</th>
+                                <th width="16%">用户组名：</th>
                                 <td>
                                     <input class="form-control" type="text" name="display_name">
                                 </td>
                             </tr>
                             <tr>
-                                <th width="20%">用户组：</th>
+                                <th>用户组：</th>
                                 <td>
                                     <input class="form-control" type="text" name="name">
                                 </td>
@@ -102,13 +102,13 @@
                         <input type="hidden" name="id">
                         <table class="table table-striped table-bordered table-hover">
                             <tr>
-                                <th width="20%">用户组名：</th>
+                                <th width="16%">用户组名：</th>
                                 <td>
                                     <input class="form-control" type="text" name="display_name">
                                 </td>
                             </tr>
                             <tr>
-                                <th width="20%">用户组：</th>
+                                <th>用户组：</th>
                                 <td>
                                     <input class="form-control" type="text" name="name">
                                 </td>

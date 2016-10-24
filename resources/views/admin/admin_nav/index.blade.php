@@ -73,7 +73,7 @@
                         {{ csrf_field() }}
                         <table class="table table-striped table-bordered table-hover">
                             <tr>
-                                <th width="20%">菜单名：</th>
+                                <th width="16%">菜单名：</th>
                                 <td>
                                     <input class="form-control" type="text" name="name">
                                 </td>
@@ -123,7 +123,7 @@
                         {{ csrf_field() }}
                         <table class="table table-striped table-bordered table-hover">
                             <tr>
-                                <th width="20%">菜单名：</th>
+                                <th width="16%">菜单名：</th>
                                 <td>
                                     <input class="form-control" type="text" name="name">
                                 </td>

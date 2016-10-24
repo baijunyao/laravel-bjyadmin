@@ -365,15 +365,6 @@ class PermissionsTableSeeder extends Seeder
                 'created_at' => '2016-09-24 09:37:29',
                 'updated_at' => '2016-09-24 09:37:29',
             ),
-            39 => 
-            array (
-                'id' => 145,
-                'pid' => 19,
-                'name' => 'admin/roles/rule_group_show/22',
-                'display_name' => 'test',
-                'created_at' => NULL,
-                'updated_at' => NULL,
-            ),
         ));
         
         

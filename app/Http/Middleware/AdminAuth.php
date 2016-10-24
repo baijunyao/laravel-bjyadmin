@@ -22,9 +22,9 @@ class AdminAuth
         //判断登录的用户是否有权限
         $path=$request->path();
         $hasRole=Auth::user()->can($path);
-        if ($hasRole == false) {
-            die('禁止访问');
-        }
+        //if ($hasRole == false) {
+        //    die('禁止访问');
+        //}
         return $next($request);
     }
 }

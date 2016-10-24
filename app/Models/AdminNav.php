@@ -17,7 +17,9 @@ class AdminNav extends Model
      *
      * @var array
      */
-    protected $fillable = ['id','pid','name','mca','ico','order_number'];
+    protected $fillable = [
+        'id','pid','name','mca','ico','order_number'
+    ];
 
     /**
      * 添加数据

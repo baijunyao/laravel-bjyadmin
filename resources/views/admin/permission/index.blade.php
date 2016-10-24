@@ -60,7 +60,7 @@
                         <input type="hidden" name="pid" value="0">
                         <table class="table table-striped table-bordered table-hover">
                             <tr>
-                                <th width="20%">权限名：</th>
+                                <th width="16%">权限名：</th>
                                 <td>
                                     <input class="form-control" type="text" name="display_name">
                                 </td>
@@ -103,7 +103,7 @@
                         <input type="hidden" name="id">
                         <table class="table table-striped table-bordered table-hover">
                             <tr>
-                                <th width="20%">权限名：</th>
+                                <th width="16%">权限名：</th>
                                 <td>
                                     <input class="form-control" type="text" name="display_name">
                                 </td>
