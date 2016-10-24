@@ -1,12 +1,14 @@
-@extends('admin.public.master')
+@extends('layouts.admin')
 
 @section('title', '添加用户到用户组')
 
-@section('nav', '用户组列表 > 添加用户到用户组')
+@section('nav', '用户组列表')
 
-@section('body')
+@section('description', '设置管理员或者取消管理员')
 
-    <table class="table table-striped table-bordered table-hover table-condensed">
+@section('content')
+
+    <table class="table table-striped table-bordered table-hover">
         <tr>
             <th width="10%">
                 搜索用户名：
@@ -20,7 +22,7 @@
             </td>
         </tr>
     </table>
-    <table class="table table-striped table-bordered table-hover table-condensed">
+    <table class="table table-striped table-bordered table-hover">
         <tr>
             <th width="10%">用户名</th>
             <th>操作</th>

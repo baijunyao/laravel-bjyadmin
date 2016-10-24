@@ -77,7 +77,7 @@ class Role extends EntrustRole
             return false;
         }
         //判断管理组下是否还有管理员
-        $id_count=AuthGroupAccess::where('group_id', $map['id'])
+        $id_count=RoleUser::where('role_id', $map['id'])
             ->count();
         if ($id_count !== 0) {
             session()->flash('alert-message','请先取消此管理组下的所有管理员');
