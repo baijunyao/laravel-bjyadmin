@@ -61,8 +61,8 @@ Route::group(['prefix'=>'admin', 'namespace'=>'Admin', 'middleware'=>'entrust.ad
         Route::post('update' ,'RoleController@update');
         Route::get('destroy' ,'RoleController@destroy');
         //权限-用户组
-        Route::get('rule_group_show' ,'RoleController@rule_group_show');
-        Route::post('rule_group_update' ,'RoleController@rule_group_update');
+        Route::get('permission_role_show' ,'RoleController@permission_role_show');
+        Route::post('permission_role_update' ,'RoleController@permission_role_update');
     });
 
     //用户-用户组

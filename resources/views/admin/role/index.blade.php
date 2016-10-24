@@ -33,7 +33,7 @@
                             <td>
                                 <a href="javascript:;" ruleId="{{ $v['id'] }}" ruleName="{{ $v['name'] }}" ruleDisplayName="{{ $v['display_name'] }}" onclick="edit(this)">修改</a> |
                                 <a href="javascript:if(confirm('确定删除？'))location='{{ url('admin/role/destroy').'?id='.$v['id'] }}'">删除</a> |
-                                <a href="{{ url('roles').'?id='.$v['id'] }}">分配权限</a> |
+                                <a href="{{ url('admin/role/permission_role_show').'?id='.$v['id'] }}">分配权限</a> |
                                 <a href="{{ url('admin/auth_group_access/search_user').'?group_id='.$v['id'] }}">添加成员</a>
                             </td>
                         </tr>

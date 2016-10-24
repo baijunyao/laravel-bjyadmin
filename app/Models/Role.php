@@ -12,7 +12,12 @@ class Role extends EntrustRole
      *
      * @var array
      */
-    protected $fillable = ['id','name','display_name','description'];
+    protected $fillable = [
+        'id',
+        'name',
+        'display_name',
+        'description'
+    ];
 
     /**
      * 添加数据

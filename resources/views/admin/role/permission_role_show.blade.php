@@ -1,25 +1,26 @@
-@extends('admin.public.master')
+@extends('layouts.admin')
 
 @section('title', '分配权限')
 
-@section('nav', '用户组列表 > 分配权限 ')
+@section('nav', '用户组列表')
 
-@section('body')
+@section('description', '对用户组的操作')
 
-    <h1 class="text-center">为<span style="color:red">{{ $group_data['title'] }}</span>分配权限</h1>
-    <form action="{{ url('roles') }}" method="post">
+@section('content')
+
+    <h1 class="text-center">为<span style="color:red">{{ $role['display_name'] }}</span>分配权限</h1>
+    <form action="{{ url('admin/role/permission_role_update') }}" method="post">
         {{ csrf_field() }}
-        <input type="hidden" name="id" value="{{ $group_data['id'] }}">
-        <input type="hidden" name="title" value="{{ $group_data['title'] }}">
-        <table class="table table-striped table-bordered table-hover table-condensed
-	">
-            @foreach($rule_data as $v)
+        <input type="hidden" name="id" value="{{ $role['id'] }}">
+        <input type="hidden" name="display_name" value="{{ $role['display_name'] }}">
+        <table class="table table-striped table-bordered table-hover">
+            @foreach($permission as $v)
                 @if(empty($v['_data']))
                     <tr class="b-group">
                         <th width="10%">
                             <label>
-                                {{ $v['title'] }}
-                                <input type="checkbox" name="rules[]" value="{{ $v['id'] }}" @if(in_array($v['id'],$group_data['rules']))	checked="checked" @endif onclick="checkAll(this)" >
+                                {{ $v['display_name'] }}
+                                <input type="checkbox" name="permission_ids[]" value="{{ $v['id'] }}" @if(in_array($v['id'],$has_permission_ids))	checked="checked" @endif onclick="checkAll(this)" >
                             </label>
                         </th>
                         <td></td>
@@ -28,23 +29,23 @@
                     <tr class="b-group">
                         <th width="10%">
                             <label>
-                                {{ $v['title'] }} <input type="checkbox" name="rules[]" value="{{ $v['id'] }}" @if(in_array($v['id'],$group_data['rules']))	checked="checked" @endif onclick="checkAll(this)">
+                                {{ $v['display_name'] }} <input type="checkbox" name="permission_ids[]" value="{{ $v['id'] }}" @if(in_array($v['id'],$has_permission_ids))	checked="checked" @endif onclick="checkAll(this)">
                             </label>
                         </th>
                         <td class="b-child">
                             @foreach($v['_data'] as $n)
-                                <table class="table table-striped table-bordered table-hover table-condensed">
+                                <table class="table table-striped table-bordered table-hover">
                                     <tr class="b-group">
                                         <th width="10%">
                                             <label>
-                                                {{ $n['title'] }} <input type="checkbox" name="rules[]" value="{{ $n['id'] }}" @if(in_array($n['id'],$group_data['rules'])) checked="checked" @endif onclick="checkAll(this)">
+                                                {{ $n['display_name'] }} <input type="checkbox" name="permission_ids[]" value="{{ $n['id'] }}" @if(in_array($n['id'],$has_permission_ids)) checked="checked" @endif onclick="checkAll(this)">
                                             </label>
                                         </th>
                                         <td>
                                             @if(!empty($n['_data']))
                                                 @foreach($n['_data'] as $c)
                                                     <label>
-                                                        &emsp;{{ $c['title'] }} <input type="checkbox" name="rules[]" value="{{ $c['id'] }}" @if(in_array($c['id'],$group_data['rules']))	checked="checked" @endif >
+                                                        &emsp;{{ $c['display_name'] }} <input type="checkbox" name="permission_ids[]" value="{{ $c['id'] }}" @if(in_array($c['id'],$has_permission_ids))	checked="checked" @endif >
                                                     </label>
                                                 @endforeach
                                             @endif

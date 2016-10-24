@@ -1,10 +1,8 @@
 <?php
 
-namespace App\Model;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-
-use Session;
 
 class Base extends Model
 {
@@ -17,17 +15,15 @@ class Base extends Model
      */
     public function addData($data)
     {
-        //验证是否通过
-        if (!$this->validate($data)) {
-            return false;
-        }
+
         //添加数据
         $result=$this
             ->create($data)
             ->id;
+        p($data);die;
         if ($result) {
-            Session::flash('alert-message','添加成功');
-            Session::flash('alert-class','alert-success');
+            session()->flash('alert-message','添加成功');
+            session()->flash('alert-class','alert-success');
             return $result;
         }else{
             return false;
@@ -43,17 +39,13 @@ class Base extends Model
      */
     public function editData($map, $data)
     {
-        //验证是否通过
-        if (!$this->validate($data)) {
-            return false;
-        }
         //修改数据
         $result=$this
             ->where($map)
             ->update($data);
         if ($result) {
-            Session::flash('alert-message','修改成功');
-            Session::flash('alert-class','alert-success');
+            session()->flash('alert-message','修改成功');
+            session()->flash('alert-class','alert-success');
             return $result;
         }else{
             return false;
@@ -73,8 +65,8 @@ class Base extends Model
             ->where($map)
             ->delete();
         if ($result) {
-            Session::flash('alert-message','设置成功');
-            Session::flash('alert-class','alert-success');
+            session()->flash('alert-message','设置成功');
+            session()->flash('alert-class','alert-success');
             return $result;
         }else{
             return false;
@@ -94,8 +86,8 @@ class Base extends Model
         }
         //判断是否有需要排序的字段
         if (empty($data)) {
-            Session::flash('alert-message','没有需要排序的数据');
-            Session::flash('alert-class','alert-success');
+            session()->flash('alert-message','没有需要排序的数据');
+            session()->flash('alert-class','alert-success');
             return false;
         }
         //循环修改数据
@@ -110,8 +102,8 @@ class Base extends Model
                 ->update($edit_data);
         }
         if ($result) {
-            Session::flash('alert-message','修改成功');
-            Session::flash('alert-class','alert-success');
+            session()->flash('alert-message','修改成功');
+            session()->flash('alert-class','alert-success');
             return $result;
         }else{
             return false;

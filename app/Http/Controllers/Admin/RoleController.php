@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Role;
 use App\Http\Requests;
 use App\Models\Permission;
+use Illuminate\Http\Request;
+use App\Models\PermissionRole;
 use App\Http\Requests\Role\Store;
 use App\Http\Controllers\Controller;
 
@@ -37,7 +39,7 @@ class RoleController extends Controller
         $data=$request->except('_token');
         p($data);
         $role->addData($data);
-        return redirect('admin/role/index');
+        return redirect()->back();
     }
 
 
@@ -55,7 +57,7 @@ class RoleController extends Controller
             'id'=>$data['id']
         ];
         $role->editData($map, $data);
-        return redirect('admin/role/index');
+        return redirect()->back();
     }
 
     /**
@@ -71,7 +73,7 @@ class RoleController extends Controller
             'id'=>$id
         ];
         $role->deleteData($map);
-        return redirect('admin/role/index');
+        return redirect()->back();
     }
 
     /**
@@ -79,38 +81,48 @@ class RoleController extends Controller
      *
      * @param  \App\Models\Role         $role 用户组模型
      * @param  \App\Models\Permission        $permission  权限模型
+     * @param  \App\Models\PermissionRole        $permissionRole  权限模型
      * @return \Illuminate\Http\Response
      */
-    public function rule_group_show(Role $role, Permission $permission)
+    public function permission_role_show(Role $role, Permission $permission, PermissionRole $permissionRole)
     {
         $id=request()->input('id');
         //获取用户组数据
-        $group_data=$role::find($id)->toArray();
-        $group_data['rules']=explode(',', $group_data['rules']);
+        $role=$role::find($id)->toArray();
+        $has_permission_ids = PermissionRole::where('role_id', $id)->pluck('permission_id')->toArray();
         //获取全部权限
-        $rule_data=$permission->getTreeData('level', 'id');
+        $permission = $permission->getTreeData('level', 'id');
         $assign=[
-            'group_data'=>$group_data,
-            'rule_data'=>$rule_data
+            'role'=>$role,
+            'permission'=>$permission,
+            'has_permission_ids'=>$has_permission_ids
         ];
-        return view('admin/role/rule_group_show', $assign);
+        return view('admin/role/permission_role_show', $assign);
     }
 
     /**
      * 保存分配的权限
      *
-     * @param  \App\Http\Requests\Role\Store  $request
-     * @param  \App\Models\Role      $role 用户组模型
+     * @param  \Illuminate\Http\Request             $request
+     * @param  \App\Models\PermissionRole           $permissionRole 用户组模型
      * @return \Illuminate\Http\Response
      */
-    public function rule_group_update(Store $request, Role $role)
+    public function permission_role_update(Request $request, PermissionRole $permissionRole)
     {
         $data=$request->except('_token');
-        $data['rules']=implode(',', $data['rules']);
-        $map = [
-            'id'=>$data['id']
+        //清空此用户原来的权限
+        $map=[
+            'role_id'=>$data['id']
         ];
-        $role->editData($map, $data);
+        $permissionRole->deleteData($map);
+        //重新添加权限
+        foreach ($data['permission_ids'] as $v) {
+            $addData=[
+                'permission_id'=>$v,
+                'role_id'=>$data['id']
+            ];
+            $permissionRole->addData($addData);
+        }
         return redirect()->back();
     }
 
