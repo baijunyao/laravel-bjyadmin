@@ -2,61 +2,55 @@
 
 namespace App\Http\Controllers\Admin;
 
-use Illuminate\Http\Request;
-
+use App\Models\User;
+use App\Models\Role;
 use App\Http\Requests;
+use App\Models\RoleUser;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-use Crypt;
-use Hash;
-use DB;
-
-use App\Model\AuthGroupAccess;
-use App\Model\AuthGroup;
-use App\Model\User;
-
-class AuthGroupAccessController extends Controller
+class RoleUserController extends Controller
 {
 
     /**
      * 管理员列表
      *
-     * @param  \App\Model\AuthGroupAccess $authGroupAccess
+     * @param  \App\Models\RoleUser $roleUser
      * @return \Illuminate\Http\Response
      */
-    public function index(AuthGroupAccess $authGroupAccess)
+    public function index(RoleUser $roleUser)
     {
-        $data=$authGroupAccess->getAdminUserList();
+        $data=$roleUser->getAdminUserList();
         $assign=[
             'data'=>$data
         ];
-        return view('admin/auth_group_access/index',$assign);
+        return view('admin/role_user/index',$assign);
     }
 
     /**
      * Show the form for creating a new resource.
      *
-     * @param  \App\Model\AuthGroup $authGroup
+     * @param  \App\Models\Role $role
      * @return \Illuminate\Http\Response
      */
-    public function create(AuthGroup $authGroup)
+    public function create(Role $role)
     {
-        $data=$authGroup::all()->toArray();
+        $data=$role::all()->toArray();
         $assign=[
             'data'=>$data
         ];
-        return view('admin/auth_group_access/create', $assign);
+        return view('admin/role_user/create', $assign);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Model\User $user
-     * @param  \App\Model\AuthGroupAccess $authGroupAccess
+     * @param  \App\Models\User $user
+     * @param  \App\Models\RoleUser $roleUser
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, User $user, AuthGroupAccess $authGroupAccess)
+    public function store(Request $request, User $user, RoleUser $roleUser)
     {
         $data=$request->except('_token');
         $user_data=[
@@ -74,7 +68,7 @@ class AuthGroupAccessController extends Controller
                         'uid'=>$uid,
                         'group_id'=>$v
                     );
-                    $authGroupAccess->addData($group);
+                    $roleUser->addData($group);
                 }
             }
         }
@@ -92,17 +86,17 @@ class AuthGroupAccessController extends Controller
         // 获取用户数据
         $user_data=User::find($uid)->toArray();
         // 获取已加入用户组
-        $group_access_data=AuthGroupAccess::where('uid', $uid)
+        $group_access_data=RoleUser::where('uid', $uid)
             ->lists('group_id')
             ->toArray();
         // 全部用户组
-        $group_data=AuthGroup::all()->toArray();
+        $group_data=Role::all()->toArray();
         $assign=[
             'user_data'=>$user_data,
             'group_data'=>$group_data,
             'group_access_data'=>$group_access_data,
         ];
-        return view('admin/auth_group_access/edit', $assign);
+        return view('admin/role_user/edit', $assign);
     }
 
     /**
@@ -111,7 +105,7 @@ class AuthGroupAccessController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, AuthGroupAccess $authGroupAccess, User $user)
+    public function update(Request $request, RoleUser $roleUser, User $user)
     {
         $data=$request->except('_token');
         // 组合where数组条件
@@ -120,7 +114,7 @@ class AuthGroupAccessController extends Controller
             'uid'=>$uid
         ];
         //先删除已有的权限
-        $result=$authGroupAccess->deleteData($delete_map);
+        $result=$roleUser->deleteData($delete_map);
         if ($result) {
             return redirect()->back();
         }
@@ -130,7 +124,7 @@ class AuthGroupAccessController extends Controller
                 'uid'=>$uid,
                 'group_id'=>$v
             );
-            $authGroupAccess->addData($group);
+            $roleUser->addData($group);
         }
         //如果密码为空；则删除字段
         if (empty($data['password'])) {
@@ -148,70 +142,67 @@ class AuthGroupAccessController extends Controller
     /**
      * 添加用户到用户组的页面 搜索用户
      *
-     * @param  \App\Model\AuthGroup $authGroup
-     * @param  \App\Model\AuthGroupAccess $authGroupAccess
-     * @param  \App\Model\User $user
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function search_user(AuthGroup $authGroup, AuthGroupAccess $authGroupAccess, User $user, Request $request)
+    public function search_user(Request $request)
     {
-        $group_id=request()->input('group_id');
+        $role_id=request()->input('role_id');
         //获取搜索的用户名
         $name=$request->input('name');
         //根据用户名查找user表中的用户
         if (empty($name)) {
             $user_data=[];
         }else{
-            $user_data=$user::where('name','like',"%$name%")
+            $user_data=User::where('name','like',"%$name%")
                 ->select('id','name')
                 ->get()
                 ->toArray();
         }
         //根据用户组id 获取用户组名
-        $group_title=$authGroup::where('id', $group_id)->pluck('title');
-        $group_uid=$authGroupAccess::where('group_id', $group_id)
-            ->lists('uid')
+        $role_display_name=Role::where('id', $role_id)->value('display_name');
+        $user_ids=RoleUser::where('role_id', $role_id)
+            ->pluck('user_id')
             ->toArray();
         $assign=[
-            'group_id'=>$group_id,
-            'group_title'=>$group_title,
-            'group_uid'=>$group_uid,
+            'role_id'=>$role_id,
+            'role_display_name'=>$role_display_name,
+            'user_ids'=>$user_ids,
             'name'=>$name,
             'user_data'=>$user_data
         ];
-        return view('admin/auth_group_access/search_user', $assign);
+        return view('admin/role_user/search_user', $assign);
     }
 
     /**
-     * @param \App\Model\AuthGroupAccess $authGroupAccess
+     * @param \App\Models\RoleUser $roleUser
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function add_user_to_group(AuthGroupAccess $authGroupAccess)
+    public function add_user_to_group(RoleUser $roleUser)
     {
         $uid=request()->input('uid');
-        $group_id=request()->input('group_id');
+        $role_id=request()->input('group_id');
         $data=[
             'uid'=>$uid,
-            'group_id'=>$group_id
+            'group_id'=>$role_id
         ];
-        $authGroupAccess->addData($data);
+        $roleUser->addData($data);
         return redirect()->back();
     }
 
     /**
-     * @param \App\Model\AuthGroupAccess $authGroupAccess
+     * @param \App\Models\RoleUser $roleUser
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function delete_user_from_group(AuthGroupAccess $authGroupAccess)
+    public function delete_user_from_group(RoleUser $roleUser)
     {
         $uid=request()->input('uid');
-        $group_id=request()->input('group_id');
+        $role_id=request()->input('group_id');
         $map=[
             'uid'=>$uid,
-            'group_id'=>$group_id
+            'group_id'=>$role_id
         ];
-        $authGroupAccess->deleteData($map);
+        $roleUser->deleteData($map);
         return redirect()->back();
     }
 

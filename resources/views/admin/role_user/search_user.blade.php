@@ -13,7 +13,7 @@
             </th>
             <td>
                 <form class="form-inline" action="">
-                    <input type="hidden" name="group_id" value="{{ $group_id }}">
+                    <input type="hidden" name="role_id" value="{{ $role_id }}">
                     <input class="form-control" type="text" name="name" value="{{ $name }}">
                     <input class="btn btn-success" type="submit" value="搜索">
                 </form>
@@ -29,11 +29,11 @@
             <tr>
                 <th>{{ $v['name'] }}</th>
                 <td>
-                    @if(in_array($v['id'],$group_uid))
-                        已经是{{ $group_title }}
-                        <a href="{{ url('admin/auth_group_access/delete_user_from_group').'?uid='.$v['id'].'&group_id='.$group_id }}">取消管理员权限</a>
+                    @if(in_array($v['id'],$user_ids))
+                        已经是{{ $role_display_name }}
+                        <a href="{{ url('admin/auth_group_access/delete_user_from_group').'?uid='.$v['id'].'&role_id='.$role_id }}">取消管理员权限</a>
                     @else
-                        <a href="{{ url('admin/auth_group_access/add_user_to_group').'?uid='.$v['id'].'&group_id='.$group_id }}">设为{{ $group_title }}</a>
+                        <a href="{{ url('admin/auth_group_access/add_user_to_group').'?uid='.$v['id'].'&role_id='.$role_id }}">设为{{ $role_display_name }}</a>
                     @endif
                 </td>
             </tr>

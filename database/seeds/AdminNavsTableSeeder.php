@@ -79,7 +79,7 @@ class AdminNavsTableSeeder extends Seeder
                 'id' => 9,
                 'pid' => 4,
                 'name' => '管理员列表',
-                'mca' => 'admin/auth_group_access/index',
+                'mca' => 'admin/role_user/index',
                 'ico' => '',
                 'order_number' => 3,
                 'created_at' => NULL,

@@ -66,18 +66,18 @@ Route::group(['prefix'=>'admin', 'namespace'=>'Admin', 'middleware'=>'entrust.ad
     });
 
     //用户-用户组
-    Route::group(['prefix'=>'auth_group_access'], function (){
+    Route::group(['prefix'=>'role_user'], function (){
         //管理员列表
-        Route::get('index' ,'AuthGroupAccessController@index');
-        Route::get('create' ,'AuthGroupAccessController@create');
-        Route::post('store' ,'AuthGroupAccessController@store');
-        Route::get('edit/{uid}' ,'AuthGroupAccessController@edit');
-        Route::post('update' ,'AuthGroupAccessController@update');
+        Route::get('index' ,'RoleUserController@index');
+        Route::get('create' ,'RoleUserController@create');
+        Route::post('store' ,'RoleUserController@store');
+        Route::get('edit/{uid}' ,'RoleUserController@edit');
+        Route::post('update' ,'RoleUserController@update');
 
         //添加用户到用户组
-        Route::get('search_user' ,'AuthGroupAccessController@search_user');
-        Route::get('add_user_to_group' ,'AuthGroupAccessController@add_user_to_group');
-        Route::get('delete_user_from_group' ,'AuthGroupAccessController@delete_user_from_group');
+        Route::get('search_user' ,'RoleUserController@search_user');
+        Route::get('add_user_to_group' ,'RoleUserController@add_user_to_group');
+        Route::get('delete_user_from_group' ,'RoleUserController@delete_user_from_group');
 
     });
 

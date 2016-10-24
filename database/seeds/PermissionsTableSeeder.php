@@ -153,7 +153,7 @@ class PermissionsTableSeeder extends Seeder
             array (
                 'id' => 16,
                 'pid' => 19,
-                'name' => 'admin/auth_group_access/search_user',
+                'name' => 'admin/role_user/search_user',
                 'display_name' => '搜索用户',
                 'created_at' => NULL,
                 'updated_at' => '2016-09-24 09:18:59',
@@ -162,7 +162,7 @@ class PermissionsTableSeeder extends Seeder
             array (
                 'id' => 19,
                 'pid' => 21,
-                'name' => 'admin/auth_group_access/index',
+                'name' => 'admin/role_user/index',
                 'display_name' => '管理员列表',
                 'created_at' => NULL,
                 'updated_at' => NULL,
@@ -306,7 +306,7 @@ class PermissionsTableSeeder extends Seeder
             array (
                 'id' => 123,
                 'pid' => 19,
-                'name' => 'admin/auth_group_access/add_user_to_group',
+                'name' => 'admin/role_user/add_user_to_group',
                 'display_name' => '添加用户到用户组',
                 'created_at' => NULL,
                 'updated_at' => '2016-09-24 09:34:16',
@@ -315,7 +315,7 @@ class PermissionsTableSeeder extends Seeder
             array (
                 'id' => 124,
                 'pid' => 19,
-                'name' => 'admin/auth_group_access/create',
+                'name' => 'admin/role_user/create',
                 'display_name' => '添加管理员页面',
                 'created_at' => NULL,
                 'updated_at' => '2016-09-24 09:36:31',
@@ -324,7 +324,7 @@ class PermissionsTableSeeder extends Seeder
             array (
                 'id' => 125,
                 'pid' => 19,
-                'name' => 'admin/auth_group_access/edit',
+                'name' => 'admin/role_user/edit',
                 'display_name' => '修改管理员页面',
                 'created_at' => NULL,
                 'updated_at' => '2016-09-24 09:37:13',
@@ -342,7 +342,7 @@ class PermissionsTableSeeder extends Seeder
             array (
                 'id' => 142,
                 'pid' => 19,
-                'name' => 'admin/auth_group_access/delete_user_from_group',
+                'name' => 'admin/role_user/delete_user_from_group',
                 'display_name' => '从用户组中删除用户',
                 'created_at' => '2016-09-24 09:34:33',
                 'updated_at' => '2016-09-24 09:34:33',
@@ -351,7 +351,7 @@ class PermissionsTableSeeder extends Seeder
             array (
                 'id' => 143,
                 'pid' => 19,
-                'name' => 'admin/auth_group_access/store',
+                'name' => 'admin/role_user/store',
                 'display_name' => '添加管理员功能',
                 'created_at' => '2016-09-24 09:36:50',
                 'updated_at' => '2016-09-24 09:36:50',
@@ -360,7 +360,7 @@ class PermissionsTableSeeder extends Seeder
             array (
                 'id' => 144,
                 'pid' => 19,
-                'name' => 'admin/auth_group_access/update',
+                'name' => 'admin/role_user/update',
                 'display_name' => '修改管理员功能',
                 'created_at' => '2016-09-24 09:37:29',
                 'updated_at' => '2016-09-24 09:37:29',
