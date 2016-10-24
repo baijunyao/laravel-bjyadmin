@@ -20,6 +20,12 @@ class AddPhoneToUsersTable extends Migration
                 ->unique()
                 ->nullable()
                 ->comment('手机号');
+            //增加status字段
+            $table->tinyInteger('status',1)
+                ->after('phone')
+                ->nullable()
+                ->default(1)
+                ->comment('状态');
             //增加deleted_at字段
             $table->softDeletes();
         });
