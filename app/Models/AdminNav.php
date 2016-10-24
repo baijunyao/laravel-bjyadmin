@@ -2,6 +2,7 @@
 namespace App\Models;
 
 use DB;
+use Auth;
 use app\Library\Org\Data;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -151,13 +152,29 @@ class AdminNav extends Model
                 ->get()
                 ->toArray();
         }
+
+        //获取当前登录的用户
+        $user = Auth::user();
+
         // 获取树形或者结构数据
         if($type=='tree'){
             $data=Data::tree($data,'name','id','pid');
         }elseif($type="level"){
             $data=Data::channelLevel($data,0,'&nbsp;','id');
             // 显示有权限的菜单
-
+            foreach ($data as $k => $v) {
+                //判断顶级菜单是否有权限
+                if ($user->can($v['mca'])) {
+                    //判断子级菜单是否有权限
+                    foreach ($v['_data'] as $m => $n) {
+                        if (!$user->can($n['mca'])) {
+                            unset($data[$k][$m]);
+                        }
+                    }
+                }else{
+                    unset($data[$k]);
+                }
+            }
         }
         return $data;
     }

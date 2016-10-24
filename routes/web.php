@@ -26,6 +26,16 @@ Route::get('test', function () {
 Auth::routes();
 
 /**
+ * get 方式的退出
+ */
+Route::get('logout', function () {
+    Auth::logout();
+    return redirect('/');
+});
+
+
+
+/**
  * 管理后台
  */
 Route::group(['prefix'=>'admin', 'namespace'=>'Admin', 'middleware'=>'entrust.admin'], function () {
