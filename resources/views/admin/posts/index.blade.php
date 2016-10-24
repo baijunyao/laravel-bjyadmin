@@ -1,11 +1,14 @@
-@extends('public.bootstrap')
+@extends('layouts.admin')
 
 
 @section('title', '文章管理')
 
+@section('nav', '文章管理')
 
-@section('body')
+@section('description', '对文章的操作')
 
-    文章管理
+
+@section('content')
+
 
 @endsection

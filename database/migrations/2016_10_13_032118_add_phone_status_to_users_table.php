@@ -26,6 +26,7 @@ class AddPhoneStatusToUsersTable extends Migration
                 ->after('phone')
                 ->unsigned()
                 ->nullable()
+                ->default(1)
                 ->comment('状态');
             //增加deleted_at字段
             $table->softDeletes();
