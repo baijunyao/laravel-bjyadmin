@@ -2,9 +2,7 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
-
-class RoleUser extends Model
+class RoleUser extends Base
 {
     /**
      * 定义表名
@@ -31,6 +29,24 @@ class RoleUser extends Model
         'role_id'
     ];
 
+    /**
+     * 添加数据
+     *
+     * @param  array $data 需要添加的数据
+     * @return bool        是否成功
+     */
+    public function addData($data)
+    {
+        //添加数据
+        $result=$this->create($data);
+        if ($result) {
+            session()->flash('alert-message','操作成功');
+            session()->flash('alert-class','alert-success');
+            return $result;
+        }else{
+            return false;
+        }
+    }
 
-    
+
 }

@@ -31,9 +31,9 @@
                 <td>
                     @if(in_array($v['id'],$user_ids))
                         已经是{{ $role_display_name }}
-                        <a href="{{ url('admin/auth_group_access/delete_user_from_group').'?uid='.$v['id'].'&role_id='.$role_id }}">取消管理员权限</a>
+                        <a href="{{ url('admin/role_user/delete_user_from_group').'?user_id='.$v['id'].'&role_id='.$role_id }}">取消管理员权限</a>
                     @else
-                        <a href="{{ url('admin/auth_group_access/add_user_to_group').'?uid='.$v['id'].'&role_id='.$role_id }}">设为{{ $role_display_name }}</a>
+                        <a href="{{ url('admin/role_user/add_user_to_group').'?user_id='.$v['id'].'&role_id='.$role_id }}">设为{{ $role_display_name }}</a>
                     @endif
                 </td>
             </tr>

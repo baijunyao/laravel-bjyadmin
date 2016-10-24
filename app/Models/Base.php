@@ -20,7 +20,6 @@ class Base extends Model
         $result=$this
             ->create($data)
             ->id;
-        p($data);die;
         if ($result) {
             session()->flash('alert-message','添加成功');
             session()->flash('alert-class','alert-success');
@@ -65,7 +64,7 @@ class Base extends Model
             ->where($map)
             ->delete();
         if ($result) {
-            session()->flash('alert-message','设置成功');
+            session()->flash('alert-message','操作成功');
             session()->flash('alert-class','alert-success');
             return $result;
         }else{

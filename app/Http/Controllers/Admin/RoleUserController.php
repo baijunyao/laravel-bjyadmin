@@ -180,11 +180,11 @@ class RoleUserController extends Controller
      */
     public function add_user_to_group(RoleUser $roleUser)
     {
-        $uid=request()->input('uid');
-        $role_id=request()->input('group_id');
+        $user_id=request()->input('user_id');
+        $role_id=request()->input('role_id');
         $data=[
-            'uid'=>$uid,
-            'group_id'=>$role_id
+            'user_id'=>$user_id,
+            'role_id'=>$role_id
         ];
         $roleUser->addData($data);
         return redirect()->back();
@@ -196,11 +196,11 @@ class RoleUserController extends Controller
      */
     public function delete_user_from_group(RoleUser $roleUser)
     {
-        $uid=request()->input('uid');
-        $role_id=request()->input('group_id');
+        $user_id=request()->input('user_id');
+        $role_id=request()->input('role_id');
         $map=[
-            'uid'=>$uid,
-            'group_id'=>$role_id
+            'user_id'=>$user_id,
+            'role_id'=>$role_id
         ];
         $roleUser->deleteData($map);
         return redirect()->back();
