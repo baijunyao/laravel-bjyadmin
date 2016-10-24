@@ -22,7 +22,7 @@
         <div class="col-md-3 left_col">
             <div class="left_col scroll-view">
                 <div class="navbar nav_title" style="border: 0;">
-                    <a href="index.html" class="site_title"><i class="fa fa-paw"></i> <span>Gentellela Alela!</span></a>
+                    <a href="{{ url('admin/index/index') }}" class="site_title"><i class="fa fa-paw"></i> <span>laravel-bjyadmin</span></a>
                 </div>
 
                 <div class="clearfix"></div>
@@ -34,7 +34,7 @@
                     </div>
                     <div class="profile_info">
                         <span>Welcome,</span>
-                        <h2>John Doe</h2>
+                        <h2>{{ $loginUserData['name'] }}</h2>
                     </div>
                 </div>
                 <!-- /menu profile quick info -->
@@ -91,7 +91,7 @@
                     <ul class="nav navbar-nav navbar-right">
                         <li class="">
                             <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                <img src="{{ asset('statics/gentelella/production/images/img.jpg') }}" alt="">John Doe
+                                <img src="{{ asset('statics/gentelella/production/images/img.jpg') }}" alt="">{{ $loginUserData['name'] }}
                                 <span class=" fa fa-angle-down"></span>
                             </a>
                             <ul class="dropdown-menu dropdown-usermenu pull-right">
