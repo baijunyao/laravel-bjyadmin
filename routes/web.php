@@ -96,4 +96,9 @@ Route::group(['prefix'=>'admin', 'namespace'=>'Admin', 'middleware'=>'entrust.ad
         Route::get('index', 'PostsController@index');
     });
 
+    //用户管理
+    Route::group(['prefix'=>'user'], function () {
+        Route::get('index', 'UserController@index');
+    });
+
 });
