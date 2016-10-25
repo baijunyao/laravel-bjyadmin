@@ -7,6 +7,8 @@ use App\Models\Role;
 use App\Http\Requests;
 use App\Models\RoleUser;
 use Illuminate\Http\Request;
+use App\Http\Requests\User\Store;
+use App\Http\Requests\User\Update;
 use App\Http\Controllers\Controller;
 
 class RoleUserController extends Controller
@@ -45,12 +47,12 @@ class RoleUserController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\User\Store  $request
      * @param  \App\Models\User $user
      * @param  \App\Models\RoleUser $roleUser
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, User $user, RoleUser $roleUser)
+    public function store(Store $request, User $user, RoleUser $roleUser)
     {
         $data=$request->except('_token');
         $user_data=[
@@ -102,10 +104,12 @@ class RoleUserController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\User\Update   $request
+     * @param  \App\Models\RoleUser             $roleUser
+     * @param  \App\Models\User                 $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, RoleUser $roleUser, User $user)
+    public function update(Update $request, RoleUser $roleUser, User $user)
     {
         $data=$request->except('_token');
         // 组合where数组条件
@@ -117,11 +121,11 @@ class RoleUserController extends Controller
         $roleUser->deleteData($delete_map);
         //再添加权限
         foreach ($data['role_ids'] as $k => $v) {
-            $group=array(
+            $roleUserData=array(
                 'user_id'=>$user_id,
                 'role_id'=>$v
             );
-            $roleUser->addData($group);
+            $roleUser->addData($roleUserData);
         }
         //如果密码为空；则删除字段
         if (empty($data['password'])) {

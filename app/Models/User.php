@@ -84,6 +84,9 @@ class User extends Model
      */
     public function addData($data)
     {
+        //去空
+        $data=array_filter($data);
+
         //验证是否通过
         if (!$this->validate($data)) {
             return false;
@@ -114,15 +117,20 @@ class User extends Model
      */
     public function editData($map, $data)
     {
+        //去空
+        $data=array_filter($data);
+
         //如果存在_token字段；则删除
         if (isset($data['_token'])) {
             unset($data['_token']);
         }
+
         //如果传password 则加密
         var_dump(!empty($data['password']));
         if (!empty($data['password'])) {
             $data['password']=bcrypt($data['password']);
         }
+
         //修改数据
         $result=$this
             ->where($map)
