@@ -91,7 +91,7 @@ class AdminNavsTableSeeder extends Seeder
                 'id' => 16,
                 'pid' => 0,
                 'name' => '会员管理',
-                'mca' => 'admin/shownav/',
+                'mca' => 'admin/shownav/user',
                 'ico' => 'users',
                 'order_number' => 4,
                 'created_at' => NULL,
