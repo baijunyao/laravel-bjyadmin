@@ -43,5 +43,30 @@ class DemoController extends Controller
         p($result);
     }
 
+    /**
+     * 展示验证码
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function show_captcha()
+    {
+        return view('home/demo/show_captcha');
+    }
+
+    /**
+     * 检测验证码是否正确
+     *
+     * @param Request $request
+     */
+    public function check_captcha(Request $request)
+    {
+        $captcha = $request->input('captcha');
+        $result = captcha_check($captcha);
+        if ($result) {
+            echo '验证码正确';
+        }else{
+            echo '验证码错误';
+        }
+    }
 
 }

@@ -5,9 +5,9 @@
     <title>Document</title>
 </head>
 <body>
-<form method="post" action="captcha-test">
+<form action="{{ url('home/demo/check_captcha') }}" method="post">
     {{ csrf_field() }}
-    {{ captcha_img() }}
+    {!! captcha_img() !!}
     <input type="text" name="captcha" >
     <input type="submit" value="提交">
 </form>
