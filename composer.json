@@ -12,7 +12,8 @@
         "tymon/jwt-auth": "0.5.*",
         "zizaco/entrust": "5.2.x-dev",
         "orangehill/iseed": "dev-master",
-        "flc/alidayu": "^2.0"
+        "flc/alidayu": "^2.0",
+        "mews/captcha": "^2.1"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

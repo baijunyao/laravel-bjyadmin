@@ -8,6 +8,16 @@ use App\Http\Controllers\Controller;
 class DemoController extends Controller
 {
     /**
+     * demo首页
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function index()
+    {
+        return view('home/demo/index');
+    }
+
+    /**
      * 发送验证码
      */
     public function send_sms()
