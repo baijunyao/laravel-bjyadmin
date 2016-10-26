@@ -15,11 +15,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('test', function () {
-
-});
-
-
 /**
  * auth 登录注册退出
  */
@@ -32,8 +27,6 @@ Route::get('logout', function () {
     Auth::logout();
     return redirect('/');
 });
-
-
 
 /**
  * 管理后台
@@ -101,4 +94,14 @@ Route::group(['prefix'=>'admin', 'namespace'=>'Admin', 'middleware'=>'entrust.ad
         Route::get('index', 'UserController@index');
     });
 
+});
+
+/**
+ * 整合测试系列
+ */
+Route::group(['prefix'=>'home/demo', 'namespace'=>'Home'], function () {
+    /**
+     * 发送短信
+     */
+    Route::get('send_sms', 'DemoController@send_sms');
 });
