@@ -12,7 +12,7 @@ class UserController extends Controller
 {
     public function index()
     {
-        $data = User::orderBy('id', 'desc')->paginate(1);
+        $data = User::orderBy('id', 'desc')->paginate(15);
         $assign = [
             'data'=>$data
         ];
