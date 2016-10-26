@@ -21,6 +21,11 @@ Route::get('/', function () {
 Auth::routes();
 
 /**
+ * 登录成功后访问的页面
+ */
+Route::get('home', 'HomeController@index');
+
+/**
  * get 方式的退出
  */
 Route::get('logout', function () {
@@ -100,8 +105,13 @@ Route::group(['prefix'=>'admin', 'namespace'=>'Admin', 'middleware'=>'entrust.ad
  * 整合测试系列
  */
 Route::group(['prefix'=>'home/demo', 'namespace'=>'Home'], function () {
-    /**
-     * 发送短信
-     */
+    // 发送短信
     Route::get('send_sms', 'DemoController@send_sms');
+
+    //发送邮件
+    Route::get('send_email', 'DemoController@send_email');
+
+
+
+
 });

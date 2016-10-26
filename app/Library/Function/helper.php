@@ -222,16 +222,17 @@ function sendEmail($email, $name, $subject, $data, $template='emails.test')
             $message->to($email, $name)->subject($subject);
         }
     });
-    if ($flag) {
-        $data=array(
-            'status_code'=>200,
-            'message'=>'邮件发送成功'
-        );
-    }else{
+    if (count(Mail::failures()) > 0) {
         $data=array(
             'status_code'=>500,
             'message'=>'邮件发送失败'
         );
+    }else{
+        $data=array(
+            'status_code'=>200,
+            'message'=>'邮件发送成功'
+        );
+
     }
     return $data;
 
