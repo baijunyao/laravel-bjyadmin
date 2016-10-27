@@ -94,7 +94,7 @@ function dbObjectToArray($array)
  * @param int $status_code
  * @return \Illuminate\Http\JsonResponse
  */
-function ajaxReturn($data,$message='成功', $status_code=200)
+function ajaxReturn($status_code=200, $message='成功', $data)
 {
     /**
      * 将数组递归转字符串

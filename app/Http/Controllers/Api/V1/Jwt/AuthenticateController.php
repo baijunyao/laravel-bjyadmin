@@ -59,6 +59,6 @@ class AuthenticateController extends Controller
         $data=[
             'token'=> $token
         ];
-        return ajaxReturn($data, '注册成功', 200);
+        return ajaxReturn(200, '注册成功', $data);
     }
 }

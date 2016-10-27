@@ -53,18 +53,20 @@ $api->version('v2', function ($api) {
 /**
  * 所有版本通用接口
  */
-
 $api->version(['v1','v2'], function ($api) {
     /**
      * 不需要登录
      */
 
     // 用户相关
-    $api->group(['namespace'=>'App\Http\Controllers\Api\V1\Jwt'], function ($api) {
-        //注册
-        $api->post('register', 'AuthenticateController@register');
-        //登录
-        $api->post('authenticate', 'AuthenticateController@authenticate');
+    $api->group(['prefix'=>'user','namespace'=>'App\Http\Controllers\Api\V1\User'], function ($api) {
+        //auth 注册登录
+        $api->group(['prefix'=>'auth'], function ($api) {
+            //注册
+            $api->post('register', 'AuthController@register');
+            //登录
+            $api->post('login', 'AuthController@login');
+        });
     });
 
 
@@ -74,9 +76,10 @@ $api->version(['v1','v2'], function ($api) {
 
     //必须登录
     $api->group(['namespace'=>'App\Http\Controllers\Api\V1', 'middleware'=>['jwt.auth','jwt.refresh']], function ($api) {
-        //刷新token
-        $api->group(['namespace'=>'Home'] ,function ($api) {
-            $api->any('refresh_token', 'TestController@refresh_token');
+        //home 模块下的路由
+        $api->group(['prefix'=>'home','namespace'=>'Home'], function ($api) {
+            //刷新token
+            $api->get('refresh_token', 'TestController@refresh_token');
         });
     });
 
