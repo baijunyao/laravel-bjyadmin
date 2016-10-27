@@ -8,7 +8,6 @@ use App\Http\Requests;
 use Illuminate\Http\Request;
 use App\Http\Requests\User\Store;
 use App\Http\Controllers\Controller;
-use Tymon\JWTAuth\Exceptions\JWTException;
 
 class AuthController extends Controller
 {
@@ -47,41 +46,17 @@ class AuthController extends Controller
         //判断邮箱是否注册
         $count = User::where('email', $credentials['email'])->count();
         if ($count == 0) {
-            ajaxReturn(404, '邮箱不存在');
+            return ajaxReturn(404, '邮箱不存在');
         }
         //创建token
         $token = JWTAuth::attempt($credentials);
         if (!$token) {
-            ajaxReturn(404, '邮箱或密码错误');
+            return ajaxReturn(404, '邮箱或密码错误');
         }
-
-        try {
-            // attempt to verify the credentials and create a token for the user
-            if (! $token = $token = JWTAuth::attempt($credentials)) {
-                $data = [
-                    'status_code'=>401,
-                    'message'=>'邮箱或密码错误'
-                ];
-                return response()->json($data, 401);
-            }
-        } catch (JWTException $e) {
-            $data = [
-                'status_code'=>401,
-                'message'=>'创建token失败'
-            ];
-            // something went wrong whilst attempting to encode the token
-            return response()->json($data, 500);
-        }
-        //获取token
-        $token = compact('token');
         $data = [
-            'status_code'=>200,
-            'message'=>'登录成功',
-            'data'=>[
-                'token'=>$token['token']
-            ]
+            'token'=>$token
         ];
-        return response()->json($data, 200);
+        return ajaxReturn(200, '登录成功', $data);
     }
 
 
