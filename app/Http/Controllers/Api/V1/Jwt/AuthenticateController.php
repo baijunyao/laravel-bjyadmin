@@ -20,14 +20,30 @@ class AuthenticateController extends Controller
         try {
             // attempt to verify the credentials and create a token for the user
             if (! $token = JWTAuth::attempt($credentials)) {
-                return response()->json(['error' => 'invalid_credentials'], 401);
+                $data = [
+                    'status_code'=>401,
+                    'message'=>'无效的凭证'
+                ];
+                return response()->json($data, 401);
             }
         } catch (JWTException $e) {
+            $data = [
+                'status_code'=>401,
+                'message'=>'创建token失败'
+            ];
             // something went wrong whilst attempting to encode the token
-            return response()->json(['error' => 'could_not_create_token'], 500);
+            return response()->json($data, 500);
         }
-        // all good so return the token
-        return response()->json(compact('token'));
+        //获取token
+        $token = compact('token');
+        $data = [
+            'status_code'=>200,
+            'message'=>'登录成功',
+            'data'=>[
+                'token'=>$token['token']
+            ]
+        ];
+        return response()->json($data, 200);
     }
 
     public function register(Store $request)

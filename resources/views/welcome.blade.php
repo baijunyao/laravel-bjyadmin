@@ -97,11 +97,11 @@
                 methods: {
                     login: function(){
                         var postData = {
-                            email: 'junyao.bai@niuschools.com',
+                            email: 'baijunyao@baijunyao.com',
                             password: '123456'
                         };
                         this.$http.post("{{ url('api/authenticate') }}", postData).then(function (response) {
-                            localStorage.setItem('Authorization', response.data.token);
+                            localStorage.setItem('Authorization', response.data.data.token);
                         })
                     },
                     refresh: function () {
