@@ -94,7 +94,7 @@ function dbObjectToArray($array)
  * @param int $status_code
  * @return \Illuminate\Http\JsonResponse
  */
-function ajaxReturn($status_code=200, $message='成功', $data)
+function ajaxReturn($status_code=200, $message='成功', $data=null)
 {
     /**
      * 将数组递归转字符串
@@ -119,7 +119,7 @@ function ajaxReturn($status_code=200, $message='成功', $data)
     );
 
     //判断是否有返回的数据
-    if ($data!=='') {
+    if (is_array($data)) {
         //先把所有字段都转成字符串类型
         $data=toString($data);
         $all_data['data']=$data;
@@ -132,7 +132,7 @@ function ajaxReturn($status_code=200, $message='成功', $data)
             }
         }
     }
-    return response()->json($all_data);
+    return response()->json($all_data, $status_code);
 }
 
 /**
