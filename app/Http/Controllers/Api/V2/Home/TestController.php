@@ -23,7 +23,7 @@ class TestController extends Controller
      */
     public function version()
     {
-        echo '这是V1版本';
+        echo '这是V2版本';
     }
 
 }

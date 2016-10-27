@@ -22,7 +22,7 @@ class AuthenticateController extends Controller
             if (! $token = JWTAuth::attempt($credentials)) {
                 $data = [
                     'status_code'=>401,
-                    'message'=>'无效的凭证'
+                    'message'=>'邮箱或密码错误'
                 ];
                 return response()->json($data, 401);
             }
