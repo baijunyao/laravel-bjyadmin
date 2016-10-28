@@ -24,7 +24,6 @@ class AdminNavsTableSeeder extends Seeder
                 'order_number' => 1,
                 'created_at' => NULL,
                 'updated_at' => '2016-09-21 06:16:22',
-                'deleted_at' => NULL,
             ),
             1 => 
             array (
@@ -36,7 +35,6 @@ class AdminNavsTableSeeder extends Seeder
                 'order_number' => NULL,
                 'created_at' => NULL,
                 'updated_at' => '2016-09-21 06:16:22',
-                'deleted_at' => NULL,
             ),
             2 => 
             array (
@@ -48,7 +46,6 @@ class AdminNavsTableSeeder extends Seeder
                 'order_number' => 1,
                 'created_at' => NULL,
                 'updated_at' => '2016-09-21 06:16:22',
-                'deleted_at' => NULL,
             ),
             3 => 
             array (
@@ -60,7 +57,6 @@ class AdminNavsTableSeeder extends Seeder
                 'order_number' => 2,
                 'created_at' => NULL,
                 'updated_at' => '2016-09-21 06:16:22',
-                'deleted_at' => NULL,
             ),
             4 => 
             array (
@@ -72,7 +68,6 @@ class AdminNavsTableSeeder extends Seeder
                 'order_number' => 2,
                 'created_at' => NULL,
                 'updated_at' => '2016-09-21 06:16:22',
-                'deleted_at' => NULL,
             ),
             5 => 
             array (
@@ -84,7 +79,6 @@ class AdminNavsTableSeeder extends Seeder
                 'order_number' => 3,
                 'created_at' => NULL,
                 'updated_at' => '2016-09-21 06:16:22',
-                'deleted_at' => NULL,
             ),
             6 => 
             array (
@@ -96,7 +90,6 @@ class AdminNavsTableSeeder extends Seeder
                 'order_number' => 4,
                 'created_at' => NULL,
                 'updated_at' => '2016-09-21 06:16:22',
-                'deleted_at' => NULL,
             ),
             7 => 
             array (
@@ -108,7 +101,6 @@ class AdminNavsTableSeeder extends Seeder
                 'order_number' => NULL,
                 'created_at' => NULL,
                 'updated_at' => '2016-09-21 06:16:22',
-                'deleted_at' => NULL,
             ),
             8 => 
             array (
@@ -120,7 +112,6 @@ class AdminNavsTableSeeder extends Seeder
                 'order_number' => 6,
                 'created_at' => NULL,
                 'updated_at' => '2016-09-21 06:16:22',
-                'deleted_at' => NULL,
             ),
             9 => 
             array (
@@ -132,7 +123,6 @@ class AdminNavsTableSeeder extends Seeder
                 'order_number' => NULL,
                 'created_at' => NULL,
                 'updated_at' => '2016-09-21 06:16:22',
-                'deleted_at' => NULL,
             ),
         ));
         

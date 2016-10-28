@@ -5,13 +5,9 @@ use DB;
 use Auth;
 use app\Library\Org\Data;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
 class AdminNav extends Model
 {
-    //开启如删除
-    use SoftDeletes;
-
     /**
      * 可以被批量赋值的属性.
      *
