@@ -107,7 +107,7 @@ Vue.http.interceptors.push(function () {
             // 如果令牌存在；则header增加令牌
             if(Authorization) {
                 request.beforeSend = function() {
-                    request.headers['Authorization'] = 'Bearer '+Authorization;
+                    request.headers['Authorization'] = Authorization;
                 }
             }
             return request;

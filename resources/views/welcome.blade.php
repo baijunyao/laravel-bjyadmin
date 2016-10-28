@@ -102,11 +102,13 @@
                         };
                         this.$http.post("{{ url('api/user/auth/login') }}", postData).then(function (response) {
                             localStorage.setItem('Authorization', response.data.data.token);
+                            var Authorization = localStorage.getItem('Authorization');
+                            console.log(Authorization);
                         })
                     },
                     refresh: function () {
-                        this.$http.post("{{ url('api/home/test/version') }}").then(function (response) {
-                            
+                        this.$http.get("{{ url('api/home/test/refresh_token') }}").then(function (response) {
+
                         })
                     }
                 },

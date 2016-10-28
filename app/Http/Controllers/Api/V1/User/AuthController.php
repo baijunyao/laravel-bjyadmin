@@ -54,7 +54,7 @@ class AuthController extends Controller
             return ajaxReturn(404, '邮箱或密码错误');
         }
         $data = [
-            'token'=>$token
+            'token'=>'Bearer '.$token
         ];
         return ajaxReturn(200, '登录成功', $data);
     }
