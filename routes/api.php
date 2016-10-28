@@ -78,8 +78,10 @@ $api->version(['v1','v2'], function ($api) {
     $api->group(['namespace'=>'App\Http\Controllers\Api\V1', 'middleware'=>['jwt.auth','jwt.refresh']], function ($api) {
         //home 模块下的路由
         $api->group(['prefix'=>'home','namespace'=>'Home'], function ($api) {
+
             //刷新token
-            $api->get('refresh_token', 'TestController@refresh_token');
+            $api->get('test/refresh_token', 'TestController@refresh_token');
+
         });
     });
 

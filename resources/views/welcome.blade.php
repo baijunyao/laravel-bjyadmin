@@ -100,12 +100,12 @@
                             email: 'baijunyao@baijunyao.com',
                             password: '123456'
                         };
-                        this.$http.post("{{ url('api/authenticate') }}", postData).then(function (response) {
+                        this.$http.post("{{ url('api/user/auth/login') }}", postData).then(function (response) {
                             localStorage.setItem('Authorization', response.data.data.token);
                         })
                     },
                     refresh: function () {
-                        this.$http.post("{{ url('api/test') }}").then(function (response) {
+                        this.$http.post("{{ url('api/home/test/version') }}").then(function (response) {
                             
                         })
                     }
