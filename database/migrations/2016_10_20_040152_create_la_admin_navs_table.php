@@ -14,14 +14,13 @@ class CreateLaAdminNavsTable extends Migration {
 	{
 		Schema::create('admin_navs', function(Blueprint $table)
 		{
-			$table->increments('id');
-			$table->integer('pid')->unsigned()->nullable()->default(0);
-			$table->string('name', 15)->nullable()->default('');
-			$table->string('mca')->nullable()->default('');
-			$table->string('ico', 20)->nullable()->default('');
-			$table->integer('order_number')->unsigned()->nullable();
+			$table->increments('id')->comment('菜单id');
+			$table->integer('pid')->unsigned()->nullable()->default(0)->comment('父级id');
+			$table->string('name', 15)->nullable()->default('')->comment('菜单名');
+			$table->string('mca')->nullable()->default('')->comment('菜单url');
+			$table->string('ico', 20)->nullable()->default('')->comment('图标');
+			$table->integer('order_number')->unsigned()->nullable()->comment('排序');
 			$table->timestamps();
-			$table->softDeletes();
 		});
 	}
 
