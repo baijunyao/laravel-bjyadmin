@@ -20,17 +20,17 @@ class GetUserFromToken extends BaseMiddleware
     public function handle($request, Closure $next)
     {
         if (! $token = $this->auth->setRequest($request)->getToken()) {
-            return ajaxReturn(400, 'token_not_provided');
+            return ajaxReturn(400, '未提供token');
         }
         try {
             $user = $this->auth->authenticate($token);
         } catch (TokenExpiredException $e) {
-            return ajaxReturn($e->getStatusCode(), 'token_expired');
+            return ajaxReturn($e->getStatusCode(), 'token过期');
         } catch (JWTException $e) {
-            return ajaxReturn($e->getStatusCode(), 'token_invalid');
+            return ajaxReturn($e->getStatusCode(), 'token无效');
         }
         if (! $user) {
-            return ajaxReturn(404, 'user_not_found');
+            return ajaxReturn(404, '未找到用户');
         }
         $this->events->fire('tymon.jwt.valid', $user);
         return $next($request);
