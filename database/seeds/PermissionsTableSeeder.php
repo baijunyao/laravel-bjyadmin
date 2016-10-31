@@ -78,7 +78,7 @@ class PermissionsTableSeeder extends Seeder
             array (
                 'id' => 7,
                 'pid' => 21,
-                'name' => 'admin/auth_rule/index',
+                'name' => 'admin/permission/index',
                 'display_name' => '权限列表',
                 'description' => NULL,
                 'created_at' => NULL,
@@ -88,7 +88,7 @@ class PermissionsTableSeeder extends Seeder
             array (
                 'id' => 8,
                 'pid' => 7,
-                'name' => 'admin/auth_rule/store',
+                'name' => 'admin/permission/store',
                 'display_name' => '添加权限',
                 'description' => NULL,
                 'created_at' => NULL,
@@ -98,7 +98,7 @@ class PermissionsTableSeeder extends Seeder
             array (
                 'id' => 9,
                 'pid' => 7,
-                'name' => 'admin/auth_rule/update',
+                'name' => 'admin/permission/update',
                 'display_name' => '修改权限',
                 'description' => NULL,
                 'created_at' => NULL,
@@ -108,7 +108,7 @@ class PermissionsTableSeeder extends Seeder
             array (
                 'id' => 10,
                 'pid' => 7,
-                'name' => 'admin/auth_rule/destroy',
+                'name' => 'admin/permission/destroy',
                 'display_name' => '删除权限',
                 'description' => NULL,
                 'created_at' => NULL,
@@ -118,7 +118,7 @@ class PermissionsTableSeeder extends Seeder
             array (
                 'id' => 11,
                 'pid' => 21,
-                'name' => 'admin/roles/index',
+                'name' => 'admin/role/index',
                 'display_name' => '角色列表',
                 'description' => NULL,
                 'created_at' => NULL,
@@ -128,7 +128,7 @@ class PermissionsTableSeeder extends Seeder
             array (
                 'id' => 12,
                 'pid' => 11,
-                'name' => 'admin/roles/store',
+                'name' => 'admin/role/store',
                 'display_name' => '添加角色',
                 'description' => NULL,
                 'created_at' => NULL,
@@ -138,7 +138,7 @@ class PermissionsTableSeeder extends Seeder
             array (
                 'id' => 13,
                 'pid' => 11,
-                'name' => 'admin/roles/update',
+                'name' => 'admin/role/update',
                 'display_name' => '修改角色',
                 'description' => NULL,
                 'created_at' => NULL,
@@ -148,7 +148,7 @@ class PermissionsTableSeeder extends Seeder
             array (
                 'id' => 14,
                 'pid' => 11,
-                'name' => 'admin/roles/destroy',
+                'name' => 'admin/role/destroy',
                 'display_name' => '删除角色',
                 'description' => NULL,
                 'created_at' => NULL,
@@ -158,7 +158,7 @@ class PermissionsTableSeeder extends Seeder
             array (
                 'id' => 15,
                 'pid' => 11,
-                'name' => 'admin/roles/rule_group_show',
+                'name' => 'admin/role/permission_role_show',
                 'display_name' => '分配权限页面',
                 'description' => NULL,
                 'created_at' => NULL,
@@ -368,7 +368,7 @@ class PermissionsTableSeeder extends Seeder
             array (
                 'id' => 141,
                 'pid' => 11,
-                'name' => 'admin/roles/rule_group_update',
+                'name' => 'admin/role/permission_role_update',
                 'display_name' => '分配权限功能',
                 'description' => NULL,
                 'created_at' => '2016-09-24 09:17:06',
