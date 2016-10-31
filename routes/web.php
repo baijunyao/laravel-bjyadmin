@@ -61,19 +61,19 @@ Route::group(['prefix'=>'admin', 'namespace'=>'Admin', 'middleware'=>'entrust.ad
         Route::get('destroy' ,'PermissionController@destroy');
     });
 
-    //用户组管理
+    //角色管理
     Route::group(['prefix'=>'role'], function (){
-        //用户组
+        //角色
         Route::get('index' ,'RoleController@index');
         Route::post('store' ,'RoleController@store');
         Route::post('update' ,'RoleController@update');
         Route::get('destroy' ,'RoleController@destroy');
-        //权限-用户组
+        //权限-角色
         Route::get('permission_role_show' ,'RoleController@permission_role_show');
         Route::post('permission_role_update' ,'RoleController@permission_role_update');
     });
 
-    //用户-用户组
+    //用户-角色
     Route::group(['prefix'=>'role_user'], function (){
         //管理员列表
         Route::get('index' ,'RoleUserController@index');
@@ -82,7 +82,7 @@ Route::group(['prefix'=>'admin', 'namespace'=>'Admin', 'middleware'=>'entrust.ad
         Route::get('edit/{uid}' ,'RoleUserController@edit');
         Route::post('update' ,'RoleUserController@update');
 
-        //添加用户到用户组
+        //添加用户到角色
         Route::get('search_user' ,'RoleUserController@search_user');
         Route::get('add_user_to_group' ,'RoleUserController@add_user_to_group');
         Route::get('delete_user_from_group' ,'RoleUserController@delete_user_from_group');

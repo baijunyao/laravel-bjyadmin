@@ -1,8 +1,8 @@
 @extends('layouts.admin')
 
-@section('title', '添加用户到用户组')
+@section('title', '添加用户到角色')
 
-@section('nav', '用户组列表')
+@section('nav', '角色列表')
 
 @section('description', '设置管理员或者取消管理员')
 

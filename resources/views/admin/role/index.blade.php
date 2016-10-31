@@ -1,20 +1,20 @@
 @extends('layouts.admin')
 
-@section('title', '用户组管理')
+@section('title', '角色管理')
 
-@section('nav', '用户组管理')
+@section('nav', '角色管理')
 
-@section('description', '对用户组的一些操作')
+@section('description', '对角色的一些操作')
 
 @section('content')
 
     <div class="x_panel">
         <ul id="myTab" class="nav nav-tabs bar_tabs">
             <li class="active">
-                <a href="#home" data-toggle="tab">用户组列表</a>
+                <a href="#home" data-toggle="tab">角色列表</a>
             </li>
             <li>
-                <a href="javascript:;" onclick="add()">添加用户组</a>
+                <a href="javascript:;" onclick="add()">添加角色</a>
             </li>
         </ul>
 
@@ -22,8 +22,8 @@
             <div class="tab-pane fade in active" id="home">
                 <table class="table table-striped table-bordered table-hover">
                     <tr>
-                        <th>用户组名</th>
-                        <th>用户组</th>
+                        <th>角色名</th>
+                        <th>角色</th>
                         <th>操作</th>
                     </tr>
                     @foreach($data as $v)
@@ -42,7 +42,7 @@
             </div>
         </div>
     </div>
-    <!-- 添加用户组模态框开始 -->
+    <!-- 添加角色模态框开始 -->
     <div class="modal fade" id="bjy-add" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -51,7 +51,7 @@
                         &times;
                     </button>
                     <h4 class="modal-title" id="myModalLabel">
-                        添加用户组
+                        添加角色
                     </h4>
                 </div>
                 <div class="modal-body">
@@ -59,13 +59,13 @@
                         {{ csrf_field() }}
                         <table class="table table-striped table-bordered table-hover">
                             <tr>
-                                <th width="16%">用户组名：</th>
+                                <th width="16%">角色名：</th>
                                 <td>
                                     <input class="form-control" type="text" name="display_name">
                                 </td>
                             </tr>
                             <tr>
-                                <th>用户组：</th>
+                                <th>角色：</th>
                                 <td>
                                     <input class="form-control" type="text" name="name">
                                 </td>
@@ -82,9 +82,9 @@
             </div>
         </div>
     </div>
-    <!-- 添加用户组模态框结束 -->
+    <!-- 添加角色模态框结束 -->
 
-    <!-- 修改用户组模态框开始 -->
+    <!-- 修改角色模态框开始 -->
     <div class="modal fade" id="bjy-edit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -93,7 +93,7 @@
                         &times;
                     </button>
                     <h4 class="modal-title" id="myModalLabel">
-                        修改用户组
+                        修改角色
                     </h4>
                 </div>
                 <div class="modal-body">
@@ -102,13 +102,13 @@
                         <input type="hidden" name="id">
                         <table class="table table-striped table-bordered table-hover">
                             <tr>
-                                <th width="16%">用户组名：</th>
+                                <th width="16%">角色名：</th>
                                 <td>
                                     <input class="form-control" type="text" name="display_name">
                                 </td>
                             </tr>
                             <tr>
-                                <th>用户组：</th>
+                                <th>角色：</th>
                                 <td>
                                     <input class="form-control" type="text" name="name">
                                 </td>
@@ -125,21 +125,21 @@
             </div>
         </div>
     </div>
-    <!-- 修改用户组模态框结束 -->
+    <!-- 修改角色模态框结束 -->
 
 @endsection
 
 @section('js')
 
     <script>
-        // 添加用户组
+        // 添加角色
         function add(){
             $("input[name='name']").val('');
             $("input[name='display_name']").val('');
             $('#bjy-add').modal('show');
         }
 
-        // 修改用户组
+        // 修改角色
         function edit(obj){
             var ruleId=$(obj).attr('ruleId');
             var ruleName=$(obj).attr('ruleName');

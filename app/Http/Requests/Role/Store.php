@@ -37,8 +37,8 @@ class Store extends FormRequest
     public function attributes()
     {
         return [
-            'name'=>'用户组',
-            'display_name'=>'用户组名'
+            'name'=>'角色',
+            'display_name'=>'角色名'
         ];
     }
 }

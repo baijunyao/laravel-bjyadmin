@@ -8,7 +8,7 @@
 
 @section('nav', '添加管理员')
 
-@section('description', '添加管理员并设置用户组')
+@section('description', '添加管理员并设置角色')
 
 @section('content')
 

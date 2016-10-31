@@ -87,11 +87,11 @@ class RoleUserController extends Controller
     {
         // 获取用户数据
         $user_data=User::find($user_id)->toArray();
-        // 获取已加入用户组
+        // 获取已加入角色
         $role_ids=RoleUser::where('user_id', $user_id)
             ->pluck('role_id')
             ->toArray();
-        // 全部用户组
+        // 全部角色
         $role_data=Role::all()->toArray();
         $assign=[
             'user_data'=>$user_data,
@@ -141,7 +141,7 @@ class RoleUserController extends Controller
     }
 
     /**
-     * 添加用户到用户组的页面 搜索用户
+     * 添加用户到角色的页面 搜索用户
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -160,7 +160,7 @@ class RoleUserController extends Controller
                 ->get()
                 ->toArray();
         }
-        //根据用户组id 获取用户组名
+        //根据角色id 获取角色名
         $role_display_name=Role::where('id', $role_id)->value('display_name');
         $user_ids=RoleUser::where('role_id', $role_id)
             ->pluck('user_id')

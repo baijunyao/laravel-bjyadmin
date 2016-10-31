@@ -19,7 +19,7 @@
     <table class="table table-striped table-bordered table-hover">
         <tr>
             <th width="10%">用户名</th>
-            <th>用户组</th>
+            <th>角色</th>
             <th>操作</th>
         </tr>
         @foreach($data as $v)

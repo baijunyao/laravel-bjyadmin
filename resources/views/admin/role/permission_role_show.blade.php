@@ -2,9 +2,9 @@
 
 @section('title', '分配权限')
 
-@section('nav', '用户组列表')
+@section('nav', '角色列表')
 
-@section('description', '对用户组的操作')
+@section('description', '对角色的操作')
 
 @section('content')
 
