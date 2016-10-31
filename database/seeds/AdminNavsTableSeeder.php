@@ -84,7 +84,7 @@ class AdminNavsTableSeeder extends Seeder
             array (
                 'id' => 16,
                 'pid' => 0,
-                'name' => '会员管理',
+                'name' => '用户管理',
                 'mca' => 'admin/shownav/user',
                 'ico' => 'users',
                 'order_number' => 4,
@@ -95,7 +95,7 @@ class AdminNavsTableSeeder extends Seeder
             array (
                 'id' => 17,
                 'pid' => 16,
-                'name' => '会员列表',
+                'name' => '用户列表',
                 'mca' => 'admin/user/index',
                 'ico' => '',
                 'order_number' => NULL,
