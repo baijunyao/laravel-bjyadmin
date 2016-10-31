@@ -19,7 +19,7 @@ class AppServiceProvider extends ServiceProvider
         view()->composer('admin/*',function($view){
             //分配菜单数据
             $adminNavModel = new AdminNav();
-            $adminNav = $adminNavModel->getTreeData('level');
+            $adminNav = $adminNavModel->getTreeData('level', 'order_number');
             $view->with('adminNav', $adminNav);
             //分配登录用户的数据
             $loginUserData = Auth::user()->toArray();
