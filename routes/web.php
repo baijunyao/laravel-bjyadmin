@@ -79,7 +79,7 @@ Route::group(['prefix'=>'admin', 'namespace'=>'Admin', 'middleware'=>'entrust.ad
         Route::get('index' ,'RoleUserController@index');
         Route::get('create' ,'RoleUserController@create');
         Route::post('store' ,'RoleUserController@store');
-        Route::get('edit/{uid}' ,'RoleUserController@edit');
+        Route::get('edit' ,'RoleUserController@edit');
         Route::post('update' ,'RoleUserController@update');
 
         //添加用户到角色

@@ -80,11 +80,12 @@ class RoleUserController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $user_id
      * @return \Illuminate\Http\Response
      */
-    public function edit($user_id)
+    public function edit()
     {
+        //获取用户id
+        $user_id = request()->input('id');
         // 获取用户数据
         $user_data=User::find($user_id)->toArray();
         // 获取已加入角色

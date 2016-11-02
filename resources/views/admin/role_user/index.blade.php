@@ -27,7 +27,7 @@
                 <td>{{ $v['name'] }}</td>
                 <td>{{ $v['display_name'] }}</td>
                 <td>
-                    <a href="{{ url('admin/role_user/edit',['id'=>$v['id']]) }}">修改权限或密码</a>
+                    <a href="{{ url('admin/role_user/edit').'?id='.$v['id'] }}">修改权限或密码</a>
                 </td>
             </tr>
         @endforeach

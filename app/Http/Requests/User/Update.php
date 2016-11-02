@@ -23,9 +23,13 @@ class Update extends FormRequest
      */
     public function rules()
     {
+        //获取id
+        $ids = request()->only('id', 'uid', 'user_id');
+        $id = current(array_filter($ids));
         return [
-            'name' => 'required',
-            'email' => 'required|email',
+            'name' => 'filled|unique:users,name,'.$id,
+            'phone' => 'unique:users,phone,'.$id,
+            'email' => 'filled|email|unique:users,email,'.$id,
         ];
     }
 
