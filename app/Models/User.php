@@ -2,11 +2,8 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\SoftDeletes;
-use DB;
-use Validator;
-use Session;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class User extends Model
 {
@@ -27,56 +24,20 @@ class User extends Model
         'email_code',
         'phone',
         'status',
+        'type',
         'last_login_ip',
         'last_login_time'
     ];
 
     /**
-     * 自动验证
+     * The attributes that should be hidden for arrays.
      *
-     * @param $data 需要验证的数据
-     * @return bool 验证是否通过
+     * @var array
      */
-    public function validate($data)
-    {
-        //检测用户名是否存在
-        if (!empty($data['name'])) {
-            $name_count=$this
-                ->where('name',$data['name'])
-                ->count();
-            if ($name_count !==0) {
-                Session::flash('alert-message','用户名已存在');
-                Session::flash('alert-class','alert-danger');
-                return false;
-            }
-        }
-
-        //检测邮箱是否存在
-        if (!empty($data['email'])) {
-            $name_count=$this
-                ->where('email',$data['email'])
-                ->count();
-            if ($name_count !==0) {
-                Session::flash('alert-message','邮箱已存在');
-                Session::flash('alert-class','alert-danger');
-                return false;
-            }
-        }
-
-        //检测手机号是否存在
-        if (!empty($data['phone'])) {
-            $name_count=$this
-                ->where('phone',$data['phone'])
-                ->count();
-            if ($name_count !==0) {
-                Session::flash('alert-message','手机号已存在');
-                Session::flash('alert-class','alert-danger');
-                return false;
-            }
-        }
-
-        return true;
-    }
+    protected $hidden = [
+        'password',
+        'remember_token',
+    ];
 
     /**
      * @param 需要添加的数据 $data
@@ -84,10 +45,6 @@ class User extends Model
      */
     public function addData($data)
     {
-        //验证是否通过
-        if (!$this->validate($data)) {
-            return false;
-        }
         //如果传password 则加密
         if (!empty($data['password'])) {
             $data['password']=bcrypt($data['password']);
@@ -97,8 +54,8 @@ class User extends Model
             ->create($data)
             ->id;
         if ($result) {
-            Session::flash('alert-message','添加成功');
-            Session::flash('alert-class','alert-success');
+            session()->flash('alert-message','添加成功');
+            session()->flash('alert-class','alert-success');
             return $result;
         }else{
             return false;
@@ -114,6 +71,11 @@ class User extends Model
      */
     public function editData($map, $data)
     {
+        //如果存在_token字段；则删除
+        if (isset($data['_token'])) {
+            unset($data['_token']);
+        }
+
         //如果传password 则加密
         if (!empty($data['password'])) {
             $data['password']=bcrypt($data['password']);
@@ -124,12 +86,58 @@ class User extends Model
             ->where($map)
             ->update($data);
         if ($result) {
-            Session::flash('alert-message','修改成功');
-            Session::flash('alert-class','alert-success');
+            session()->flash('alert-message','修改成功');
+            session()->flash('alert-class','alert-success');
             return $result;
         }else{
             return false;
         }
     }
+
+    /**
+     * 删除数据
+     *
+     * @param  array $map   where 条件数组形式
+     * @return bool         是否成功
+     */
+    public function deleteData($map)
+    {
+        //软删除
+        $result=$this
+            ->where($map)
+            ->delete();
+        if ($result) {
+            session()->flash('alert-message','操作成功');
+            session()->flash('alert-class','alert-success');
+            return $result;
+        }else{
+            return false;
+        }
+    }
+
+    /**
+     * 搜索用户
+     *
+     * @param  $search_word  搜索词
+     * @param  $type         类型 null:全部   1：顾问  2：学生
+     * @return mixed        搜索到的用户
+     */
+    public function search($search_word, $type = null)
+    {
+        if ($type == null) {
+            $data=$this->where('name', 'like', "%$search_word%")
+                ->orWhere('email', 'like', "%$search_word%")
+                ->orWhere('phone', 'like', "%$search_word%")
+                ->get();
+        }else{
+            $data=$this->where('type', $type)
+                ->where('name', 'like', "%$search_word%")
+                ->orWhere('email', 'like', "%$search_word%")
+                ->orWhere('phone', 'like', "%$search_word%")
+                ->get();
+        }
+        return $data;
+    }
+
 
 }
