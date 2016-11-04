@@ -205,6 +205,11 @@ return [
          */
         Mews\Captcha\CaptchaServiceProvider::class,
 
+        /**
+         * laravel-ide-helper ide支持
+         */
+        Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
+
     ],
 
     /*
