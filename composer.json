@@ -14,7 +14,8 @@
         "orangehill/iseed": "dev-master",
         "flc/alidayu": "^2.0",
         "mews/captcha": "^2.1",
-        "barryvdh/laravel-ide-helper": "^2.2"
+        "barryvdh/laravel-ide-helper": "^2.2",
+        "barryvdh/laravel-debugbar": "^2.3"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
