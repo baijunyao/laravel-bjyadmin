@@ -101,7 +101,7 @@
                             password: '123456'
                         };
                         this.$http.post("{{ url('api/user/auth/login') }}", postData).then(function (response) {
-                            localStorage.setItem('Authorization', response.data.data.token);
+                            localStorage.setItem('Authorization', response.data.token);
                             var Authorization = localStorage.getItem('Authorization');
                             console.log(Authorization);
                         })

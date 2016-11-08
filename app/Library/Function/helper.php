@@ -96,6 +96,17 @@ function dbObjectToArray($array)
  */
 function ajaxReturn($status_code=200, $message='成功', $data=null)
 {
+
+    //如果如果是错误 返回错误信息
+    if ($status_code != 200) {
+        //增加status_code
+        $data=[
+            'status_code'=>$status_code,
+            'message'=>$message,
+        ];
+        return response()->json($data, $status_code);
+    }
+
     /**
      * 将数组递归转字符串
      * @param  array $arr 需要转的数组
@@ -112,17 +123,10 @@ function ajaxReturn($status_code=200, $message='成功', $data=null)
         return $arr;
     }
 
-    //增加status_code
-    $all_data=array(
-        'status_code'=>$status_code,
-        'message'=>$message,
-    );
-
     //判断是否有返回的数据
     if (is_array($data)) {
         //先把所有字段都转成字符串类型
         $data=toString($data);
-        $all_data['data']=$data;
         // app 禁止使用和为了统一字段做的判断
         $reserved_words=array('id','title','description');
         foreach ($reserved_words as $k => $v) {
@@ -132,7 +136,7 @@ function ajaxReturn($status_code=200, $message='成功', $data=null)
             }
         }
     }
-    return response()->json($all_data, $status_code);
+    return response()->json($data, $status_code);
 }
 
 /**
