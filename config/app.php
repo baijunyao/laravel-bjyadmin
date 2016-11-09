@@ -184,7 +184,7 @@ return [
         Dingo\Api\Provider\LaravelServiceProvider::class,
 
         /**
-         * jwt-auth 接口认证
+         * tymondesigns/jwt-auth 接口认证
          */
         Tymon\JWTAuth\Providers\JWTAuthServiceProvider::class,
 
@@ -194,24 +194,24 @@ return [
         Zizaco\Entrust\EntrustServiceProvider::class,
 
         /**
-         * migrations-generator 逆向迁移
+         * Xethron/migrations-generator 逆向迁移
          */
         Way\Generators\GeneratorsServiceProvider::class,
         Xethron\MigrationsGenerator\MigrationsGeneratorServiceProvider::class,
         Orangehill\Iseed\IseedServiceProvider::class,
 
         /**
-         * 验证码
+         * mewebstudio/captcha 验证码
          */
         Mews\Captcha\CaptchaServiceProvider::class,
 
         /**
-         * laravel-ide-helper ide支持
+         * barryvdh/laravel-ide-helper ide支持
          */
         Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
 
         /**
-         * laravel-debugbar 工具条
+         * barryvdh/laravel-debugbar 工具条
          */
         Barryvdh\Debugbar\ServiceProvider::class,
 
