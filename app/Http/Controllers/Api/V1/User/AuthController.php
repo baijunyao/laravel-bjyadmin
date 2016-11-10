@@ -30,7 +30,7 @@ class AuthController extends Controller
         $data=[
             'token'=> $token
         ];
-        return ajaxReturn(200, '注册成功', $data);
+        return ajaxReturn(200, $data);
     }
 
     /**
@@ -56,7 +56,7 @@ class AuthController extends Controller
         $data = [
             'token'=>'Bearer '.$token
         ];
-        return ajaxReturn(200, '登录成功', $data);
+        return ajaxReturn(200, $data);
     }
 
 
