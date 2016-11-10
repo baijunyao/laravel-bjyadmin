@@ -89,22 +89,25 @@ function dbObjectToArray($array)
 
 /**
  * ajax返回数据
- * @param $data  需要返回的数据
- * @param string $message 提示语句
- * @param int $status_code
+ * @param string $data        需要返回的数据
+ * @param int    $status_code
  * @return \Illuminate\Http\JsonResponse
  */
-function ajaxReturn($status_code=200, $message='成功', $data=null)
+function ajaxReturn($status_code=200, $data='')
 {
-
     //如果如果是错误 返回错误信息
     if ($status_code != 200) {
         //增加status_code
         $data=[
             'status_code'=>$status_code,
-            'message'=>$message,
+            'message'=>$data,
         ];
         return response()->json($data, $status_code);
+    }
+
+    //如果是对象 先转成数组
+    if (is_object($data)) {
+        $data = $data->toArray();
     }
 
     /**
@@ -113,10 +116,15 @@ function ajaxReturn($status_code=200, $message='成功', $data=null)
      * @return array       转换后的数组
      */
     function toString($arr){
+        // app 禁止使用和为了统一字段做的判断
+        $reserved_words=array('id','title','description');
         foreach ($arr as $k => $v) {
             if (is_array($v)) {
                 $arr[$k]=toString($v);
             }else{
+                //判断是否有移动端禁止使用的字段
+                in_array($k, $reserved_words, true) && die('app不允许使用【'.$k.'】这个键名 —— 此提示是helper.php 中的ajaxReturn函数返回的');
+                //转成字符串类型
                 $arr[$k]=strval($v);
             }
         }
@@ -127,14 +135,6 @@ function ajaxReturn($status_code=200, $message='成功', $data=null)
     if (is_array($data)) {
         //先把所有字段都转成字符串类型
         $data=toString($data);
-        // app 禁止使用和为了统一字段做的判断
-        $reserved_words=array('id','title','description');
-        foreach ($reserved_words as $k => $v) {
-            if (array_key_exists($v, $data)) {
-                echo 'app不允许使用【'.$v.'】这个键名 —— 此提示是helper.php 中的ajaxReturn函数返回的';
-                die;
-            }
-        }
     }
     return response()->json($data, $status_code);
 }
