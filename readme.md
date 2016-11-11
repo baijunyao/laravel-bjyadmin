@@ -13,6 +13,15 @@
 - barryvdh/laravel-ide-helper ide支持
 - barryvdh/laravel-debugbar 工具条
 
+## 包链接
+- dingo/api https://github.com/dingo/api
+- tymondesigns/jwt-auth https://github.com/tymondesigns/jwt-auth/
+- zizaco/entrust https://github.com/Zizaco/entrust/
+- Xethron/migrations-generator https://github.com/Xethron/migrations-generator
+- orangehill/iseed https://github.com/orangehill/iseed
+- mewebstudio/captcha https://github.com/mewebstudio/captcha
+- barryvdh/laravel-ide-helper https://github.com/barryvdh/laravel-ide-helper
+- barryvdh/laravel-debugbar https://github.com/barryvdh/laravel-debugbar
 
 ## License
 
