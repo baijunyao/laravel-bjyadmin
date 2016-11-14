@@ -104,12 +104,10 @@ function ajaxReturn($status_code=200, $data='')
         ];
         return response()->json($data, $status_code);
     }
-
     //如果是对象 先转成数组
     if (is_object($data)) {
         $data = $data->toArray();
     }
-
     /**
      * 将数组递归转字符串
      * @param  array $arr 需要转的数组
@@ -119,6 +117,11 @@ function ajaxReturn($status_code=200, $data='')
         // app 禁止使用和为了统一字段做的判断
         $reserved_words=array('id','title','description');
         foreach ($arr as $k => $v) {
+            //如果是对象先转数组
+            if (is_object($v)) {
+                $v = $v->toArray();
+            }
+            //如果是数组；则递归转字符串
             if (is_array($v)) {
                 $arr[$k]=toString($v);
             }else{
