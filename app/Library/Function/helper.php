@@ -313,3 +313,14 @@ function getUid()
     return Auth::id();
 }
 
+/**
+ * 将数组已json格式写入文件
+ * @param  string $file_name 文件名
+ * @param  array  $data	  数组
+ */
+function save_to_file($file_name='test',$data=array()){
+    is_dir('./Temp/') || mkdir('./Temp/');
+    $file_name = str_replace('.php', '', $file_name);
+    $file_name = './Temp/'.$file_name.'_'.date('Y-m-d_H-i-s',time()).'.php';
+    file_put_contents($file_name, json_encode($data));
+}
