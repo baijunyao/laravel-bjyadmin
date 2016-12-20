@@ -198,7 +198,7 @@ return [
          */
         Way\Generators\GeneratorsServiceProvider::class,
         Xethron\MigrationsGenerator\MigrationsGeneratorServiceProvider::class,
-        Orangehill\Iseed\IseedServiceProvider::class,
+        'Orangehill\Iseed\IseedServiceProvider',
 
         /**
          * mewebstudio/captcha 验证码
