@@ -11,7 +11,7 @@
         "dingo/api": "1.0.x@dev",
         "tymon/jwt-auth": "0.5.*",
         "zizaco/entrust": "5.2.x-dev",
-        "orangehill/iseed": "dev-master",
+        "orangehill/iseed": "^2.2",
         "flc/alidayu": "^2.0",
         "mews/captcha": "^2.1",
         "barryvdh/laravel-ide-helper": "^2.2",
