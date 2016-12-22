@@ -24,7 +24,7 @@
         "symfony/css-selector": "3.1.*",
         "symfony/dom-crawler": "3.1.*",
         "laravel/homestead": "^3.0",
-        "xethron/migrations-generator": "dev-l5",
+        "xethron/migrations-generator": "^2.0",
         "way/generators": "dev-feature/laravel-five-stable"
     },
     "autoload": {
@@ -67,8 +67,8 @@
     },
     "repositories": {
         "repo-name": {
-            "type": "git",
-            "url": "git@github.com:jamisonvalenta/Laravel-4-Generators.git"
+            "type": "vcs",
+            "url": "https://github.com/jamisonvalenta/Laravel-4-Generators.git"
         }
     }
 }
