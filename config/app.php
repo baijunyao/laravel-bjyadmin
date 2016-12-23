@@ -215,6 +215,11 @@ return [
          */
         Barryvdh\Debugbar\ServiceProvider::class,
 
+        /**
+         * laravel-wechat 开发微信
+         */
+        Overtrue\LaravelWechat\ServiceProvider::class,
+
     ],
 
     /*
@@ -267,6 +272,7 @@ return [
         'Entrust' => Zizaco\Entrust\EntrustFacade::class,
         'Captcha' => Mews\Captcha\Facades\Captcha::class,
         'Debugbar' => Barryvdh\Debugbar\Facade::class,
+        'Wechat' => Overtrue\LaravelWechat\Facade::class,
     ],
 
 ];
