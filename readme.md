@@ -12,6 +12,7 @@
 - mewebstudio/captcha 验证码
 - barryvdh/laravel-ide-helper ide支持
 - barryvdh/laravel-debugbar 工具条
+- overtrue/laravel-wechat 微信开发
 
 ## 包链接
 - dingo/api https://github.com/dingo/api
@@ -22,6 +23,7 @@
 - mewebstudio/captcha https://github.com/mewebstudio/captcha
 - barryvdh/laravel-ide-helper https://github.com/barryvdh/laravel-ide-helper
 - barryvdh/laravel-debugbar https://github.com/barryvdh/laravel-debugbar
+- overtrue/laravel-wechat https://github.com/overtrue/laravel-wechat
 
 ## License
 
