@@ -14,6 +14,7 @@
 - barryvdh/laravel-debugbar 工具条
 - overtrue/laravel-wechat 微信开发
 - guzzlehttp/guzzle 发送http请求
+- maatwebsite/excel 导入导出excel
 
 ## 包链接
 - dingo/api https://github.com/dingo/api
@@ -26,6 +27,8 @@
 - barryvdh/laravel-debugbar https://github.com/barryvdh/laravel-debugbar
 - overtrue/laravel-wechat https://github.com/overtrue/laravel-wechat
 - guzzlehttp/guzzle https://github.com/guzzle/guzzle
+- maatwebsite/excel https://github.com/Maatwebsite/Laravel-Excel
+
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT).
