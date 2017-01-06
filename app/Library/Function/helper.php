@@ -95,6 +95,7 @@ if ( !function_exists('dbObjectToArray') ) {
 if ( !function_exists('ajaxReturn') ) {
     /**
      * ajax返回数据
+     *
      * @param string $data 需要返回的数据
      * @param int $status_code
      * @return \Illuminate\Http\JsonResponse
@@ -300,5 +301,33 @@ if ( !function_exists('save_to_file') ) {
         $file_name = str_replace('.php', '', $file_name);
         $file_name = './Temp/' . $file_name . '_' . date('Y-m-d_H-i-s', time()) . '.php';
         file_put_contents($file_name, json_encode($data));
+    }
+}
+
+
+if (! function_exists('exportExcel')) {
+    /**
+     * 导出excel文件
+     *
+     * @param $data
+     * @param string $file_name
+     * @param string $ext
+     *
+     *   示例数组：
+     *  $data = array(
+     *      array('data1', 'data2'),
+     *      array('data5', 'data6'),
+     *      array('data3', 'data4')
+     *  );
+     *
+     */
+    function exportExcel($data, $file_name = 'filename', $ext = 'csv')
+    {
+        Excel::create('Filename', function($excel) use($data) {
+            // Our first sheet
+            $excel->sheet('Sheet1', function($sheet) use($data)  {
+                $sheet->fromArray($data, null, 'A1', false, false);
+            });
+        })->export($ext);
     }
 }
