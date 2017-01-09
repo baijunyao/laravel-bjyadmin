@@ -8,6 +8,7 @@
     "bootstrap-sass": "^3.3.7",
     "gulp": "^3.9.1",
     "gulp-minify-css": "^1.2.4",
+    "gulp-plumber": "^1.1.0",
     "jquery": "^3.1.0",
     "laravel-elixir": "^6.0.0-11",
     "laravel-elixir-browsersync-official": "^1.0.0",

@@ -5,6 +5,7 @@ require('laravel-elixir-vue-2');
 var gulp        = require('gulp'),
     sass        = require('gulp-sass'),
     minifyCss   = require('gulp-minify-css'),
+    plumber     = require('gulp-plumber'),
     uglify      = require('gulp-uglify');
 
 /*
@@ -21,6 +22,7 @@ var gulp        = require('gulp'),
 // 增加监听scss
 new elixir.Task('bjyCss', function() {
     return gulp.src('resources/assets/sass/**/*.scss', { base: 'resources/assets/sass'})
+        .pipe(plumber())
         .pipe(sass())
         .pipe(gulp.dest('public/css'));
 }).watch('resources/assets/sass/**/*.scss');
