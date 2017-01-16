@@ -323,7 +323,7 @@ if (! function_exists('exportExcel')) {
      */
     function exportExcel($data, $file_name = 'filename', $ext = 'csv')
     {
-        Excel::create('Filename', function($excel) use($data) {
+        Excel::create($file_name, function($excel) use($data) {
             // Our first sheet
             $excel->sheet('Sheet1', function($sheet) use($data)  {
                 $sheet->fromArray($data, null, 'A1', false, false);
