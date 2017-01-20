@@ -220,6 +220,10 @@ return [
          */
         Overtrue\LaravelWechat\ServiceProvider::class,
 
+        /**
+         * barryvdh/laravel-dompdf 创建pdf
+         */
+        Barryvdh\DomPDF\ServiceProvider::class,
     ],
 
     /*
@@ -273,6 +277,7 @@ return [
         'Captcha' => Mews\Captcha\Facades\Captcha::class,
         'Debugbar' => Barryvdh\Debugbar\Facade::class,
         'Wechat' => Overtrue\LaravelWechat\Facade::class,
+        'PDF' => Barryvdh\DomPDF\Facade::class,
     ],
 
 ];
