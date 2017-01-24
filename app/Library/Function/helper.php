@@ -304,7 +304,6 @@ if ( !function_exists('save_to_file') ) {
     }
 }
 
-
 if (! function_exists('exportExcel')) {
     /**
      * 导出excel文件
@@ -329,5 +328,21 @@ if (! function_exists('exportExcel')) {
                 $sheet->fromArray($data, null, 'A1', false, false);
             });
         })->export($ext);
+    }
+}
+
+if (! function_exists('reUrl')) {
+    /**
+     * 生成带get请求参数的url
+     *
+     * @param null $path
+     * @param array $parameters
+     * @param null $secure
+     * @return string
+     */
+    function reUrl($path = null, $parameters = [], $secure = null)
+    {
+        $url = url($path, [], $secure) . '?' . http_build_query($parameters);
+        return $url;
     }
 }
