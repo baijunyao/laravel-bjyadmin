@@ -239,43 +239,74 @@ if ( !function_exists('upload') ) {
      * 上传文件函数
      *
      * @param $file             表单的name名
-     * @param string $path 上传的路径
-     * @param bool $childPath 是否根据日期生成子目录
+     * @param string $path      上传的路径
+     * @param bool $childPath   是否根据日期生成子目录
      * @return array            上传的状态
      */
-    function upload($file, $path = 'upload', $childPath = true)
-    {
-        //判断请求中是否包含name=file的上传文件
+    function upload($file, $path = 'uploads', $childPath = true){
+        // 判断请求中是否包含name=file的上传文件
         if (!request()->hasFile($file)) {
-            $data = ['status_code' => 500, 'message' => '上传文件为空'];
+            $data=[
+                'status_code' => 500,
+                'message' => '上传文件为空'
+            ];
             return $data;
         }
         $file = request()->file($file);
-        //判断文件上传过程中是否出错
-        if (!$file->isValid()) {
-            $data = ['status_code' => 500, 'message' => '文件上传出错'];
-            return $data;
+        // 判断是否多文件上传
+        if (!is_array($file)) {
+            $file = [$file];
         }
-        //兼容性的处理路径的问题
+
+        // 兼容性的处理路径的问题
         if ($childPath == true) {
-            $path = './' . trim($path, './') . '/' . date('Ymd') . '/';
+            $path = './'.trim($path, './').'/'.date('Ymd').'/';
         } else {
-            $path = './' . trim($path, './') . '/';
+            $path = './'.trim($path, './').'/';
         }
+
+        // 如果目录不存在；先创建目录
         if (!file_exists($path)) {
-            mkdir($path, 0755, true);
+            mkdir($path,0755,true);
         }
-        //获取上传的文件名
-        $oldName = $file->getClientOriginalName();
-        //组合新的文件名
-        $newName = uniqid() . '.' . $file->getClientOriginalExtension();
-        //上传失败
-        if (!$file->move($path, $newName)) {
-            $data = ['status_code' => 500, 'message' => '保存文件失败'];
-            return $data;
+        // 上传成功的文件
+        $success = [];
+
+        // 循环上传
+        foreach ($file as $k => $v) {
+            //判断文件上传过程中是否出错
+            if (!$v->isValid()) {
+                $data=[
+                    'status_code' => 500,
+                    'message' => '文件上传出错'
+                ];
+                return $data;
+            }
+            // 获取上传的文件名
+            $oldName = $v->getClientOriginalName();
+            // 组合新的文件名
+            $newName = uniqid().'.'.$v->getClientOriginalExtension();
+            // 判断上传是否失败
+            if (!$v->move($path, $newName)) {
+                $data=[
+                    'status_code' => 500,
+                    'message' => '保存文件失败'
+                ];
+                return $data;
+            } else {
+                $success[] = [
+                    'name' => $oldName,
+                    'path' => trim($path, '.').$newName
+                ];
+            }
         }
+
         //上传成功
-        $data = ['status_code' => 200, 'message' => '上传成功', 'data' => ['old_name' => $oldName, 'new_name' => $newName, 'path' => trim($path, '.')]];
+        $data=[
+            'status_code' => 200,
+            'message' => '上传成功',
+            'data' => $success
+        ];
         return $data;
     }
 }
@@ -323,7 +354,7 @@ if (! function_exists('exportExcel')) {
      *  );
      *
      */
-    function exportExcel($data, $file_name = 'filename', $ext = 'csv')
+    function exportExcel($data, $file_name = 'filename', $ext = 'xls')
     {
         Excel::create($file_name, function($excel) use($data) {
             // Our first sheet
