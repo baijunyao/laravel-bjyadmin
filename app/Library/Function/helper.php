@@ -380,3 +380,39 @@ if (! function_exists('reUrl')) {
         return $url;
     }
 }
+
+if (!function_exists('cutStr')) {
+    /**
+     * 按符号截取字符串的指定部分
+     * @param string $str 需要截取的字符串
+     * @param string $sign 需要截取的符号
+     * @param int $number 如是正数以0为起点从左向右截  负数则从右向左截
+     * @return string 返回截取的内容
+     */
+    /*  示例
+        $str='123/456/789';
+        cut_str($str,'/',0);  返回 123
+        cut_str($str,'/',-1);  返回 789
+        cut_str($str,'/',-2);  返回 456
+        具体参考 http://www.baijunyao.com/article/18
+    */
+    function cutStr($str, $sign, $number){
+        $array = explode($sign, $str);
+        $length = count($array);
+        if($number < 0){
+            $newArray = array_reverse($array);
+            $absNumber = abs($number);
+            if($absNumber > $length){
+                return false;
+            }else{
+                return $newArray[$absNumber-1];
+            }
+        }else{
+            if($number >= $length){
+                return false;
+            }else{
+                return $array[$number];
+            }
+        }
+    }
+}
