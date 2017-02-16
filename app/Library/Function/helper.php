@@ -323,13 +323,13 @@ if ( !function_exists('getUid') ) {
     }
 }
 
-if ( !function_exists('save_to_file') ) {
+if ( !function_exists('saveToFile') ) {
     /**
      * 将数组已json格式写入文件
      * @param  string $file_name 文件名
      * @param  array $data 数组
      */
-    function save_to_file($file_name = 'test', $data = array())
+    function saveToFile($file_name = 'test', $data = array())
     {
         is_dir('./Temp/') || mkdir('./Temp/');
         $file_name = str_replace('.php', '', $file_name);
