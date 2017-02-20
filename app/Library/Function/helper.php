@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Mail;
 
 use Illuminate\Support\Facades\Auth;
 
-if ( !function_exists('p') ) {
+if (!function_exists('p')) {
     // 传递数据以易于阅读的样式格式化后输出
     function p($data, $to_array = true)
     {
@@ -38,7 +38,7 @@ if ( !function_exists('p') ) {
     }
 }
 
-if ( !function_exists('reEnv') ) {
+if (!function_exists('reEnv')) {
     /**
      * Gets the value of an environment variable by getenv() or $_ENV.
      *
@@ -80,7 +80,7 @@ if ( !function_exists('reEnv') ) {
     }
 }
 
-if ( !function_exists('dbObjectToArray') ) {
+if (!function_exists('dbObjectToArray')) {
     /**
      * 将包含对象的数组转换为数组
      * @param $array 包含对象的二维数组
@@ -95,7 +95,7 @@ if ( !function_exists('dbObjectToArray') ) {
     }
 }
 
-if ( !function_exists('ajaxReturn') ) {
+if (!function_exists('ajaxReturn')) {
     /**
      * ajax返回数据
      *
@@ -151,7 +151,7 @@ if ( !function_exists('ajaxReturn') ) {
     }
 }
 
-if ( !function_exists('sendSms') ) {
+if (!function_exists('sendSms')) {
     /**
      * 阿里大于发送短信
      *
@@ -180,7 +180,7 @@ if ( !function_exists('sendSms') ) {
     }
 }
 
-if ( !function_exists('sendSmsCode') ) {
+if (!function_exists('sendSmsCode')) {
     /**
      * 阿里大于发送短信验证码
      *
@@ -202,7 +202,7 @@ if ( !function_exists('sendSmsCode') ) {
     }
 }
 
-if ( !function_exists('sendEmail') ) {
+if (!function_exists('sendEmail')) {
     /**
      * 发送邮件函数
      *
@@ -234,7 +234,7 @@ if ( !function_exists('sendEmail') ) {
     }
 }
 
-if ( !function_exists('upload') ) {
+if (!function_exists('upload')) {
     /**
      * 上传文件函数
      *
@@ -311,7 +311,7 @@ if ( !function_exists('upload') ) {
     }
 }
 
-if ( !function_exists('getUid') ) {
+if (!function_exists('getUid')) {
     /**
      * 返回登录的用户id
      *
@@ -323,7 +323,7 @@ if ( !function_exists('getUid') ) {
     }
 }
 
-if ( !function_exists('saveToFile') ) {
+if (!function_exists('saveToFile')) {
     /**
      * 将数组已json格式写入文件
      * @param  string $file_name 文件名
@@ -338,7 +338,7 @@ if ( !function_exists('saveToFile') ) {
     }
 }
 
-if (! function_exists('exportExcel')) {
+if (!function_exists('exportExcel')) {
     /**
      * 导出excel文件
      *
@@ -365,7 +365,7 @@ if (! function_exists('exportExcel')) {
     }
 }
 
-if (! function_exists('reUrl')) {
+if (!function_exists('reUrl')) {
     /**
      * 生成带get请求参数的url
      *
@@ -417,7 +417,7 @@ if (!function_exists('cutStr')) {
     }
 }
 
-if ( !function_exists('reSubstr') ) {
+if (!function_exists('reSubstr')) {
     /**
      * 字符串截取，支持中文和其他编码
      *
