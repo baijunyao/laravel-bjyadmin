@@ -15,7 +15,7 @@
 - overtrue/laravel-wechat 微信开发
 - guzzlehttp/guzzle 发送http请求
 - maatwebsite/excel 导入导出excel
-- phpoffice/phpword 导入导出excel
+- phpoffice/phpword 编辑word文档
 
 ## 包链接
 - dingo/api https://github.com/dingo/api
