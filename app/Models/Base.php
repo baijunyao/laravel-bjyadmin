@@ -130,4 +130,61 @@ class Base extends Model
         }
     }
 
+    /**
+     * 使用作用域扩展 Builder 链式操作
+     *
+     * 示例:
+     * $map = [
+     *     'id' => ['in', [1,2,3]],
+     *     'category_id' => ['<>', 9],
+     *     'tag_id' => 10
+     * ]
+     *
+     * @param $query
+     * @param $map
+     * @return mixed
+     */
+    public function scopeWhereMap($query, $map)
+    {
+        // 如果是空直接返回
+         if (empty($map)) {
+            return $query;
+        }
+        // 判断各种方法
+         foreach ($map as $k => $v) {
+            if (is_array($v)) {
+                $sign = strtolower($v[0]);
+                switch ($sign) {
+                    case 'in':
+                        $query->whereIn($k, $v[1]);
+                        break;
+                    case 'notin':
+                        $query->whereNotIn($k, $v[1]);
+                        break;
+                    case 'between':
+                        $query->whereBetween($k, $v[1]);
+                        break;
+                    case 'notbetween':
+                        $query->whereNotBetween($k, $v[1]);
+                        break;
+                    case 'null':
+                        $query->whereNull($k);
+                        break;
+                    case 'notnull':
+                        $query->whereNotNull($k);
+                        break;
+                    case '=':
+                    case '>':
+                    case '<':
+                    case '<>':
+                        $query->where($k, $sign, $v[1]);
+                        break;
+                }
+            } else {
+                $query->where($k, $v);
+            }
+        }
+        return $query;
+    }
+    
 }
