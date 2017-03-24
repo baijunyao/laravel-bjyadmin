@@ -25,10 +25,19 @@ if (!function_exists('p')) {
         if (is_bool($data)) {
             $show_data = $data ? 'true' : 'false';
         } elseif (is_null($data)) {
+            // 如果是null 直接显示null
             $show_data = 'null';
-        } elseif (in_array(get_parent_class($data), ['Illuminate\Support\Collection', 'App\Models\Base']) && $to_array) {
+        } elseif (is_object($data) && in_array(get_parent_class($data), ['Illuminate\Support\Collection', 'App\Models\Base']) && $to_array) {
+            // 把一些集合转成数组形式来查看
             $data_array = $data->toArray();
-            $show_data = '这是被转成数组的对象:<br>'.print_r($data_array, true);
+            $show_data = '这是被转成数组的对象:<br>' . print_r($data_array, true);
+        } elseif (is_object($data) && in_array(get_class($data), ['Maatwebsite\Excel\Readers\LaravelExcelReader']) && $to_array) {
+            // 把一些集合转成数组形式来查看
+            $data_array = $data->toArray();
+            $show_data = '这是被转成数组的对象:<br>' . print_r($data_array, true);
+        } elseif (is_object($data) && in_array(get_class($data), ['Illuminate\Database\Eloquent\Builder'])) {
+            // 直接调用dd 查看
+            dd($data);
         } else {
             $show_data = print_r($data, true);
         }
