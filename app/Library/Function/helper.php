@@ -106,7 +106,8 @@ if (!function_exists('dbObjectToArray')) {
 
 if (!function_exists('ajaxReturn')) {
     /**
-     * ajax返回数据
+     * ajax返回数据 如果是200则$data是要返回的数据
+     * 如果不是200 则$data 为错误的提示文字
      *
      * @param string $data 需要返回的数据
      * @param int $status_code
