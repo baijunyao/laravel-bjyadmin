@@ -116,7 +116,7 @@ if (!function_exists('ajaxReturn')) {
     function ajaxReturn($status_code = 200, $data = '')
     {
         //如果如果是错误 返回错误信息
-        if ($status_code != 200) {
+        if ($status_code != 200 || is_string($data)) {
             //增加status_code
             $data = ['status_code' => $status_code, 'message' => $data,];
             return response()->json($data, $status_code);
