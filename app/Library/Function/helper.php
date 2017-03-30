@@ -367,6 +367,12 @@ if (!function_exists('exportExcel')) {
      */
     function exportExcel($data, $file_name = 'filename', $ext = 'xls')
     {
+        // 如果是迭代器；先转成数组
+        foreach ($data as $k => $v) {
+            if (in_array(get_class($v), ['stdClass'])) {
+                $data[$k] = (array)$v;
+            }
+        }
         Excel::create($file_name, function($excel) use($data) {
             // Our first sheet
             $excel->sheet('Sheet1', function($sheet) use($data)  {
