@@ -4,19 +4,9 @@ namespace App\Models;
 use DB;
 use Auth;
 use app\Library\Org\Data;
-use Illuminate\Database\Eloquent\Model;
 
-class AdminNav extends Model
+class AdminNav extends Base
 {
-    /**
-     * 可以被批量赋值的属性.
-     *
-     * @var array
-     */
-    protected $fillable = [
-        'id','pid','name','mca','ico','order_number'
-    ];
-
     /**
      * 添加数据
      *

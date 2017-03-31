@@ -2,32 +2,12 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class User extends Model
+class User extends Base
 {
     //开启如删除
     use SoftDeletes;
-
-    /**
-     * 可以被批量赋值的属性.
-     *
-     * @var array
-     */
-    protected $fillable = [
-        'id',
-        'name',
-        'password',
-        'avatar',
-        'email',
-        'email_code',
-        'phone',
-        'status',
-        'type',
-        'last_login_ip',
-        'last_login_time'
-    ];
 
     /**
      * The attributes that should be hidden for arrays.
