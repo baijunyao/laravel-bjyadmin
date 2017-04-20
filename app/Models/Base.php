@@ -56,16 +56,9 @@ class Base extends Model
      */
     public function editData($map, $data)
     {
-        //查找需要修改的数据
-        $model = $this->where($map)->first();
-        //修改
-        foreach ($data as $k => $v) {
-            $model->{$k} = $v;
-        }
-        $result = $model->save();
+        $result = $this->whereMap($map)->update($data);;
         if ($result) {
-            session()->flash('alert-message','修改成功');
-            session()->flash('alert-class','alert-success');
+            showMessage('修改成功');
             return $result;
         }else{
             return false;
