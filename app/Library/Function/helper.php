@@ -451,3 +451,32 @@ if (!function_exists('reSubstr')) {
         return $suffix ? $slice.$omit : $slice;
     }
 }
+
+if ( !function_exists('getMonthDataByYear') ) {
+
+    /**
+     * 获取指定年份12个月每个月的英文名、天数、开始和结束日期
+     *
+     * @param int $year
+     * @return array
+     */
+    function getMonthDataByYear($year = 2017)
+    {
+        $month = [];
+        for ($i = 1; $i < 13; $i++) {
+            // 组合字符串格式的日期
+            $dateStr = $year.'-'.$i.'-1';
+            // 把字符串日期转成时间戳
+            $time = strtotime($dateStr);
+            // 获取每个月的天数
+            $days = date('t', $time);
+            $month[] = [
+                'month' => date('F', $time),
+                'days' => $days,
+                'start' => strtotime($year.'-'.$i.'-1 00:00:00'),
+                'end' => strtotime($year.'-'.$i.'-'.$days.' 23:59:59')
+            ];
+        }
+        return $month;
+    }
+}
