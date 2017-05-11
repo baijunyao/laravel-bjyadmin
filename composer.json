@@ -1,7 +1,7 @@
 {
-    "name": "laravel/laravel",
+    "name": "baijunyao/laravel-bjyadmin",
     "description": "The Laravel Framework.",
-    "keywords": ["framework", "laravel"],
+    "keywords": ["framework", "laravel", "bjyadmin"],
     "license": "MIT",
     "type": "project",
     "require": {
