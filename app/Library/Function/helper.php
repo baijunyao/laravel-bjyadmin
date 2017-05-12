@@ -480,3 +480,18 @@ if ( !function_exists('getMonthDataByYear') ) {
         return $month;
     }
 }
+
+if (!function_exists('flashMessage')){
+    /**
+     * 添加成功或者失败的提示
+     *
+     * @param string $message
+     * @param bool $success
+     */
+    function flashMessage($message = '成功', $success = true)
+    {
+        $className = $success ? 'alert-success' : 'alert-danger';
+        session()->flash('alert-message', $message);
+        session()->flash('alert-class', $className);
+    }
+}
