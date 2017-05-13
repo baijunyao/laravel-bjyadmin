@@ -31,7 +31,7 @@ class CreateLaGithubContributionsTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('la_github_contributions');
+		Schema::drop('github_contributions');
 	}
 
 }
