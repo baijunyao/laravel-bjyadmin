@@ -121,3 +121,14 @@ Route::group(['prefix'=>'home/demo', 'namespace'=>'Home'], function () {
     Route::post('check_captcha', 'DemoController@check_captcha');
 
 });
+
+/**
+ * 采集示例
+ */
+Route::group(['prefix' => 'query', 'namespace' => 'Query'], function () {
+    // github
+    Route::group(['prefix' => 'github'], function () {
+        // 活跃度
+        Route::get('contributions', 'GithubController@contributions');
+    });
+});

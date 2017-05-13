@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "ac7aba4de6d4c4bfdda7e1ae6f9b2c92",
-    "content-hash": "c6703d6c6a356d429fd9697239558799",
+    "hash": "17ac24a599baa0597da3d8dd55afcbd4",
+    "content-hash": "41d07287c3bce62638efa396bbb29d6d",
     "packages": [
         {
             "name": "barryvdh/laravel-debugbar",
@@ -1245,6 +1245,92 @@
                 "watermark"
             ],
             "time": "2017-04-23 18:45:36"
+        },
+        {
+            "name": "jaeger/phpquery-single",
+            "version": "0.9.7",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/jae-jae/phpQuery-single.git",
+                "reference": "4b1dc2b2625a4a142f21a0b85a4254c327dfc5c4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://files.phpcomposer.com/files/jae-jae/phpQuery-single/4b1dc2b2625a4a142f21a0b85a4254c327dfc5c4.zip",
+                "reference": "4b1dc2b2625a4a142f21a0b85a4254c327dfc5c4",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "phpQuery.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Tobiasz Cudnik",
+                    "email": "tobiasz.cudnik@gmail.com",
+                    "homepage": "https://github.com/TobiaszCudnik",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Jaeger",
+                    "role": "Packager"
+                }
+            ],
+            "description": "phpQuery单文件版本，是Querylist的依赖(http://querylist.cc/)，phpQuery项目主页:http://code.google.com/p/phpquery/",
+            "homepage": "http://code.google.com/p/phpquery/",
+            "time": "2016-01-02 17:34:12"
+        },
+        {
+            "name": "jaeger/querylist",
+            "version": "V3.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/jae-jae/QueryList.git",
+                "reference": "700d56db49590a3080a94dc7a63ecab212e920ff"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://files.phpcomposer.com/files/jae-jae/QueryList/700d56db49590a3080a94dc7a63ecab212e920ff.zip",
+                "reference": "700d56db49590a3080a94dc7a63ecab212e920ff",
+                "shasum": ""
+            },
+            "require": {
+                "jaeger/phpquery-single": "^0.9.5",
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "QL\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jaeger",
+                    "email": "JaegerCode@gmail.com"
+                }
+            ],
+            "description": "QueryList是基于phpQuery的无比强大的PHP采集工具",
+            "homepage": "http://querylist.cc",
+            "keywords": [
+                "QueryList",
+                "phpQuery",
+                "spider"
+            ],
+            "time": "2017-04-20 05:53:32"
         },
         {
             "name": "jakub-onderka/php-console-color",
