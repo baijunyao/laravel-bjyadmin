@@ -14,7 +14,7 @@ class CreateLaGithubContributionsTable extends Migration {
 	{
 		Schema::create('github_contributions', function(Blueprint $table)
 		{
-			$table->increments('id')->primary()->comment('活跃统计id');
+			$table->increments('id')->comment('活跃统计id');
 			$table->string('name', 10)->default('')->comment('姓名');
 			$table->string('url')->default('')->comment('github的url');
 			$table->text('content')->comment('统计的详情');
