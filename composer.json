@@ -28,7 +28,8 @@
         "guzzlehttp/guzzle": "^6.2",
         "maatwebsite/excel": "^2.1",
         "barryvdh/laravel-dompdf": "^0.7.0",
-        "phpoffice/phpword": "^0.13.0"
+        "phpoffice/phpword": "^0.13.0",
+        "jaeger/querylist": "^3.2"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
