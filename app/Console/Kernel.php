@@ -25,10 +25,11 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
+        // 每天凌晨的时候 抓取最新的github贡献次数
         $githubContribution = new GithubController();
         $schedule->call(function () use($githubContribution) {
             $githubContribution->updateContributions();
-        })->everyMinute()->appendOutputTo(storage_path('logs/cron.log'));
+        })->daily();
     }
 
     /**
