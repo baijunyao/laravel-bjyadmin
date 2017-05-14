@@ -27,8 +27,8 @@ class Kernel extends ConsoleKernel
     {
         $githubContribution = new GithubController();
         $schedule->call(function () use($githubContribution) {
-            $githubContribution->updateContributions()->appendOutputTo(storage_path('logs/cron.log'));
-        })->everyMinute();
+            $githubContribution->updateContributions();
+        })->everyMinute()->appendOutputTo(storage_path('logs/cron.log'));
     }
 
     /**
