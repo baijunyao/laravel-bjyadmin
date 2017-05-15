@@ -94,6 +94,7 @@ class GithubController extends Controller
             ];
             $githubContributionModel->editData($map, $data);
         }
+        echo '更新完毕';
     }
 
 
