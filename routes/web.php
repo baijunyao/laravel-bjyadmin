@@ -130,5 +130,7 @@ Route::group(['prefix' => 'query', 'namespace' => 'Query'], function () {
     Route::group(['prefix' => 'github'], function () {
         // 活跃度
         Route::get('contributions', 'GithubController@contributions');
+        // 手动更新活跃度
+        Route::get('updateContributions', 'GithubController@updateContributions');
     });
 });
