@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Query;
 
 use App\Models\GithubContribution;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Models\Courses;
 use QL\QueryList;
@@ -31,9 +32,31 @@ class GithubController extends Controller
     /**
      * 展示github贡献数据
      */
-    public function contributions()
+    public function contributions(GithubContribution $githubContributionModel)
     {
-
+        // 获取全部的用户数据
+        $data = $githubContributionModel->all()->toArray();
+        // 截取最新7天的贡献数据
+        array_walk($data, function (&$v) {
+            // 排除今天的 从后向前截取7天的数据
+            $content = array_slice($v['content'], -8, 7);
+            // 日期倒序
+            krsort($content);
+            $v['content'] = $content;
+        });
+        // 获取日期数组
+        $date = array_keys($data[0]['content']);
+        foreach ($data as $k => $v) {
+            $name[] = $v['name'];
+            $url [] = $v['url'];
+            $series[] = [
+                'name' => $v['name'],
+                'type' => 'line',
+                'data' => array_values($v['content'])
+            ];
+        }
+        $assign = compact('name', 'series', 'date', 'url');
+        return view('query/github/contributions', $assign);
     }
 
     /**
