@@ -15,7 +15,7 @@
 <br>
 
 @foreach($name as $k => $v)
-    {{ $v }} : <a href="{{ $url[$k] }}">{{ $url[$k] }}</a> <br>
+    {{ $v }} : <a href="{{ $url[$k] }}" target="_blank">{{ $url[$k] }}</a> <br>
 @endforeach
 
 <script src="https://cdn.bootcss.com/echarts/3.5.4/echarts.common.min.js"></script>
