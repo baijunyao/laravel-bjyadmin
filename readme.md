@@ -16,6 +16,7 @@
 - guzzlehttp/guzzle 发送http请求
 - maatwebsite/excel 导入导出excel
 - phpoffice/phpword 编辑word文档
+- jaeger/querylist 采集
 
 ## 包链接
 - dingo/api https://github.com/dingo/api
@@ -30,6 +31,7 @@
 - guzzlehttp/guzzle https://github.com/guzzle/guzzle
 - maatwebsite/excel https://github.com/Maatwebsite/Laravel-Excel
 - phpoffice/phpword https://github.com/PHPOffice/PHPWord
+- jaeger/querylist https://github.com/jae-jae/QueryList
 
 ## License
 
