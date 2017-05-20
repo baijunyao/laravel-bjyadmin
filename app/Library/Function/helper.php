@@ -125,31 +125,34 @@ if (!function_exists('ajaxReturn')) {
         if (is_object($data)) {
             $data = $data->toArray();
         }
-        /**
-         * 将数组递归转字符串
-         * @param  array $arr 需要转的数组
-         * @return array       转换后的数组
-         */
-        function toString($arr)
-        {
-            // app 禁止使用和为了统一字段做的判断
-            $reserved_words = array('id', 'title', 'description');
-            foreach ($arr as $k => $v) {
-                //如果是对象先转数组
-                if (is_object($v)) {
-                    $v = $v->toArray();
+
+        if (!function_exists('toString')) {
+            /**
+             * 将数组递归转字符串
+             * @param  array $arr 需要转的数组
+             * @return array       转换后的数组
+             */
+            function toString($arr)
+            {
+                // app 禁止使用和为了统一字段做的判断
+                $reserved_words = array('id', 'title', 'description');
+                foreach ($arr as $k => $v) {
+                    //如果是对象先转数组
+                    if (is_object($v)) {
+                        $v = $v->toArray();
+                    }
+                    //如果是数组；则递归转字符串
+                    if (is_array($v)) {
+                        $arr[$k] = toString($v);
+                    } else {
+                        //判断是否有移动端禁止使用的字段
+                        in_array($k, $reserved_words, true) && die('app不允许使用【' . $k . '】这个键名 —— 此提示是helper.php 中的ajaxReturn函数返回的');
+                        //转成字符串类型
+                        $arr[$k] = strval($v);
+                    }
                 }
-                //如果是数组；则递归转字符串
-                if (is_array($v)) {
-                    $arr[$k] = toString($v);
-                } else {
-                    //判断是否有移动端禁止使用的字段
-                    in_array($k, $reserved_words, true) && die('app不允许使用【' . $k . '】这个键名 —— 此提示是helper.php 中的ajaxReturn函数返回的');
-                    //转成字符串类型
-                    $arr[$k] = strval($v);
-                }
+                return $arr;
             }
-            return $arr;
         }
 
         //判断是否有返回的数据
