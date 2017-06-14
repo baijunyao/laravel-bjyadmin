@@ -520,3 +520,29 @@ if (! function_exists('strReplaceLimit')) {
         return preg_replace($search, $replace, $subject, $limit);
     }
 }
+
+if (! function_exists('reLogger')) {
+    /**
+     * 重写logger方法；可以指定文件
+     *
+     * @param null $message   消息名
+     * @param array $context  内容
+     * @param string $name    记录通道
+     * @param null $filePath  文件路径
+     */
+    function reLogger($message = null, array $context = [], $name = 'test', $filePath = null)
+    {
+        if (is_null($filePath)) {
+            logger($message, $context = []);
+        } else {
+            $log = new Logger($name);
+            $log->pushHandler(
+                new StreamHandler(
+                    storage_path($filePath),
+                    Logger::ERROR
+                )
+            );
+            $log->addError($message, $context);
+        }
+    }
+}
