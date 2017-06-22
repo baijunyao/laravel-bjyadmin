@@ -57,6 +57,11 @@ class Base extends Model
     public function editData($map, $data)
     {
         $model = $this->whereMap($map)->first();
+        // 可能有查不到数据的情况
+        if ($model->isEmpty()) {
+            showMessage('无可被修改的数据', false);
+            return false;
+        }
         foreach ($data as $k => $v) {
             $model->{$k} = $v;
         }
