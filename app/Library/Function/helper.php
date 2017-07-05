@@ -258,7 +258,7 @@ if (! function_exists('upload')) {
      */
     function upload($name, $path = 'uploads', $childPath = true){
         // 判断请求中是否包含name=file的上传文件
-        if (! request()->hasFile($name)) {
+        if (!request()->hasFile($name)) {
             $data=[
                 'status_code' => 501,
                 'message' => '上传文件为空'
@@ -268,19 +268,19 @@ if (! function_exists('upload')) {
         $file = request()->file($name);
 
         // 判断是否多文件上传
-        if (! is_array($file)) {
+        if (!is_array($file)) {
             $file = [$file];
         }
 
         // 判断是否需要生成日期子目录
         if ($childPath == true) {
-            $path = public_path(trim($path, '/').DIRECTORY_SEPARATOR.date('Ymd'));
+            $publicPath = public_path(trim($path, '/').'/'.date('Ymd'));
         } else {
-            $path = public_path(trim($path, '/'));
+            $publicPath = public_path(trim($path, '/'));
         }
 
         // 如果目录不存在；先创建目录
-        is_dir($path) || mkdir($path, 0755, true);
+        is_dir($publicPath) || mkdir($publicPath, 0755, true);
 
         // 上传成功的文件
         $success = [];
@@ -300,7 +300,7 @@ if (! function_exists('upload')) {
             // 组合新的文件名
             $newName = uniqid().'.'.$v->getClientOriginalExtension();
             // 判断上传是否失败
-            if (! $v->move($path, $newName)) {
+            if (!$v->move($publicPath, $newName)) {
                 $data=[
                     'status_code' => 500,
                     'message' => '保存文件失败'
@@ -309,11 +309,10 @@ if (! function_exists('upload')) {
             } else {
                 $success[] = [
                     'name' => $oldName,
-                    'path' => trim($path, '.').$newName
+                    'path' => '/'.trim($path, '/').'/'.$newName
                 ];
             }
         }
-
         //上传成功
         $data=[
             'status_code' => 200,
