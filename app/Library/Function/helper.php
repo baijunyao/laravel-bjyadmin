@@ -251,44 +251,44 @@ if (! function_exists('upload')) {
     /**
      * 上传文件函数
      *
-     * @param $file             表单的name名
-     * @param string $path      上传的路径
+     * @param $name             表单的name名
+     * @param string $path      上传的路径 相对于public目录
      * @param bool $childPath   是否根据日期生成子目录
      * @return array            上传的状态
      */
-    function upload($file, $path = 'uploads', $childPath = true){
+    function upload($name, $path = 'uploads', $childPath = true){
         // 判断请求中是否包含name=file的上传文件
-        if (!request()->hasFile($file)) {
+        if (! request()->hasFile($name)) {
             $data=[
-                'status_code' => 500,
+                'status_code' => 501,
                 'message' => '上传文件为空'
             ];
             return $data;
         }
-        $file = request()->file($file);
+        $file = request()->file($name);
+
         // 判断是否多文件上传
-        if (!is_array($file)) {
+        if (! is_array($file)) {
             $file = [$file];
         }
 
-        // 兼容性的处理路径的问题
+        // 判断是否需要生成日期子目录
         if ($childPath == true) {
-            $path = './'.trim($path, './').'/'.date('Ymd').'/';
+            $path = public_path(trim($path, '/').DIRECTORY_SEPARATOR.date('Ymd'));
         } else {
-            $path = './'.trim($path, './').'/';
+            $path = public_path(trim($path, '/'));
         }
 
         // 如果目录不存在；先创建目录
-        if (! file_exists($path)) {
-            mkdir($path,0755,true);
-        }
+        is_dir($path) || mkdir($path, 0755, true);
+
         // 上传成功的文件
         $success = [];
 
         // 循环上传
         foreach ($file as $k => $v) {
             //判断文件上传过程中是否出错
-            if (!$v->isValid()) {
+            if (! $v->isValid()) {
                 $data=[
                     'status_code' => 500,
                     'message' => '文件上传出错'
@@ -300,7 +300,7 @@ if (! function_exists('upload')) {
             // 组合新的文件名
             $newName = uniqid().'.'.$v->getClientOriginalExtension();
             // 判断上传是否失败
-            if (!$v->move($path, $newName)) {
+            if (! $v->move($path, $newName)) {
                 $data=[
                     'status_code' => 500,
                     'message' => '保存文件失败'
