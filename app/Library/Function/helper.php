@@ -271,13 +271,14 @@ if (! function_exists('upload')) {
         if (!is_array($file)) {
             $file = [$file];
         }
+        // 先去除两边空格
+        $path = trim($path, '/');
 
         // 判断是否需要生成日期子目录
-        if ($childPath == true) {
-            $publicPath = public_path(trim($path, '/').'/'.date('Ymd'));
-        } else {
-            $publicPath = public_path(trim($path, '/'));
-        }
+        $path = $childPath ? $path.'/'.date('Ymd') : $path;
+
+        // 获取目录的绝对路径
+        $publicPath = public_path($path.'/');
 
         // 如果目录不存在；先创建目录
         is_dir($publicPath) || mkdir($publicPath, 0755, true);
@@ -309,7 +310,7 @@ if (! function_exists('upload')) {
             } else {
                 $success[] = [
                     'name' => $oldName,
-                    'path' => '/'.trim($path, '/').'/'.$newName
+                    'path' => '/'.$path.'/'.$newName
                 ];
             }
         }
