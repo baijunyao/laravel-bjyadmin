@@ -28,7 +28,8 @@
         "maatwebsite/excel": "^2.1",
         "barryvdh/laravel-dompdf": "^0.7.0",
         "phpoffice/phpword": "^0.13.0",
-        "jaeger/querylist": "^3.2"
+        "jaeger/querylist": "^3.2",
+        "laravel/browser-kit-testing": "^2.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
@@ -55,7 +56,10 @@
     "autoload-dev": {
         "classmap": [
             "tests/TestCase.php"
-        ]
+        ],
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
     },
     "scripts": {
         "post-root-package-install": [
