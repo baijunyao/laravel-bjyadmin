@@ -206,11 +206,6 @@ return [
         Mews\Captcha\CaptchaServiceProvider::class,
 
         /**
-         * barryvdh/laravel-ide-helper ide支持
-         */
-        Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
-
-        /**
          * barryvdh/laravel-debugbar 工具条
          */
         Barryvdh\Debugbar\ServiceProvider::class,
