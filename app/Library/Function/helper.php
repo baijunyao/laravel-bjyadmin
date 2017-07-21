@@ -352,7 +352,7 @@ if (! function_exists('saveToFile')) {
     }
 }
 
-if (! function_exists('exportExcel')) {
+if (! function_exists('export_excel')) {
     /**
      * 导出excel文件
      *
@@ -368,10 +368,14 @@ if (! function_exists('exportExcel')) {
      *  );
      *
      */
-    function exportExcel($data, $file_name = 'filename', $ext = 'xls')
+    function export_excel($data, $file_name = 'filename', $ext = 'xls')
     {
-        // 如果是迭代器；先转成数组
         foreach ($data as $k => $v) {
+            // 如果是数组 直接返回
+            if (is_array($v)) {
+                continue;
+            }
+            // 如果是 stdClass 则转成数据
             if (in_array(get_class($v), ['stdClass'])) {
                 $data[$k] = (array)$v;
             }
