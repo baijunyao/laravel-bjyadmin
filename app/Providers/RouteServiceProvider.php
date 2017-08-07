@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use File;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 
@@ -56,6 +57,11 @@ class RouteServiceProvider extends ServiceProvider
             'namespace' => $this->namespace,
         ], function ($router) {
             require base_path('routes/web.php');
+            // 自动引入用于分割路由的 routes/web 目录下的所有文件
+            $files = File::allFiles(base_path('routes/web'));
+            foreach ($files as $k => $v) {
+                require $v->getPathName();
+            }
         });
     }
 
