@@ -360,11 +360,18 @@ if (! function_exists('export_excel')) {
      * @param string $file_name
      * @param string $ext
      *
-     *   示例数组：
+     *  单个工作表 示例数组：
      *  $data = array(
-     *      array('data1', 'data2'),
-     *      array('data5', 'data6'),
-     *      array('data3', 'data4')
+     *      ['data1', 'data2'],
+     *      ['data5', 'data6'],
+     *      ['data3', 'data4']
+     *  );
+     *
+     *  多个工作表 示例数组：
+     *  $data = array(
+     *      'Sheet1' => ['data1', 'data2'],
+     *      'Sheet2' => ['data5', 'data6'],
+     *      'Sheet3' => ['data3', 'data4']
      *  );
      *
      */
@@ -380,12 +387,27 @@ if (! function_exists('export_excel')) {
                 $data[$k] = (array)$v;
             }
         }
-        Excel::create($file_name, function($excel) use($data) {
-            // Our first sheet
-            $excel->sheet('Sheet1', function($sheet) use($data)  {
-                $sheet->fromArray($data, null, 'A1', false, false);
-            });
-        })->export($ext);
+
+        // 利用array_merge把键设置连续数组；为后续判断是否为关联数组做准备
+        $data = array_merge($data);
+
+        // 如果是索引数组 则直接创建单个工作表的excel
+        if (array_values($data) === $data) {
+            Excel::create($file_name, function($excel) use($data) {
+                $excel->sheet('Sheet1', function($sheet) use($data)  {
+                    $sheet->fromArray($data, null, 'A1', false, false);
+                });
+            })->export($ext);
+        } else {
+            // 如果是关联数组；则生成 名字为key的工作表sheet 的excel
+            Excel::create($file_name, function($excel) use($data) {
+                foreach ($data as $k => $v) {
+                    $excel->sheet($k, function($sheet) use($v)  {
+                        $sheet->fromArray($v, null, 'A1', false, false);
+                    });
+                }
+            })->export($ext);
+        }
     }
 }
 
