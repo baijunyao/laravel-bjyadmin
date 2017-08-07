@@ -11,13 +11,13 @@ Route::group(['prefix'=>'home', 'namespace'=>'Home'], function () {
         //示例首页
         Route::get('index', 'DemoController@index');
         // 发送短信
-        Route::get('send_sms', 'DemoController@send_sms');
+        Route::get('sendSms', 'DemoController@sendSms');
         //发送邮件
-        Route::get('send_email', 'DemoController@send_email');
+        Route::get('sendEmail', 'DemoController@sendEmail');
         //显示验证码
-        Route::get('show_captcha', 'DemoController@show_captcha');
+        Route::get('showCaptcha', 'DemoController@showCaptcha');
         //检测的验证码是否正确
-        Route::post('check_captcha', 'DemoController@check_captcha');
+        Route::post('checkCaptcha', 'DemoController@checkCaptcha');
     });
     
 });

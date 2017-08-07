@@ -20,7 +20,7 @@ class DemoController extends Controller
     /**
      * 发送验证码
      */
-    public function send_sms()
+    public function sendSms()
     {
         $phone = '手机号';
         $code = 125556;
@@ -31,7 +31,7 @@ class DemoController extends Controller
     /**
      * 发送验证码
      */
-    public function send_email()
+    public function sendEmail()
     {
         $email = '邮箱';
         $name = '帅白';
@@ -48,7 +48,7 @@ class DemoController extends Controller
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function show_captcha()
+    public function showCaptcha()
     {
         return view('home/demo/show_captcha');
     }
@@ -58,7 +58,7 @@ class DemoController extends Controller
      *
      * @param Request $request
      */
-    public function check_captcha(Request $request)
+    public function checkCaptcha(Request $request)
     {
         $captcha = $request->input('captcha');
         $result = captcha_check($captcha);
