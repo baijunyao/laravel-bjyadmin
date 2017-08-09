@@ -17,6 +17,9 @@
 - maatwebsite/excel 导入导出excel
 - phpoffice/phpword 编辑word文档
 - jaeger/querylist 采集
+- stichoza/google-translate-php 谷歌翻译
+- propaganistas/laravel-phone 手机号验证
+- predis/predis 连接redis
 
 ## 包链接
 - dingo/api https://github.com/dingo/api
@@ -32,6 +35,9 @@
 - maatwebsite/excel https://github.com/Maatwebsite/Laravel-Excel
 - phpoffice/phpword https://github.com/PHPOffice/PHPWord
 - jaeger/querylist https://github.com/jae-jae/QueryList
+- stichoza/google-translate-php https://github.com/Stichoza/google-translate-php
+- propaganistas/laravel-phone https://github.com/Propaganistas/Laravel-Phone
+- predis/predis https://github.com/nrk/predis
 
 ## License
 The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT).
