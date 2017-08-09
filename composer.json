@@ -29,7 +29,10 @@
         "barryvdh/laravel-dompdf": "^0.7.0",
         "phpoffice/phpword": "^0.13.0",
         "jaeger/querylist": "^3.2",
-        "laravel/browser-kit-testing": "^2.0"
+        "laravel/browser-kit-testing": "^2.0",
+        "stichoza/google-translate-php": "dev-master",
+        "propaganistas/laravel-phone": "^2.8",
+        "predis/predis": "^1.1"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
