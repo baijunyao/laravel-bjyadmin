@@ -47,13 +47,13 @@
     "autoload": {
         "classmap": [
             "database",
-            "app/Library/Org"
+            "app/Libraries/Org"
         ],
         "psr-4": {
             "App\\": "app/"
         },
         "files": [
-            "app/Library/Function/helper.php"
+            "app/Libraries/Functions/helpers.php"
         ]
     },
     "autoload-dev": {
