@@ -219,6 +219,12 @@ return [
          * barryvdh/laravel-dompdf 创建pdf
          */
         Barryvdh\DomPDF\ServiceProvider::class,
+
+        /**
+         * GrahamCampbell/Laravel-GitHub  用于 GitHub api
+         */
+        GrahamCampbell\GitHub\GitHubServiceProvider::class,
+
     ],
 
     /*
@@ -233,7 +239,6 @@ return [
     */
 
     'aliases' => [
-
         'App' => Illuminate\Support\Facades\App::class,
         'Artisan' => Illuminate\Support\Facades\Artisan::class,
         'Auth' => Illuminate\Support\Facades\Auth::class,
@@ -273,6 +278,7 @@ return [
         'Debugbar' => Barryvdh\Debugbar\Facade::class,
         'Wechat' => Overtrue\LaravelWechat\Facade::class,
         'PDF' => Barryvdh\DomPDF\Facade::class,
+        'GitHub' => GrahamCampbell\GitHub\Facades\GitHub::class,
     ],
 
 ];

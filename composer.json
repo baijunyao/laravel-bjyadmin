@@ -32,7 +32,9 @@
         "laravel/browser-kit-testing": "^2.0",
         "stichoza/google-translate-php": "dev-master",
         "propaganistas/laravel-phone": "^2.8",
-        "predis/predis": "^1.1"
+        "predis/predis": "^1.1",
+        "graham-campbell/github": "^6.0",
+        "php-http/guzzle6-adapter": "^1.1"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
