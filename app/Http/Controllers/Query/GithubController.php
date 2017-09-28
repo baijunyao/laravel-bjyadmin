@@ -11,6 +11,7 @@ use App\Models\School;
 use GuzzleHttp\Client;
 use App\Http\Controllers\Controller;
 use GuzzleHttp\Cookie\FileCookieJar;
+use GitHub;
 
 class GithubController extends Controller
 {
@@ -97,6 +98,20 @@ class GithubController extends Controller
         echo '更新完毕';
     }
 
+    public function api()
+    {
+        $client = new \Github\Client();
+        $response = $client->getHttpClient()->get('users/baijunyao/events/public?page=1&per_page=300');
+        $events     = \Github\HttpClient\Message\ResponseMediator::getContent($response);
+        dd($events);
+        echo json_encode($events);
+
+        die;
+
+        dd(GitHub::me());
+        $data = GitHub::evens()->show('Einenlum');
+        dd($data);
+    }
 
 
 }
