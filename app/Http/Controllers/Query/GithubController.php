@@ -101,10 +101,15 @@ class GithubController extends Controller
     public function api()
     {
         $client = new \Github\Client();
-        $response = $client->getHttpClient()->get('users/baijunyao/events/public?page=1&per_page=300');
-        $events     = \Github\HttpClient\Message\ResponseMediator::getContent($response);
-        dd($events);
-        echo json_encode($events);
+        $data = [];
+        for ($i = 1; $i < 4; $i++) {
+            $response = $client->getHttpClient()->get('users/baijunyao/events/public?page=1&per_page=300');
+            $events     = \Github\HttpClient\Message\ResponseMediator::getContent($response);
+            $data = collect($events)->where('type', 'PushEvent')->merge($data);
+        }
+        dd($data);
+
+
 
         die;
 
