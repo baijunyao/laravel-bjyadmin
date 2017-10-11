@@ -16,7 +16,7 @@ class CreateLaGithubContributionsTable extends Migration {
 		{
 			$table->increments('id')->comment('活跃统计id');
 			$table->string('name', 10)->default('')->comment('姓名');
-			$table->string('url')->default('')->comment('github的url');
+			$table->string('nickname',40)->default('')->comment('github用户名');
 			$table->text('content')->comment('统计的详情');
             $table->timestamps();
             $table->softDeletes();
