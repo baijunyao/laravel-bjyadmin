@@ -59,14 +59,16 @@ class Base extends Model
         $model = $this->whereMap($map)->get();
         // 可能有查不到数据的情况
         if ($model->isEmpty()) {
-            show_message('无可被修改的数据', false);
+            session()->flash('alert-message','无可被修改的数据');
+            session()->flash('alert-class','alert-success');
             return false;
         }
         foreach ($model as $k => $v) {
             $result = $v->forceFill($data)->save();
         }
         if ($result) {
-            show_message('修改成功');
+            session()->flash('alert-message','修改成功');
+            session()->flash('alert-class','alert-success');
             return $result;
         }else{
             return false;
