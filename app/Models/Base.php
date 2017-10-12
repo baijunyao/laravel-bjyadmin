@@ -56,19 +56,17 @@ class Base extends Model
      */
     public function editData($map, $data)
     {
-        $model = $this->whereMap($map)->first();
+        $model = $this->whereMap($map)->get();
         // 可能有查不到数据的情况
         if ($model->isEmpty()) {
-            showMessage('无可被修改的数据', false);
+            show_message('无可被修改的数据', false);
             return false;
         }
-        foreach ($data as $k => $v) {
-            $model->{$k} = $v;
+        foreach ($model as $k => $v) {
+            $result = $v->forceFill($data)->save();
         }
-        $result = $model->save();
         if ($result) {
-            session()->flash('alert-message','操作成功');
-            session()->flash('alert-class','alert-success');
+            show_message('修改成功');
             return $result;
         }else{
             return false;
