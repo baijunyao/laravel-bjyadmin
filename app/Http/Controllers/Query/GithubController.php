@@ -37,23 +37,22 @@ class GithubController extends Controller
     {
         // 获取全部的用户数据
         $data = $githubContributionModel->all()->toArray();
-        // 截取最新7天的贡献数据
-        array_walk($data, function (&$v) {
-            // 排除今天的 从后向前截取7天的数据
-            $content = array_slice($v['content'], -8, 7);
-            // 日期倒序
-            krsort($content);
-            $v['content'] = $content;
-        });
         // 获取日期数组
-        $date = array_keys($data[0]['content']);
+        $date = [];
+        for ($i = 1; $i < 8; $i++) {
+            $date[] = Carbon::now()->subDay($i)->toDateString();
+        }
         foreach ($data as $k => $v) {
+            $count = [];
+            foreach ($date as $n) {
+                $count[] = isset($v['content'][$n]) ? $v['content'][$n]: 0;
+            }
             $name[] = $v['name'];
-            $url [] = $v['url'];
+            $url [] = 'https://github.com/'.$v['nickname'];
             $series[] = [
                 'name' => $v['name'],
                 'type' => 'line',
-                'data' => array_values($v['content'])
+                'data' => $count
             ];
         }
         $assign = compact('name', 'series', 'date', 'url');
@@ -98,24 +97,37 @@ class GithubController extends Controller
         echo '更新完毕';
     }
 
-    public function api()
+    public function api(GithubContribution $githubContributionModel)
     {
+        set_time_limit(0);
+        // 获取全部的用户数据
+        $userData = $githubContributionModel
+            ->select('id', 'nickname')
+            ->get()
+            ->toArray();
+
         $client = new \Github\Client();
-        $data = [];
-        for ($i = 1; $i < 4; $i++) {
-            $response = $client->getHttpClient()->get('users/baijunyao/events/public?page=1&per_page=300');
-            $events     = \Github\HttpClient\Message\ResponseMediator::getContent($response);
-            $data = collect($events)->where('type', 'PushEvent')->merge($data);
+        foreach ($userData as $k => $v) {
+            $pushData = [];
+            for ($i = 1; $i < 4; $i++) {
+                $response = $client->getHttpClient()->get('users/'.$v['nickname'].'/events/public?page='.$i.'&per_page=300');
+                $events     = \Github\HttpClient\Message\ResponseMediator::getContent($response);
+                array_walk($events, function (&$v) {
+                    $v['created_at'] = date('Y-m-d', strtotime($v['created_at']));
+                });
+                $pushData = collect($events)->where('type', 'PushEvent')->merge($pushData);
+            }
+            $pushDataArray = $pushData->sortByDesc('created_at')->groupBy('created_at')->map(function ($v) {
+                return array_sum(array_column(array_column($v->toArray(), 'payload'), 'distinct_size'));
+            })->toArray();
+            $map = [
+                'id' => $v['id']
+            ];
+            $data = [
+                'content' => $pushDataArray
+            ];
+            $githubContributionModel->editData($map, $data);
         }
-        dd($data);
-
-
-
-        die;
-
-        dd(GitHub::me());
-        $data = GitHub::evens()->show('Einenlum');
-        dd($data);
     }
 
 
