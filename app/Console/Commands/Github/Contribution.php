@@ -5,6 +5,7 @@ namespace App\Console\Commands\Github;
 use App\Models\GithubContribution;
 use Illuminate\Console\Command;
 use GitHub;
+use Github\HttpClient\Message\ResponseMediator;
 
 class Contribution extends Command
 {
@@ -45,13 +46,11 @@ class Contribution extends Command
             ->select('id', 'nickname')
             ->get()
             ->toArray();
-
-        $client = new \Github\Client();
         foreach ($userData as $k => $v) {
             $pushData = [];
-            for ($i = 1; $i < 4; $i++) {
-                $response = $client->getHttpClient()->get('users/'.$v['nickname'].'/events/public?page='.$i.'&per_page=300');
-                $events     = \Github\HttpClient\Message\ResponseMediator::getContent($response);
+            for ($i = 1; $i <= 3; $i++) {
+                $response = GitHub::getHttpClient()->get('users/'.$v['nickname'].'/events/public?page='.$i.'&per_page=300');
+                $events = ResponseMediator::getContent($response);
                 array_walk($events, function (&$v) {
                     $v['created_at'] = date('Y-m-d', strtotime($v['created_at']));
                 });
