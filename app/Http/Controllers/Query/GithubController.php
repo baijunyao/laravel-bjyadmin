@@ -6,7 +6,6 @@ use App\Models\GithubContribution;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use GitHub;
 
 class GithubController extends Controller
 {
