@@ -44,7 +44,6 @@ class Contribution extends Command
         // 获取全部的用户数据
         $userData = $githubContributionModel
             ->select('id', 'nickname')
-            ->where('id', 3)
             ->get()
             ->toArray();
         foreach ($userData as $k => $v) {
@@ -58,7 +57,12 @@ class Contribution extends Command
                 // 记录用户 push 事件
                 $pushData = collect($events)->where('type', 'PushEvent')->merge($pushData);
                 // 记录用户创建 仓库 事件
-                $pushData = collect($events)->where('type', 'CreateEvent')->filter(function ($v) {
+                $pushData = collect($events)->where('type', 'CreateEvent')->map(function ($v) {
+                    // 因为创建仓库事件中没有 distinct_size 字段； 设置为算1此提交 方便后面的统计
+                    $v['payload']['distinct_size'] = 1;
+                    return $v;
+                })->filter(function ($v) {
+                    // ref_type=repository 的才算是创建仓库事件
                     return $v['payload']['ref_type'] === 'repository';
                 })->merge($pushData);
             }
