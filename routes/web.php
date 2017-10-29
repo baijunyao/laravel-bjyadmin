@@ -16,14 +16,14 @@ Route::get('/', function () {
 });
 
 /**
+ * 用于测试
+ */
+Route::get('test', 'Home\IndexController@test');
+
+/**
  * auth 登录注册退出
  */
 Auth::routes();
-
-/**
- * 登录成功后访问的页面
- */
-Route::get('home', 'HomeController@index');
 
 /**
  * get 方式的退出

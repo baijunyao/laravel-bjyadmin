@@ -22,7 +22,8 @@ class IndexController extends Controller
      *
      * @param Request $request
      */
-    public function test(Request $request){
-
+    public function test(Request $request)
+    {
+        echo 'test';
     }
 }
