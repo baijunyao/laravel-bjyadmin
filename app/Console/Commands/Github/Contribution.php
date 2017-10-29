@@ -44,6 +44,7 @@ class Contribution extends Command
         // 获取全部的用户数据
         $userData = $githubContributionModel
             ->select('id', 'nickname')
+            ->where('id', 3)
             ->get()
             ->toArray();
         foreach ($userData as $k => $v) {
@@ -54,7 +55,12 @@ class Contribution extends Command
                 array_walk($events, function (&$v) {
                     $v['created_at'] = date('Y-m-d', strtotime($v['created_at']));
                 });
+                // 记录用户 push 事件
                 $pushData = collect($events)->where('type', 'PushEvent')->merge($pushData);
+                // 记录用户创建 仓库 事件
+                $pushData = collect($events)->where('type', 'CreateEvent')->filter(function ($v) {
+                    return $v['payload']['ref_type'] === 'repository';
+                })->merge($pushData);
             }
             $pushDataArray = $pushData->sortByDesc('created_at')->groupBy('created_at')->map(function ($v) {
                 return array_sum(array_column(array_column($v->toArray(), 'payload'), 'distinct_size'));
