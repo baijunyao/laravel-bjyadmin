@@ -5,6 +5,14 @@
  */
 Route::group(['prefix'=>'home', 'namespace'=>'Home'], function () {
     /**
+     * 首页
+     */
+    Route::group(['prefix'=>'index'], function () {
+        // 首页
+        Route::get('index', 'IndexController@index');
+    });
+
+    /**
      * 整合测试系列
      */
     Route::group(['prefix'=>'demo'], function () {
