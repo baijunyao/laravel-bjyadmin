@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Base extends Model
 {
+    // 软删除
+    use SoftDeletes;
     
     /**
      * 禁止被批量赋值的字段
