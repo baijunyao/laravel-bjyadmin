@@ -34,7 +34,8 @@
         "propaganistas/laravel-phone": "^2.8",
         "predis/predis": "^1.1",
         "graham-campbell/github": "^6.0",
-        "php-http/guzzle6-adapter": "^1.1"
+        "php-http/guzzle6-adapter": "^1.1",
+        "baijunyao/laravel-print": "dev-master"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
