@@ -36,14 +36,12 @@ class Base extends Model
      */
     public function addData($data)
     {
-
         //添加数据
         $result=$this
             ->create($data)
             ->id;
         if ($result) {
-            session()->flash('alert-message','添加成功');
-            session()->flash('alert-class','alert-success');
+            show_message('添加成功');
             return $result;
         }else{
             return false;
@@ -59,19 +57,20 @@ class Base extends Model
      */
     public function editData($map, $data)
     {
-        $model = $this->whereMap($map)->get();
+        $model = $this
+            ->whereMap($map)
+            ->withTrashed()
+            ->get();
         // 可能有查不到数据的情况
         if ($model->isEmpty()) {
-            session()->flash('alert-message','无可被修改的数据');
-            session()->flash('alert-class','alert-success');
+            show_message('无需要添加的数据', false);
             return false;
         }
         foreach ($model as $k => $v) {
             $result = $v->forceFill($data)->save();
         }
         if ($result) {
-            session()->flash('alert-message','修改成功');
-            session()->flash('alert-class','alert-success');
+            show_message('修改成功');
             return $result;
         }else{
             return false;
@@ -91,8 +90,7 @@ class Base extends Model
             ->where($map)
             ->delete();
         if ($result) {
-            session()->flash('alert-message','操作成功');
-            session()->flash('alert-class','alert-success');
+            show_message('操作成功');
             return $result;
         }else{
             return false;
@@ -112,8 +110,7 @@ class Base extends Model
         }
         //判断是否有需要排序的字段
         if (empty($data)) {
-            session()->flash('alert-message','没有需要排序的数据');
-            session()->flash('alert-class','alert-success');
+            show_message('没有需要排序的数据', false);
             return false;
         }
         //循环修改数据
@@ -128,8 +125,7 @@ class Base extends Model
                 ->update($edit_data);
         }
         if ($result) {
-            session()->flash('alert-message','修改成功');
-            session()->flash('alert-class','alert-success');
+            show_message('操作成功');
             return $result;
         }else{
             return false;
