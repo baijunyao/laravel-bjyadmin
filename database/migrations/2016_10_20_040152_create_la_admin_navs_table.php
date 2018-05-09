@@ -21,6 +21,8 @@ class CreateLaAdminNavsTable extends Migration {
 			$table->string('ico', 20)->nullable()->default('')->comment('图标');
 			$table->integer('order_number')->unsigned()->nullable()->comment('排序');
 			$table->timestamps();
+			//增加deleted_at字段
+            $table->softDeletes();
 		});
 	}
 
