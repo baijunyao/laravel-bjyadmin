@@ -20,8 +20,6 @@ class CreateUsersTable extends Migration
             $table->string('password')->comment('密码');
             $table->rememberToken()->comment('记住我凭证');
             $table->timestamps();
-            //增加deleted_at字段
-            $table->softDeletes();
         });
     }
 
